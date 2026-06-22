@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Клуб каратэ | Окинава-Goju-Ryu</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="adminHiddenBtn" class="admin-hidden-btn">
+    <i class="fas fa-kiwi-bird"></i>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <i class="fas fa-fist-raised"></i> Каратэ Клуб
+      </a>
+      <div class="nav-toggle" id="navToggle">
+        <span></span><span></span><span></span>
+      </div>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#hero" class="nav-link">Главная</a></li>
+        <li><a href="#schedule" class="nav-link">Расписание</a></li>
+        <li><a href="#instructors" class="nav-link">Инструкторы</a></li>
+        <li><a href="#articles" class="nav-link">Статьи</a></li>
+        <li><a href="#news" class="nav-link">Новости</a></li>
+        <li><a href="#videos" class="nav-link">Видео</a></li>
+        <li><a href="#contacts" class="nav-link">Контакты</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero" id="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">Окинава-Годзю-Рю</h1>
+      <p class="hero-subtitle">Клуб каратэ — путь силы, духа и мастерства</p>
+      <p class="hero-desc">Традиционное каратэ для детей и взрослых. Присоединяйтесь к нашему клубу!</p>
+      <a href="#contacts" class="btn btn-primary">Связаться с нами</a>
+    </div>
+  </section>
+
+  <section class="section" id="schedule">
+    <div class="container">
+      <h2 class="section-title"><span class="title-icon"><i class="fas fa-calendar-alt"></i></span> Расписание занятий</h2>
+      <div class="schedule-grid" id="scheduleGrid">
+        <div class="schedule-loading"><i class="fas fa-spinner fa-spin"></i> Загрузка...</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark" id="instructors">
+    <div class="container">
+      <h2 class="section-title"><span class="title-icon"><i class="fas fa-users"></i></span> Наши инструкторы</h2>
+      <div class="instructors-grid" id="instructorsGrid">
+        <div class="schedule-loading"><i class="fas fa-spinner fa-spin"></i> Загрузка...</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="articles">
+    <div class="container">
+      <h2 class="section-title"><span class="title-icon"><i class="fas fa-newspaper"></i></span> Статьи</h2>
+      <div class="articles-container" id="articlesContainer">
+        <div class="schedule-loading"><i class="fas fa-spinner fa-spin"></i> Загрузка...</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark" id="news">
+    <div class="container">
+      <h2 class="section-title"><span class="title-icon"><i class="fas fa-bullhorn"></i></span> Новости</h2>
+      <div class="news-container" id="newsContainer">
+        <div class="schedule-loading"><i class="fas fa-spinner fa-spin"></i> Загрузка...</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="videos">
+    <div class="container">
+      <h2 class="section-title"><span class="title-icon"><i class="fab fa-youtube"></i></span> Видео с YouTube</h2>
+      <p class="section-desc">Последние видео нашего клуба</p>
+      <div class="videos-grid" id="videosGrid">
+        <div class="schedule-loading"><i class="fas fa-spinner fa-spin"></i> Загрузка...</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark" id="contacts">
+    <div class="container">
+      <h2 class="section-title"><span class="title-icon"><i class="fas fa-map-marker-alt"></i></span> Контакты</h2>
+      <div class="contacts-wrapper">
+        <div class="contacts-info">
+          <div class="contact-card">
+            <i class="fas fa-map-marked-alt"></i>
+            <div>
+              <h3>Адрес</h3>
+              <p id="contactAddress">г. Минск, ул. Каратэ, д. 10</p>
+            </div>
+          </div>
+          <div class="contact-card">
+            <i class="fas fa-phone-alt"></i>
+            <div>
+              <h3>Телефон</h3>
+              <p id="contactPhone">+375 (29) 123-45-67</p>
+            </div>
+          </div>
+          <div class="contact-card">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <h3>Email</h3>
+              <p id="contactEmail">info@karate-club.by</p>
+            </div>
+          </div>
+          <div class="contact-card">
+            <i class="fas fa-clock"></i>
+            <div>
+              <h3>Время работы</h3>
+              <p id="contactHours">Пн-Пт: 09:00-21:00, Сб: 10:00-18:00</p>
+            </div>
+          </div>
+        </div>
+        <div class="contact-map">
+          <div id="mapPlaceholder" class="map-placeholder">
+            <iframe
+              id="mapIframe"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2350.0!2d27.55!3d53.9!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOTDCsDU0JzAwLjAiTiAyN8KwMzMnMDAuMCJF!5e0!3m2!1sru!2sby!4v1"
+              allowfullscreen=""
+              loading="lazy">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="articleModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalArticleTitle"></h2>
+        <span class="modal-close">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div id="modalArticleContent" class="article-content"></div>
+        <div id="modalArticleFile" class="article-file-link"></div>
+        <hr>
+        <h3>Комментарии</h3>
+        <div id="modalComments" class="comments-section"></div>
+        <div class="comment-form">
+          <h4>Оставить комментарий</h4>
+          <input type="text" id="commentAuthor" placeholder="Ваше имя" class="form-input">
+          <textarea id="commentText" placeholder="Текст комментария" class="form-input" rows="3"></textarea>
+          <button id="submitComment" class="btn btn-primary btn-sm">Отправить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <i class="fas fa-fist-raised"></i> Клуб каратэ
+        </div>
+        <p class="footer-text">&copy; 2026 Клуб каратэ. Все права защищены.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div id="loginModal" class="modal">
+    <div class="modal-content modal-sm">
+      <div class="modal-header">
+        <h2>Вход администратора</h2>
+        <span class="modal-close" id="loginModalClose">&times;</span>
+      </div>
+      <div class="modal-body">
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="loginInput">Логин</label>
+            <input type="text" id="loginInput" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label for="passwordInput">Пароль</label>
+            <input type="password" id="passwordInput" class="form-input" required>
+          </div>
+          <div id="loginError" class="form-error"></div>
+          <button type="submit" class="btn btn-primary btn-full">Войти</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

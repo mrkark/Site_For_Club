@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Панель администратора | Клуб каратэ</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+  <nav class="navbar admin-nav" id="adminNav">
+    <div class="nav-container">
+      <a href="/" class="nav-logo"><i class="fas fa-fist-raised"></i> Админ-панель</a>
+      <div class="admin-user-badge" id="adminUserBadge"></div>
+      <button id="logoutBtn" class="btn btn-sm btn-outline">Выйти</button>
+    </div>
+  </nav>
+
+  <div class="admin-layout">
+    <aside class="admin-sidebar" id="adminSidebar">
+      <button class="sidebar-link active" data-tab="articles"><i class="fas fa-newspaper"></i> Статьи</button>
+      <button class="sidebar-link" data-tab="news"><i class="fas fa-bullhorn"></i> Новости</button>
+      <button class="sidebar-link" data-tab="schedule"><i class="fas fa-calendar-alt"></i> Расписание</button>
+      <button class="sidebar-link" data-tab="instructors"><i class="fas fa-users"></i> Инструкторы</button>
+      <button class="sidebar-link" data-tab="admins" id="adminsTab"><i class="fas fa-user-shield"></i> Админы</button>
+    </aside>
+
+    <main class="admin-main">
+      <div class="admin-tab active" id="tab-articles">
+        <div class="admin-tab-header">
+          <h2><i class="fas fa-newspaper"></i> Статьи</h2>
+          <button class="btn btn-primary btn-sm add-btn" data-type="articles"><i class="fas fa-plus"></i> Добавить</button>
+        </div>
+        <div class="admin-items" id="articlesList"></div>
+      </div>
+
+      <div class="admin-tab" id="tab-news">
+        <div class="admin-tab-header">
+          <h2><i class="fas fa-bullhorn"></i> Новости</h2>
+          <button class="btn btn-primary btn-sm add-btn" data-type="news"><i class="fas fa-plus"></i> Добавить</button>
+        </div>
+        <div class="admin-items" id="newsList"></div>
+      </div>
+
+      <div class="admin-tab" id="tab-schedule">
+        <div class="admin-tab-header">
+          <h2><i class="fas fa-calendar-alt"></i> Расписание</h2>
+          <button class="btn btn-primary btn-sm add-btn" data-type="schedule"><i class="fas fa-plus"></i> Добавить</button>
+        </div>
+        <div class="admin-items" id="scheduleList"></div>
+      </div>
+
+      <div class="admin-tab" id="tab-instructors">
+        <div class="admin-tab-header">
+          <h2><i class="fas fa-users"></i> Инструкторы</h2>
+          <button class="btn btn-primary btn-sm add-btn" data-type="instructors"><i class="fas fa-plus"></i> Добавить</button>
+        </div>
+        <div class="admin-items" id="instructorsList"></div>
+      </div>
+
+      <div class="admin-tab" id="tab-admins">
+        <div class="admin-tab-header">
+          <h2><i class="fas fa-user-shield"></i> Администраторы</h2>
+          <button class="btn btn-primary btn-sm add-btn" data-type="admins"><i class="fas fa-plus"></i> Добавить</button>
+        </div>
+        <div class="admin-items" id="adminsList"></div>
+      </div>
+    </main>
+  </div>
+
+  <div id="adminModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="adminModalTitle"></h2>
+        <span class="modal-close admin-modal-close">&times;</span>
+      </div>
+      <div class="modal-body">
+        <form id="adminForm" enctype="multipart/form-data">
+          <div id="adminFormFields"></div>
+          <button type="submit" class="btn btn-primary btn-full">Сохранить</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/admin.js"></script>
+</body>
+</html>
