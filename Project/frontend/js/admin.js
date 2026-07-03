@@ -48,6 +48,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   loadTabData('schedule');
   loadTabData('instructors');
   if (currentUser.superAdmin) loadTabData('admins');
+  loadDebugInfo();
 });
 
 async function loadTabData(type) {
@@ -62,7 +63,7 @@ async function loadTabData(type) {
     }
 
     list.innerHTML = data.map(item => {
-      let title = item.title || item.name || item.login || item.dayOfWeek || '';
+      let title = item.name || item.title || item.login || item.dayOfWeek || '';
       let date = item.createdAt || '';
       return `
         <div class="admin-item">
@@ -176,6 +177,13 @@ function getFormFields(type, isEdit) {
           <label>Описание</label>
           <input type="text" name="description" class="form-input">
         </div>
+        <div class="form-group">
+          <label>Сезон</label>
+          <select name="isSummer" class="form-input">
+            <option value="0">Зима</option>
+            <option value="1">Лето</option>
+          </select>
+        </div>
       `;
     case 'instructors':
       return `
@@ -264,6 +272,44 @@ async function deleteItem(type, id) {
     loadTabData(type);
   } catch (err) {
     alert('Ошибка удаления');
+  }
+}
+
+async function loadDebugInfo() {
+  const div = document.getElementById('debugInfo');
+  try {
+    const [articles, news, schedule, instructors] = await Promise.all([
+      fetch('/api/articles').then(r => r.json()),
+      fetch('/api/news').then(r => r.json()),
+      fetch('/api/schedule').then(r => r.json()),
+      fetch('/api/instructors').then(r => r.json())
+    ]);
+    div.innerHTML = `
+      <div class="debug-grid">
+        <div class="debug-card">
+          <div class="debug-label">Администратор</div>
+          <div class="debug-value">${currentUser.login} ${currentUser.superAdmin ? '(super)' : ''}</div>
+        </div>
+        <div class="debug-card">
+          <div class="debug-label">Статьи</div>
+          <div class="debug-value">${articles.length}</div>
+        </div>
+        <div class="debug-card">
+          <div class="debug-label">Новости</div>
+          <div class="debug-value">${news.length}</div>
+        </div>
+        <div class="debug-card">
+          <div class="debug-label">Расписание</div>
+          <div class="debug-value">${schedule.length}</div>
+        </div>
+        <div class="debug-card">
+          <div class="debug-label">Инструкторы</div>
+          <div class="debug-value">${instructors.length}</div>
+        </div>
+      </div>
+    `;
+  } catch (err) {
+    div.innerHTML = '<div class="debug-card"><div class="debug-label">Ошибка</div><div class="debug-value">' + err.message + '</div></div>';
   }
 }
 

@@ -1,0 +1,93 @@
+.schedule-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.schedule-card {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--primary);
+  transition: var(--transition);
+}
+
+.section-dark .schedule-card {
+  background: var(--dark-card);
+  border-left-color: var(--accent);
+}
+
+.schedule-card:hover { transform: translateY(-3px); box-shadow: 0 6px 25px rgba(0,0,0,0.2); }
+
+.season-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.season-btn {
+  padding: 10px 24px;
+  border: 2px solid var(--gold);
+  border-radius: 30px;
+  background: transparent;
+  color: var(--gold);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-dark .season-btn {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.season-btn:hover {
+  background: var(--gold);
+  color: var(--darker);
+}
+#seasonToggle.summer .summer-btn,
+#seasonToggle.winter .winter-btn {
+  background: var(--gold);
+  color: var(--darker);
+  border-color: var(--gold);
+}
+#seasonToggle .badge {
+  display: none;
+  background: var(--accent);
+  color: var(--text);
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 12px;
+  margin-left: 6px;
+}
+#seasonToggle.summer .summer-btn .badge,
+#seasonToggle.winter .winter-btn .badge {
+  display: inline-block;
+}
+
+.schedule-day {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.2rem;
+  color: var(--accent);
+  margin-bottom: 5px;
+}
+
+.section-dark .schedule-day { color: var(--gold); }
+
+.schedule-time {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin-bottom: 5px;
+}
+
+.schedule-group {
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+.section-dark .schedule-group { color: var(--text); }

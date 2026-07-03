@@ -1,0 +1,75 @@
+.videos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 25px;
+}
+
+.video-card {
+  display: block;
+  background: var(--dark-card);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(139, 0, 0, 0.1);
+  text-decoration: none;
+  transition: var(--transition);
+}
+.video-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  border-color: var(--gold);
+}
+
+.video-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: #000;
+}
+.video-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.video-card:hover .video-thumb img {
+  transform: scale(1.05);
+}
+
+.video-play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.35);
+  transition: background 0.3s ease;
+}
+.video-play-overlay i {
+  font-size: 3rem;
+  color: var(--gold);
+  opacity: 0.85;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.video-card:hover .video-play-overlay {
+  background: rgba(0,0,0,0.2);
+}
+.video-card:hover .video-play-overlay i {
+  transform: scale(1.15);
+  opacity: 1;
+  color: var(--text);
+}
+
+.video-card-body { padding: 15px 20px 20px; }
+
+.video-card-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1rem;
+  color: var(--gold);
+  transition: color 0.3s ease;
+}
+.video-card:hover .video-card-title {
+  color: var(--text);
+}

@@ -3,10 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Клуб каратэ | Окинава-Goju-Ryu</title>
-  <link rel="stylesheet" href="/css/style.css">
+  <title>Клуб каратэ | Сэнкё</title>
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/navbar.css">
+  <link rel="stylesheet" href="/css/hero.css">
+  <link rel="stylesheet" href="/css/buttons.css">
+  <link rel="stylesheet" href="/css/sections.css">
+  <link rel="stylesheet" href="/css/loading.css">
+  <link rel="stylesheet" href="/css/schedule.css">
+  <link rel="stylesheet" href="/css/instructors.css">
+  <link rel="stylesheet" href="/css/articles.css">
+  <link rel="stylesheet" href="/css/news.css">
+  <link rel="stylesheet" href="/css/videos.css">
+  <link rel="stylesheet" href="/css/contacts.css">
+  <link rel="stylesheet" href="/css/modal.css">
+  <link rel="stylesheet" href="/css/forms.css">
+  <link rel="stylesheet" href="/css/comments.css">
+  <link rel="stylesheet" href="/css/footer.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="icon" href="./img/logo.svg" type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div id="adminHiddenBtn" class="admin-hidden-btn">
@@ -16,7 +33,9 @@
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <a href="#" class="nav-logo">
-        <i class="fas fa-fist-raised"></i> Каратэ Клуб
+        <img src="./img/logo.svg" alt="Сэнкё" class="nav-logo-img">
+        <span class="logo-text-full">Сэнкё — Клуб каратэ</span>
+        <span class="logo-text-short">Сэнкё</span>
       </a>
       <div class="nav-toggle" id="navToggle">
         <span></span><span></span><span></span>
@@ -36,16 +55,20 @@
   <section class="hero" id="hero">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <h1 class="hero-title">Окинава-Годзю-Рю</h1>
-      <p class="hero-subtitle">Клуб каратэ — путь силы, духа и мастерства</p>
-      <p class="hero-desc">Традиционное каратэ для детей и взрослых. Присоединяйтесь к нашему клубу!</p>
-      <a href="#contacts" class="btn btn-primary">Связаться с нами</a>
+      <h1 class="hero-title">МОО Спортивный Клуб «СЭНКЁ»</h1>
+      <p class="hero-subtitle">錬心 — Путь каратэ.</p>
+      <p class="hero-desc">Основан 10 ноября 1994 года. Традиционное каратэ JKS (Japan Karate Shoto Federation). Воспитание духа, тела и мастерства через боевой путь.</p>
+      <a href="#contacts" class="btn btn-gold">Связаться с нами</a>
     </div>
   </section>
 
-  <section class="section" id="schedule">
+  <section class="section section-dark" id="schedule">
     <div class="container">
       <h2 class="section-title"><span class="title-icon"><i class="fas fa-calendar-alt"></i></span> Расписание занятий</h2>
+      <div class="season-toggle" id="seasonToggle">
+        <button onclick="switchSeason('winter')" class="season-btn winter-btn"><i class="fas fa-snowflake"></i> Зима</button>
+        <button onclick="switchSeason('summer')" class="season-btn summer-btn"><i class="fas fa-sun"></i> Лето</button>
+      </div>
       <div class="schedule-grid" id="scheduleGrid">
         <div class="schedule-loading"><i class="fas fa-spinner fa-spin"></i> Загрузка...</div>
       </div>
@@ -82,7 +105,7 @@
   <section class="section" id="videos">
     <div class="container">
       <h2 class="section-title"><span class="title-icon"><i class="fab fa-youtube"></i></span> Видео с YouTube</h2>
-      <p class="section-desc">Последние видео нашего клуба</p>
+      <p class="section-desc">Последние видео с YouTube-канала JKS Belarus</p>
       <div class="videos-grid" id="videosGrid">
         <div class="schedule-loading"><i class="fas fa-spinner fa-spin"></i> Загрузка...</div>
       </div>
@@ -98,28 +121,28 @@
             <i class="fas fa-map-marked-alt"></i>
             <div>
               <h3>Адрес</h3>
-              <p id="contactAddress">г. Минск, ул. Каратэ, д. 10</p>
+              <p id="contactAddress">г. Минск, ул. Некрасова, 7, 6 этаж</p>
             </div>
           </div>
           <div class="contact-card">
             <i class="fas fa-phone-alt"></i>
             <div>
               <h3>Телефон</h3>
-              <p id="contactPhone">+375 (29) 123-45-67</p>
+              <p id="contactPhone">+375 29 611 79 07</p>
             </div>
           </div>
           <div class="contact-card">
             <i class="fas fa-envelope"></i>
             <div>
               <h3>Email</h3>
-              <p id="contactEmail">info@karate-club.by</p>
+              <p id="contactEmail">senko@bk.ru</p>
             </div>
           </div>
           <div class="contact-card">
             <i class="fas fa-clock"></i>
             <div>
               <h3>Время работы</h3>
-              <p id="contactHours">Пн-Пт: 09:00-21:00, Сб: 10:00-18:00</p>
+              <p id="contactHours">Ежедневно: 09:00-22:00 (по расписанию)</p>
             </div>
           </div>
         </div>
@@ -127,7 +150,7 @@
           <div id="mapPlaceholder" class="map-placeholder">
             <iframe
               id="mapIframe"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2350.0!2d27.55!3d53.9!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOTDCsDU0JzAwLjAiTiAyN8KwMzMnMDAuMCJF!5e0!3m2!1sru!2sby!4v1"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2350.5!2d27.5923!3d53.9308!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbcf0d757d2a83%3A0x75fbf2d45381ffb7!2z0JzQntCeICLQodC_0L7RgNGC0LjQstC90YvQuSDQutC70YPQsSDQodGN0L3QutGRIg!5e0!3m2!1sru!2sby!4v1"
               allowfullscreen=""
               loading="lazy">
             </iframe>
@@ -151,9 +174,11 @@
         <div id="modalComments" class="comments-section"></div>
         <div class="comment-form">
           <h4>Оставить комментарий</h4>
+          <div id="replyToInfo" class="reply-to-info"></div>
           <input type="text" id="commentAuthor" placeholder="Ваше имя" class="form-input">
           <textarea id="commentText" placeholder="Текст комментария" class="form-input" rows="3"></textarea>
-          <button id="submitComment" class="btn btn-primary btn-sm">Отправить</button>
+          <div id="commentError" class="form-error"></div>
+          <button id="submitComment" class="btn btn-gold btn-sm">Отправить</button>
         </div>
       </div>
     </div>
@@ -163,9 +188,9 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-brand">
-          <i class="fas fa-fist-raised"></i> Клуб каратэ
+          <img src="./img/logo.svg" alt="Сэнкё" class="nav-logo-img"> МОО «Спортивный Клуб «СЭНКЁ»
         </div>
-        <p class="footer-text">&copy; 2026 Клуб каратэ. Все права защищены.</p>
+        <p class="footer-text">&copy; 2026 МОО «Спортивный Клуб «СЭНКЁ». Все права защищены.</p>
       </div>
     </div>
   </footer>
@@ -187,7 +212,7 @@
             <input type="password" id="passwordInput" class="form-input" required>
           </div>
           <div id="loginError" class="form-error"></div>
-          <button type="submit" class="btn btn-primary btn-full">Войти</button>
+          <button type="submit" class="btn btn-gold btn-full">Войти</button>
         </form>
       </div>
     </div>

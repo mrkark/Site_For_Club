@@ -1,0 +1,61 @@
+:root {
+  --primary: #1A1A2E;
+  --primary-dark: #0D0D18;
+  --primary-light: #2A2A4E;
+  --accent: #8B0000;
+  --dark: #0F0F14;
+  --darker: #060608;
+  --dark-card: #16161E;
+  --text: #E8E2D4;
+  --text-light: #9A958E;
+  --text-dark: #1A1814;
+  --bg: #E8E2D4;
+  --card-bg: #F5F0E8;
+  --gold: #C9A84C;
+  --gold-light: #DDBE5E;
+  --success: #4A6B3A;
+  --danger: #8B0000;
+  --border-radius: 8px;
+  --shadow: 0 4px 20px rgba(0,0,0,0.12);
+  --transition: all 0.3s ease;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: var(--text-dark);
+  background: var(--bg);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.admin-body { background: var(--darker); color: var(--text); }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.admin-hidden-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: transparent;
+  font-size: 0;
+  user-select: none;
+}
+
+.admin-hidden-btn:active {
+  background: transparent;
+}
+

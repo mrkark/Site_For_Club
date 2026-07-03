@@ -1,0 +1,53 @@
+@media (max-width: 768px) {
+  .nav-toggle { display: flex; }
+
+  .nav-menu {
+    position: fixed;
+    top: 0; right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: rgba(6, 6, 8, 0.98);
+    backdrop-filter: blur(12px);
+    flex-direction: column;
+    padding: 80px 20px 20px;
+    transition: right 0.35s ease;
+    gap: 0;
+    box-shadow: -5px 0 30px rgba(0,0,0,0.3);
+    border-left: 1px solid var(--accent);
+  }
+
+  .nav-menu.active { right: 0; }
+  .nav-menu .nav-link { padding: 14px 16px; }
+
+  .section { padding: 60px 0; }
+  .hero-title { letter-spacing: 3px; }
+  .hero-desc { font-size: 0.95rem; }
+
+  .instructors-grid { gap: 20px; }
+  .schedule-grid { grid-template-columns: 1fr; }
+  .articles-grid { grid-template-columns: 1fr; }
+  .news-grid { grid-template-columns: 1fr; }
+  .videos-grid { grid-template-columns: 1fr; }
+  .contacts-wrapper { grid-template-columns: 1fr; gap: 25px; }
+
+  .admin-sidebar { width: 60px; overflow: hidden; }
+  .admin-sidebar .nav-logo span { display: none; }
+  .admin-nav-item span { display: none; }
+  .admin-nav-item { justify-content: center; padding: 14px; }
+  .admin-logout span { display: none; }
+  .admin-logout { justify-content: center; font-size: 0; }
+  .admin-logout i { font-size: 1.2rem; }
+  .admin-main { padding: 20px; }
+  .admin-form-grid { grid-template-columns: 1fr; }
+  .admin-header { flex-direction: column; gap: 10px; align-items: flex-start; }
+  .admin-table { font-size: 0.8rem; }
+  .admin-table th, .admin-table td { padding: 6px 8px; }
+  .admin-table-actions { flex-direction: column; gap: 3px; }
+
+  .modal.show { align-items: center; padding: 20px 10px; }
+}
+
+@media (max-width: 480px) {
+  .nav-logo .logo-text-full { display: none; }
+  .nav-logo .logo-text-short { display: inline; }
+}

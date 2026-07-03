@@ -1,6 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
-const { queryAll, queryOne, runSql } = require('../database');
+const { queryAll, queryOne, runSql } = require('../mssql-adapter');
 const router = express.Router();
 
 function requireAuth(req, res, next) {
@@ -8,17 +8,17 @@ function requireAuth(req, res, next) {
   next();
 }
 
-function requireSuperAdmin(req, res, next) {
+async function requireSuperAdmin(req, res, next) {
   if (!req.session.adminId) return res.status(401).json({ error: 'Unauthorized' });
-  const admin = queryOne('SELECT * FROM admins WHERE id = ?', [req.session.adminId]);
+  const admin = await queryOne('SELECT * FROM admins WHERE id = ?', [req.session.adminId]);
   if (!admin || !admin.superAdmin) return res.status(403).json({ error: 'SuperAdmin required' });
   next();
 }
 
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
   const { login, password } = req.body;
   if (!login || !password) return res.status(400).json({ error: 'Login and password required' });
-  const admin = queryOne('SELECT * FROM admins WHERE login = ?', [login]);
+  const admin = await queryOne('SELECT * FROM admins WHERE login = ?', [login]);
   if (!admin || !bcrypt.compareSync(password, admin.password)) {
     return res.status(401).json({ error: 'Invalid credentials' });
   }
@@ -33,42 +33,42 @@ router.post('/logout', (req, res) => {
   res.json({ success: true });
 });
 
-router.get('/:id', requireSuperAdmin, (req, res) => {
-  const admin = queryOne('SELECT id, login, superAdmin, createdAt FROM admins WHERE id = ?', [req.params.id]);
-  if (!admin) return res.status(404).json({ error: 'Not found' });
-  res.json(admin);
-});
-
-router.get('/session', (req, res) => {
+router.get('/session', async (req, res) => {
   if (!req.session.adminId) return res.json({ authenticated: false });
-  const admin = queryOne('SELECT id, login, superAdmin FROM admins WHERE id = ?', [req.session.adminId]);
+  const admin = await queryOne('SELECT id, login, superAdmin FROM admins WHERE id = ?', [req.session.adminId]);
   if (!admin) return res.json({ authenticated: false });
   res.json({ authenticated: true, admin: { ...admin, superAdmin: !!admin.superAdmin } });
 });
 
-router.get('/all', requireSuperAdmin, (req, res) => {
-  const admins = queryAll('SELECT id, login, superAdmin, createdAt FROM admins ORDER BY id');
+router.get('/', requireSuperAdmin, async (req, res) => {
+  const admins = await queryAll('SELECT id, login, superAdmin, createdAt FROM admins ORDER BY id');
   res.json(admins);
 });
 
-router.post('/create', requireSuperAdmin, (req, res) => {
+router.get('/:id', requireSuperAdmin, async (req, res) => {
+  const admin = await queryOne('SELECT id, login, superAdmin, createdAt FROM admins WHERE id = ?', [req.params.id]);
+  if (!admin) return res.status(404).json({ error: 'Not found' });
+  res.json(admin);
+});
+
+router.post('/', requireSuperAdmin, async (req, res) => {
   const { login, password, superAdmin } = req.body;
   if (!login || !password) return res.status(400).json({ error: 'Login and password required' });
-  const existing = queryOne('SELECT id FROM admins WHERE login = ?', [login]);
+  const existing = await queryOne('SELECT id FROM admins WHERE login = ?', [login]);
   if (existing) return res.status(400).json({ error: 'Login already exists' });
   const hashedPassword = bcrypt.hashSync(password, 10);
-  const result = runSql('INSERT INTO admins (login, password, superAdmin) VALUES (?, ?, ?)', [login, hashedPassword, superAdmin ? 1 : 0]);
+  const result = await runSql('INSERT INTO admins (login, password, superAdmin) VALUES (?, ?, ?)', [login, hashedPassword, superAdmin ? 1 : 0]);
   res.json({ success: true, id: result.lastInsertRowid });
 });
 
-router.put('/:id', requireSuperAdmin, (req, res) => {
+router.put('/:id', requireSuperAdmin, async (req, res) => {
   const { id } = req.params;
   const { login, password, superAdmin } = req.body;
-  const admin = queryOne('SELECT * FROM admins WHERE id = ?', [id]);
+  const admin = await queryOne('SELECT * FROM admins WHERE id = ?', [id]);
   if (!admin) return res.status(404).json({ error: 'Admin not found' });
 
   if (login && login !== admin.login) {
-    const existing = queryOne('SELECT id FROM admins WHERE login = ?', [login]);
+    const existing = await queryOne('SELECT id FROM admins WHERE login = ?', [login]);
     if (existing) return res.status(400).json({ error: 'Login already exists' });
   }
 
@@ -86,14 +86,14 @@ router.put('/:id', requireSuperAdmin, (req, res) => {
   query += ' WHERE id = ?';
   params.push(id);
 
-  runSql(query, params);
+  await runSql(query, params);
   res.json({ success: true });
 });
 
-router.delete('/:id', requireSuperAdmin, (req, res) => {
+router.delete('/:id', requireSuperAdmin, async (req, res) => {
   const { id } = req.params;
   if (parseInt(id) === req.session.adminId) return res.status(400).json({ error: 'Cannot delete yourself' });
-  const result = runSql('DELETE FROM admins WHERE id = ?', [id]);
+  const result = await runSql('DELETE FROM admins WHERE id = ?', [id]);
   if (result.changes === 0) return res.status(404).json({ error: 'Admin not found' });
   res.json({ success: true });
 });
