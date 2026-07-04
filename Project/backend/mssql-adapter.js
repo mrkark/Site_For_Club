@@ -33,7 +33,19 @@ async function queryAll(sqlQuery, params = []) {
   const p = await getDb();
   const r = p.request();
   const parsedSql = replaceParams(sqlQuery, params);
-  params.forEach((v, i) => r.input(`p${i}`, v));
+  params.forEach((v, i) => {
+    if (v === null || v === undefined) {
+      r.input(`p${i}`, sql.NVarChar(1), v);
+    } else if (typeof v === 'string') {
+      r.input(`p${i}`, sql.NVarChar(sql.MAX), v);
+    } else if (typeof v === 'number') {
+      r.input(`p${i}`, sql.Float, v);
+    } else if (typeof v === 'boolean') {
+      r.input(`p${i}`, sql.Bit, v);
+    } else {
+      r.input(`p${i}`, sql.NVarChar(sql.MAX), String(v));
+    }
+  });
   const result = await r.query(parsedSql);
   return result.recordset;
 }
@@ -53,7 +65,19 @@ async function runSql(sqlQuery, params = []) {
     parsedSql += ';SELECT SCOPE_IDENTITY() AS _id';
   }
 
-  params.forEach((v, i) => r.input(`p${i}`, v));
+  params.forEach((v, i) => {
+    if (v === null || v === undefined) {
+      r.input(`p${i}`, sql.NVarChar(1), v);
+    } else if (typeof v === 'string') {
+      r.input(`p${i}`, sql.NVarChar(sql.MAX), v);
+    } else if (typeof v === 'number') {
+      r.input(`p${i}`, sql.Float, v);
+    } else if (typeof v === 'boolean') {
+      r.input(`p${i}`, sql.Bit, v);
+    } else {
+      r.input(`p${i}`, sql.NVarChar(sql.MAX), String(v));
+    }
+  });
   const result = await r.query(parsedSql);
 
   const changes = result.rowsAffected[0] || 0;

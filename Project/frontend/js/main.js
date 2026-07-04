@@ -262,7 +262,7 @@ function renderArticles() {
             <div class="article-card-title">${a.title}</div>
             <div class="article-card-date"><i class="far fa-calendar"></i> ${formatDate(a.createdAt)} <span class="article-views"><i class="far fa-eye"></i> ${a.views || 0}</span></div>
             ${a.content ? `<p class="article-card-excerpt">${a.content.substring(0, 200)}${a.content.length > 200 ? '...' : ''}</p>` : ''}
-            ${a.filePath ? `<a href="/api/download/${a.filePath.replace('/uploads/', '')}" class="article-card-download" onclick="event.stopPropagation()"><i class="fas fa-download"></i> Скачать файл</a>` : ''}
+            ${a.filePath ? `<a href="${fileUrl(a.filePath)}" class="article-card-download" onclick="event.stopPropagation()"><i class="fas fa-download"></i> Скачать файл</a>` : ''}
           </div>
         </div>
       `).join('')}
@@ -290,7 +290,7 @@ async function loadArticleModal(id) {
     document.getElementById('modalArticleContent').textContent = data.article.content || '';
     const fileLink = document.getElementById('modalArticleFile');
     if (data.article.filePath) {
-      fileLink.innerHTML = `<a href="/api/download/${data.article.filePath.replace('/uploads/', '')}"><i class="fas fa-download"></i> Скачать файл</a>`;
+      fileLink.innerHTML = `<a href="${fileUrl(data.article.filePath)}"><i class="fas fa-download"></i> Скачать файл</a>`;
     } else {
       fileLink.innerHTML = '';
     }
@@ -359,7 +359,7 @@ function renderNews() {
             <div class="news-card-title">${n.title}</div>
             <div class="news-card-date"><i class="far fa-calendar"></i> ${formatDate(n.createdAt)}</div>
             ${n.content ? `<p class="news-card-text">${n.content}</p>` : ''}
-            ${n.filePath ? `<a href="/api/download/${n.filePath.replace('/uploads/', '')}" class="news-card-file"><i class="fas fa-download"></i> Скачать файл</a>` : ''}
+            ${n.filePath ? `<a href="${fileUrl(n.filePath)}" class="news-card-file"><i class="fas fa-download"></i> Скачать файл</a>` : ''}
           </div>
         </div>
       `).join('')}
@@ -456,6 +456,11 @@ async function fetchYouTubeVideos() {
 }
 
 // ===== HELPERS =====
+function fileUrl(fp) {
+  if (!fp) return '';
+  return '/api/download/' + encodeURIComponent(fp.replace(/^\/uploads\//, ''));
+}
+
 function formatDate(dateStr) {
   const d = new Date(dateStr);
   return d.toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' });

@@ -33,13 +33,17 @@ app.use('/uploads', express.static(path.join(__dirname, '..', 'frontend', 'uploa
 
 // Download endpoint with original filename
 app.get('/api/download/:filename', (req, res) => {
-  const filePath = path.resolve(__dirname, '..', 'frontend', 'uploads', req.params.filename);
+  const name = req.params.filename.replace(/^\/uploads\//, '');
+  let filePath = path.resolve(__dirname, '..', 'frontend', 'uploads', name);
   if (!fs.existsSync(filePath)) {
-    return res.status(404).send(`<h2>Файл не найден</h2><p>Файл ${req.params.filename} не найден на сервере.</p><a href="/">Вернуться на главную</a>`);
+    const alt = Buffer.from(name, 'latin1').toString('utf8');
+    filePath = path.resolve(__dirname, '..', 'frontend', 'uploads', alt);
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).send(`<h2>Файл не найден</h2><p>Файл не найден на сервере.</p><a href="/">Вернуться на главную</a>`);
+    }
   }
-  const originalName = req.params.filename.replace(/^\d+-\d+-/, '');
-  res.setHeader('Content-Disposition', `attachment; filename*=UTF-8''${encodeURIComponent(originalName)}`);
-  res.sendFile(filePath);
+  const originalName = path.basename(filePath).replace(/^\d+-\d+-/, '');
+  res.download(filePath, originalName);
 });
 
 app.use('/api/admin', adminRoutes);

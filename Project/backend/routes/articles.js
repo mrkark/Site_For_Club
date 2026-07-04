@@ -1,6 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
 const { queryAll, queryOne, runSql } = require('../mssql-adapter');
 const router = express.Router();
 
@@ -10,7 +11,12 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, uniqueSuffix + '-' + file.originalname);
+    let name = file.originalname;
+    if (!/[а-яёА-ЯЁ]/i.test(name)) {
+      const fixed = Buffer.from(name, 'latin1').toString('utf8');
+      if (/[а-яёА-ЯЁ]/i.test(fixed)) name = fixed;
+    }
+    cb(null, uniqueSuffix + '-' + name);
   }
 });
 const upload = multer({ storage });
@@ -44,7 +50,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', requireAuth, upload.single('file'), async (req, res) => {
   const { title, content } = req.body;
   if (!title) return res.status(400).json({ error: 'Title required' });
-  const filePath = req.file ? '/uploads/' + req.file.filename : null;
+  const filePath = req.file ? req.file.filename : null;
   const result = await runSql('INSERT INTO articles (title, content, filePath) VALUES (?, ?, ?)', [title, content || null, filePath]);
   res.json({ success: true, id: result.lastInsertRowid });
 });
@@ -55,8 +61,17 @@ router.put('/:id', requireAuth, upload.single('file'), async (req, res) => {
   const article = await queryOne('SELECT * FROM articles WHERE id = ?', [id]);
   if (!article) return res.status(404).json({ error: 'Not found' });
 
+  // Delete old file if new one uploaded or removal requested
+  if (req.file || removeFile === 'true' || removeFile === '1') {
+    const oldFile = article.filePath;
+    if (oldFile) {
+      const oldPath = path.resolve(__dirname, '..', '..', 'frontend', 'uploads', path.basename(oldFile));
+      if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
+    }
+  }
+
   let filePath = article.filePath;
-  if (req.file) filePath = '/uploads/' + req.file.filename;
+  if (req.file) filePath = req.file.filename;
   else if (removeFile === 'true' || removeFile === '1') filePath = null;
 
   await runSql('UPDATE articles SET title = COALESCE(?, title), content = COALESCE(?, content), filePath = ?, updatedAt = CURRENT_TIMESTAMP WHERE id = ?',
@@ -65,8 +80,13 @@ router.put('/:id', requireAuth, upload.single('file'), async (req, res) => {
 });
 
 router.delete('/:id', requireAuth, async (req, res) => {
-  const result = await runSql('DELETE FROM articles WHERE id = ?', [req.params.id]);
-  if (result.changes === 0) return res.status(404).json({ error: 'Not found' });
+  const article = await queryOne('SELECT * FROM articles WHERE id = ?', [req.params.id]);
+  if (!article) return res.status(404).json({ error: 'Not found' });
+  if (article.filePath) {
+    const filePath = path.resolve(__dirname, '..', '..', 'frontend', 'uploads', path.basename(article.filePath));
+    if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
+  }
+  await runSql('DELETE FROM articles WHERE id = ?', [req.params.id]);
   res.json({ success: true });
 });
 

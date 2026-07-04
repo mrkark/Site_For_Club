@@ -108,6 +108,22 @@ function openEditModal(type, id) {
           else input.value = item[key] || '';
         }
       });
+      // Show current file
+      const filePath = item.filePath || item.photo;
+      if (filePath) {
+        const container = document.getElementById('adminFormFields');
+        const displayName = filePath.replace(/^\d+-\d+-/, '');
+        const el = document.createElement('div');
+        el.innerHTML = `
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:rgba(139,0,0,0.06);border:1px solid rgba(139,0,0,0.12);border-radius:6px;margin-bottom:12px">
+            <div style="display:flex;align-items:center;gap:10px">
+              <i class="fas fa-file" style="color:var(--accent);font-size:1.2rem"></i>
+              <span style="color:var(--text);font-size:0.9rem">${displayName}</span>
+            </div>
+            <a href="/api/download/${encodeURIComponent(filePath.replace(/^\/uploads\//, ''))}" style="color:var(--gold);padding:6px 12px;border:1px solid var(--gold);border-radius:4px;text-decoration:none;font-size:0.8rem" download><i class="fas fa-download"></i> Скачать</a>
+          </div>`;
+        container.insertBefore(el, container.firstChild);
+      }
     })
     .catch(console.error);
 }
@@ -130,9 +146,9 @@ function getFormFields(type, isEdit) {
           <textarea name="content" class="form-input" rows="8"></textarea>
         </div>
         <div class="form-group">
-          <label>Файл для скачивания</label>
+          <label>${isEdit ? 'Заменить файл' : 'Файл для скачивания'}</label>
           <input type="file" name="file" class="form-input">
-          ${isEdit ? '<label style="font-size:0.85rem;color:#888"><input type="checkbox" name="removeFile" value="1"> Удалить текущий файл</label>' : ''}
+          ${isEdit ? '<label style="font-size:0.85rem;color:var(--text-light);display:flex;align-items:center;gap:6px;margin-top:4px"><input type="checkbox" name="removeFile" value="1"> Удалить текущий файл</label>' : ''}
         </div>
       `;
     case 'news':
@@ -146,9 +162,9 @@ function getFormFields(type, isEdit) {
           <textarea name="content" class="form-input" rows="5"></textarea>
         </div>
         <div class="form-group">
-          <label>Файл для скачивания</label>
+          <label>${isEdit ? 'Заменить файл' : 'Файл для скачивания'}</label>
           <input type="file" name="file" class="form-input">
-          ${isEdit ? '<label style="font-size:0.85rem;color:#888"><input type="checkbox" name="removeFile" value="1"> Удалить текущий файл</label>' : ''}
+          ${isEdit ? '<label style="font-size:0.85rem;color:var(--text-light);display:flex;align-items:center;gap:6px;margin-top:4px"><input type="checkbox" name="removeFile" value="1"> Удалить текущий файл</label>' : ''}
         </div>
       `;
     case 'schedule':
