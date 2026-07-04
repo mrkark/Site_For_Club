@@ -1,6 +1,6 @@
 .instructors-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
   justify-content: center;
   justify-items: center;
@@ -14,7 +14,7 @@
   box-shadow: var(--shadow);
   border: 1px solid rgba(201, 168, 76, 0.1);
   transition: var(--transition);
-  max-width: 320px;
+  max-width: 340px;
   width: 100%;
 }
 
@@ -36,20 +36,21 @@
 
 .instructor-name {
   font-family: 'Noto Sans JP', 'Oswald', sans-serif;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   color: var(--gold);
   margin-bottom: 5px;
 }
 
 .instructor-title {
-  color: var(--accent);
-  font-size: 0.9rem;
+  color: var(--gold-light);
+  font-size: 1rem;
   margin-bottom: 10px;
+  padding: 0 15px;
 }
 
 .instructor-desc {
   padding: 0 20px 25px;
   color: var(--text-light);
-  font-size: 0.9rem;
-  line-height: 1.6;
+  font-size: 0.95rem;
+  line-height: 1.7;
 }
