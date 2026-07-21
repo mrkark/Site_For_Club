@@ -93,6 +93,23 @@
 
 .section-dark .schedule-group { color: var(--text); }
 
+.schedule-entry {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.section-dark .schedule-entry {
+  border-top-color: rgba(255,255,255,0.06);
+}
+
+.schedule-desc {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
 .schedule-card .schedule-loading {
   font-size: 1rem;
   padding: 20px;
