@@ -1,28 +1,30 @@
 .footer {
-  background: var(--darker);
-  color: var(--text-light);
-  padding: 30px 0;
+  background: url('/img/kosatsuba-board_sample.png') center/cover no-repeat;
+  background-color: var(--temple-roof-dark);
+  color: var(--temple-paper-dark);
+  padding: 60px 0 30px;
   text-align: center;
-  border-top: 2px solid var(--accent);
   position: relative;
 }
 
 .footer::before {
   content: '';
   position: absolute;
-  top: -4px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 2px;
-  background: var(--gold);
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--temple-wood), var(--temple-gold), var(--temple-wood));
 }
 
 .footer-brand {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Noto Sans JP', 'Oswald', sans-serif;
   font-size: 1.2rem;
-  color: var(--gold);
+  color: var(--temple-gold);
   margin-bottom: 5px;
 }
 
-.footer-text { font-size: 0.85rem; }
+.footer-text {
+  font-size: 0.85rem;
+  color: var(--temple-paper-dark);
+}

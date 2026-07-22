@@ -4,33 +4,37 @@
 }
 
 .section-dark {
-  background: linear-gradient(180deg, var(--darker) 0%, var(--dark) 100%);
-  color: var(--text);
+  background: var(--temple-roof-dark);
+  color: var(--temple-paper);
   position: relative;
 }
 
-.section-dark::before {
+.section::before {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, var(--accent), var(--gold), var(--accent), transparent);
+  top: -30px;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: url('/img/bamboo-blind_sample.png') repeat-x center;
+  background-size: auto 60px;
+  pointer-events: none;
+  z-index: 5;
 }
 
 .section-dark::after {
   content: '';
   position: absolute;
   inset: 0;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 5 L32 27 L55 30 L32 33 L30 55 L28 33 L5 30 L28 27 Z' fill='%23C9A84C'/%3E%3C/svg%3E");
-  background-size: 80px 80px;
+  background: url('/img/kosatsuba-board_sample.png') center/cover no-repeat;
+  opacity: 0.05;
   pointer-events: none;
 }
 
 .section-dark + .section-dark::before { display: none; }
 
-.section-dark .section-title { color: var(--gold); }
-.section-dark .section-desc { color: var(--text-light); }
+.section-dark .section-title { color: var(--temple-gold); }
+.section-dark .section-desc { color: var(--temple-paper-dark); }
 
 .section-title {
   font-family: 'Noto Sans JP', 'Oswald', sans-serif;
@@ -39,18 +43,18 @@
   margin-bottom: 15px;
   text-transform: uppercase;
   letter-spacing: 4px;
-  color: var(--dark);
+  color: var(--temple-ink-light);
 }
 
 .title-icon {
   display: inline-block;
-  color: var(--accent);
+  color: var(--temple-red);
   margin-right: 10px;
 }
 
 .section-desc {
   text-align: center;
-  color: var(--text-light);
+  color: var(--temple-ink-light);
   margin-bottom: 50px;
   font-size: 1.1rem;
 }

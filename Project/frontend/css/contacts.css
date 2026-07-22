@@ -11,33 +11,33 @@
   display: flex;
   align-items: flex-start;
   gap: 15px;
-  background: var(--dark-card);
+  background: var(--temple-paper);
   padding: 20px;
-  border-radius: var(--border-radius);
-  border: 1px solid rgba(201, 168, 76, 0.08);
+  border-radius: 0;
+  border: 1px solid var(--temple-wood-pale);
 }
 
 .contact-card i {
   font-size: 1.8rem;
-  color: var(--gold);
+  color: var(--temple-wood);
   flex-shrink: 0;
   margin-top: 3px;
 }
 
 .contact-card h3 {
-  font-family: 'Oswald', sans-serif;
-  color: var(--gold);
+  font-family: 'Noto Sans JP', 'Oswald', sans-serif;
+  color: var(--temple-ink);
   font-size: 1rem;
   margin-bottom: 3px;
 }
 
 .contact-card p {
-  color: var(--text-light);
+  color: var(--temple-ink-light);
   font-size: 0.95rem;
 }
 
 .map-placeholder {
-  border-radius: var(--border-radius);
+  border-radius: 0;
   overflow: hidden;
   box-shadow: var(--shadow);
 }

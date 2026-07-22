@@ -3,17 +3,17 @@
 }
 
 .news-card {
-  background: var(--card-bg);
-  border-radius: var(--border-radius);
+  background: var(--temple-paper);
+  border-radius: 0;
   overflow: hidden;
   box-shadow: var(--shadow);
   transition: var(--transition);
-  border-top: 3px solid var(--primary);
+  border-top: 3px solid var(--temple-wood);
 }
 
 .section-dark .news-card {
-  background: var(--dark-card);
-  border-top-color: var(--gold);
+  background: var(--temple-roof);
+  border-top-color: var(--temple-gold);
 }
 
 .news-card:hover { transform: translateY(-3px); }
@@ -21,45 +21,46 @@
 .news-card-body { padding: 25px; }
 
 .news-card-title {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Noto Sans JP', 'Oswald', sans-serif;
   font-size: 1.2rem;
-  color: var(--dark);
+  color: var(--temple-ink);
   margin-bottom: 8px;
 }
 
-.section-dark .news-card-title { color: var(--gold); }
+.section-dark .news-card-title { color: var(--temple-gold); }
 
 .news-card-date {
   font-size: 0.8rem;
-  color: var(--text-light);
+  color: var(--temple-stone);
   margin-bottom: 10px;
 }
 
 .news-card-text {
   font-size: 0.95rem;
   line-height: 1.6;
-  color: #555;
+  color: var(--temple-ink-light);
 }
 
-.section-dark .news-card-text { color: var(--text-light); }
+.section-dark .news-card-text { color: var(--temple-paper-dark); }
 
 .news-card-file {
   display: inline-flex;
   align-items: center;
   gap: 5px;
   margin-top: 12px;
-  color: var(--accent);
+  color: var(--temple-red);
   text-decoration: none;
   font-weight: 500;
 }
 
-.section-dark .news-card-file { color: var(--gold); }
+.section-dark .news-card-file { color: var(--temple-gold); }
 
 .news-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 25px;
 }
+
 .section-dark .news-grid {
   margin-top: 0;
 }

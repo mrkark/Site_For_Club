@@ -1,6 +1,6 @@
 .features {
   padding: 80px 0;
-  background: var(--bg);
+  background: var(--temple-wall);
   position: relative;
 }
 
@@ -9,7 +9,7 @@
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 3px;
-  background: linear-gradient(90deg, transparent, var(--accent), var(--gold), var(--accent), transparent);
+  background: linear-gradient(90deg, transparent, var(--temple-red), var(--temple-gold), var(--temple-red), transparent);
 }
 
 .features-grid {
@@ -22,9 +22,9 @@
 .feature-card {
   text-align: center;
   padding: 35px 20px;
-  background: var(--card-bg);
-  border-radius: var(--border-radius);
-  border: 1px solid rgba(201, 168, 76, 0.15);
+  background: var(--temple-paper);
+  border-radius: 0;
+  border: 1px solid var(--temple-wood-pale);
   transition: var(--transition);
   position: relative;
   overflow: hidden;
@@ -35,7 +35,7 @@
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 3px;
-  background: var(--gold);
+  background: var(--temple-gold);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.4s ease;
@@ -46,15 +46,15 @@
 
 .feature-icon {
   font-size: 2.5rem;
-  color: var(--accent);
+  color: var(--temple-red);
   margin-bottom: 15px;
   display: block;
 }
 
 .feature-card h3 {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Noto Sans JP', 'Oswald', sans-serif;
   font-size: 1.2rem;
-  color: var(--dark);
+  color: var(--temple-ink);
   margin-bottom: 10px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -62,6 +62,6 @@
 
 .feature-card p {
   font-size: 0.95rem;
-  color: #666;
+  color: var(--temple-ink-light);
   line-height: 1.6;
 }

@@ -4,62 +4,85 @@
   justify-content: center;
   gap: 8px;
   padding: 12px 32px;
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Noto Sans JP', 'Oswald', sans-serif;
   font-size: 1rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
-  border: none;
-  border-radius: var(--border-radius);
+  border: 2px solid var(--temple-wood);
+  border-radius: 0;
   cursor: pointer;
   transition: var(--transition);
   text-decoration: none;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-  color: var(--text);
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 4px 15px rgba(26, 26, 46, 0.4);
+  background: var(--temple-wood);
+  color: var(--temple-paper);
+  box-shadow: 0 4px 15px rgba(92, 58, 30, 0.4);
 }
 
 .btn-primary:hover {
+  background: var(--temple-wood-light);
   transform: translateY(-2px);
-  box-shadow: 0 6px 25px rgba(26, 26, 46, 0.6);
+  box-shadow: 0 6px 25px rgba(92, 58, 30, 0.6);
 }
 
 .btn-sm { padding: 8px 20px; font-size: 0.85rem; }
 .btn-full { width: 100%; }
+
 .btn-outline {
   background: transparent;
-  border: 2px solid var(--gold);
-  color: var(--gold);
+  border: 2px solid var(--temple-wood);
+  color: var(--temple-wood);
 }
 
 .btn-outline:hover {
-  background: var(--gold);
-  color: var(--darker);
+  background: var(--temple-wood);
+  color: var(--temple-paper);
 }
 
 .btn-accent {
-  background: linear-gradient(135deg, var(--accent), #B00000);
-  color: var(--text);
-  box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+  background: var(--temple-red);
+  color: var(--temple-paper);
+  border-color: var(--temple-red);
+  box-shadow: 0 4px 15px rgba(139, 37, 0, 0.3);
 }
+
 .btn-accent:hover {
+  background: var(--temple-red-bright);
+  border-color: var(--temple-red-bright);
   transform: translateY(-2px);
-  box-shadow: 0 6px 25px rgba(139, 0, 0, 0.5);
+  box-shadow: 0 6px 25px rgba(139, 37, 0, 0.5);
 }
 
 .btn-gold {
-  background: linear-gradient(135deg, var(--gold), var(--gold-light));
-  color: var(--darker);
+  background: linear-gradient(135deg, var(--temple-gold), var(--temple-gold-dim));
+  color: var(--temple-roof-dark);
+  border-color: var(--temple-wood);
   box-shadow: 0 4px 15px rgba(201, 168, 76, 0.3);
 }
+
 .btn-gold:hover {
+  background: var(--temple-red);
+  color: var(--temple-paper);
+  border-color: var(--temple-red);
   transform: translateY(-2px);
   box-shadow: 0 6px 25px rgba(201, 168, 76, 0.5);
 }
-.btn-danger { background: var(--danger); color: var(--text); }
-.btn-danger:hover { background: #6E0000; }
-.btn-success { background: var(--success); color: var(--text); }
+
+.btn-danger {
+  background: var(--temple-red);
+  color: var(--temple-paper);
+  border-color: var(--temple-red);
+}
+
+.btn-danger:hover {
+  background: var(--temple-red-bright);
+}
+
+.btn-success {
+  background: var(--temple-bamboo);
+  color: var(--temple-paper);
+  border-color: var(--temple-bamboo);
+}

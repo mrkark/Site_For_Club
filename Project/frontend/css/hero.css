@@ -5,17 +5,26 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  background: linear-gradient(160deg, #060608 0%, var(--darker) 30%, #0A0A12 60%, var(--dark) 100%);
+  background-color: var(--temple-wall);
   overflow: hidden;
+  padding-top: 20px;
+  margin-top: -70px;
 }
 
 .hero::before {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background:
-    radial-gradient(ellipse at 25% 40%, rgba(139, 0, 0, 0.06) 0%, transparent 50%),
-    radial-gradient(ellipse at 75% 60%, rgba(201, 168, 76, 0.05) 0%, transparent 50%);
+  top: 85px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 1000px;
+  height: calc(100% - 165px);
+  background: url('/img/sumi-e-bg_sample.png') center/cover no-repeat;
+  background-color: var(--temple-paper);
+  border: 4px solid var(--temple-wood);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+  z-index: 1;
 }
 
 .hero::after {
@@ -23,20 +32,17 @@
   position: absolute;
   bottom: 0; left: 0; right: 0;
   height: 150px;
-  background: linear-gradient(to top, var(--bg), transparent);
+  background: linear-gradient(to top, var(--temple-wall), transparent);
+  z-index: 2;
 }
 
 .hero-overlay {
-  position: absolute;
-  inset: 0;
-  opacity: 0.04;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M50 5 L55 40 L90 45 L62 65 L72 98 L50 80 L28 98 L38 65 L10 45 L45 40 Z' fill='%23C9A84C' fill-opacity='0.2'/%3E%3C/svg%3E");
-  background-size: 120px 120px;
+  display: none;
 }
 
 .hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   text-align: center;
   max-width: 800px;
   padding: 0 20px;
@@ -44,19 +50,19 @@
 
 .hero-title {
   font-family: 'Noto Sans JP', 'Oswald', sans-serif;
-  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-size: clamp(2rem, 7vw, 4rem);
   font-weight: 700;
-  color: var(--gold);
+  color: var(--temple-ink);
   text-transform: uppercase;
   letter-spacing: 6px;
   margin-bottom: 16px;
-  text-shadow: 0 2px 30px rgba(201, 168, 76, 0.2);
+  text-shadow: 0 2px 10px rgba(255,255,255,0.3);
 }
 
 .hero-subtitle {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Noto Sans JP', 'Oswald', sans-serif;
   font-size: clamp(1rem, 3vw, 1.8rem);
-  color: var(--accent);
+  color: var(--temple-red);
   text-transform: uppercase;
   letter-spacing: 5px;
   margin-bottom: 20px;
@@ -65,7 +71,7 @@
 
 .hero-desc {
   font-size: 1.1rem;
-  color: var(--text-light);
+  color: var(--temple-ink-dim);
   margin-bottom: 40px;
   line-height: 1.8;
 }

@@ -4,31 +4,31 @@
   display: block;
   margin-bottom: 5px;
   font-weight: 500;
-  color: var(--text-dark);
+  color: var(--temple-ink);
 }
 
 .form-input {
   width: 100%;
   padding: 10px 14px;
-  border: 2px solid #C5BFB4;
-  border-radius: 6px;
-  font-family: 'Roboto', sans-serif;
+  border: 2px solid var(--temple-wood-pale);
+  border-radius: 0;
+  font-family: 'Noto Sans JP', 'Roboto', sans-serif;
   font-size: 0.95rem;
   transition: var(--transition);
-  background: #F5F0E8;
-  color: var(--text-dark);
+  background: var(--temple-paper-dark);
+  color: var(--temple-ink);
 }
 
 .form-input:focus {
   outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.08);
+  border-color: var(--temple-gold);
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.2);
 }
 
 textarea.form-input { resize: vertical; min-height: 100px; }
 
 .form-error {
-  color: var(--danger);
+  color: var(--temple-red);
   font-size: 0.9rem;
   margin-bottom: 10px;
 }

@@ -12,13 +12,14 @@
 .modal.show { display: flex; align-items: flex-start; justify-content: center; padding: 40px 20px; }
 
 .modal-content {
-  background: #F5F0E8;
-  border-radius: 12px;
+  background: var(--temple-paper);
+  border-radius: 0;
   width: 100%;
   max-width: 700px;
   max-height: 90vh;
   overflow-y: auto;
   box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  border: 2px solid var(--temple-wood);
   animation: modalSlide 0.3s ease;
 }
 
@@ -29,10 +30,10 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 25px;
-  border-bottom: 2px solid var(--accent);
-  background: var(--darker);
-  color: var(--gold);
-  border-radius: 12px 12px 0 0;
+  border-bottom: 2px solid var(--temple-wood);
+  background: var(--temple-wood);
+  color: var(--temple-paper);
+  border-radius: 0;
 }
 
 .modal-header h2 {
@@ -43,12 +44,12 @@
 .modal-close {
   font-size: 1.8rem;
   cursor: pointer;
-  color: var(--text-light);
+  color: var(--temple-paper-dark);
   transition: var(--transition);
   line-height: 1;
 }
 
-.modal-close:hover { color: var(--gold); }
+.modal-close:hover { color: var(--temple-gold); }
 
 .modal-body { padding: 25px; }
 
