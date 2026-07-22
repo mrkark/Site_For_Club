@@ -18,14 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Shrink navbar on scroll
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    navbar.style.background = window.scrollY > 50
-      ? 'rgba(15, 15, 26, 0.98)'
-      : 'rgba(15, 15, 26, 0.95)';
-  });
-
   // Hidden admin button
   document.getElementById('adminHiddenBtn').addEventListener('click', async () => {
     try {

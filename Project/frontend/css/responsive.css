@@ -1,25 +1,44 @@
 @media (max-width: 768px) {
   .nav-toggle { display: flex; }
 
+  .kawara-strip { height: 10px; background-size: auto 10px; }
+
   .nav-menu {
     position: fixed;
     top: 0; right: -100%;
     width: 280px;
     height: 100vh;
-    background: rgba(6, 6, 8, 0.98);
+    background: var(--temple-wall);
     backdrop-filter: blur(12px);
     flex-direction: column;
     padding: 80px 20px 20px;
     transition: right 0.35s ease;
-    gap: 0;
+    gap: 10px;
     box-shadow: -5px 0 30px rgba(0,0,0,0.3);
-    border-left: 1px solid var(--accent);
+    border-left: 3px solid var(--temple-wood);
+    align-items: stretch;
   }
 
   .nav-menu.active { right: 0; }
-  .nav-menu .nav-link { padding: 14px 16px; }
+
+  .nav-item {
+    flex-direction: row;
+    gap: 0;
+  }
+
+  .nav-string { display: none; }
+
+  .nav-link {
+    padding: 14px 16px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero { padding-top: 50px; }
+  .hero::before { top: 10px; height: calc(100% - 20px); width: 95%; }
 
   .section { padding: 60px 0; }
+  .section-dark::before { height: 40px; top: -20px; background-size: auto 40px; }
   .hero-title { letter-spacing: 3px; }
   .hero-desc { font-size: 0.95rem; }
 
