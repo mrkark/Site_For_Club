@@ -1,35 +1,129 @@
 .article-card {
-  background: var(--card-bg);
-  border-radius: var(--border-radius);
+  position: relative;
+  padding-top: 30px;
+  display: inline-block;
+  width: 100%;
+}
+
+.scroll-top {
+  position: relative;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.scroll-nail {
+  width: 10px;
+  height: 10px;
+  background: var(--temple-gold);
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  margin-top: 0;
+}
+
+.scroll-string-left,
+.scroll-string-right {
+  position: absolute;
+  top: 5px;
+  width: 1px;
+  height: 40px;
+  background: var(--temple-paper);
+  opacity: 0.8;
+  transform-origin: top center;
+}
+
+.scroll-string-left {
+  transform: rotate(50deg);
+}
+
+.scroll-string-right {
+  transform: rotate(-50deg);
+}
+
+.scroll-body {
+  background: var(--temple-paper);
+  border: 1px solid var(--temple-wood-pale);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  padding: 20px;
+  position: relative;
   overflow: hidden;
-  box-shadow: var(--shadow);
-  transition: var(--transition);
+  transition: all 0.3s ease;
   cursor: pointer;
 }
 
-.article-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.15); }
+.scroll-body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(180deg, var(--temple-wood), var(--temple-wood-light));
+}
 
-.article-card-body { padding: 25px; }
+.scroll-bottom {
+  height: 12px;
+  background: linear-gradient(180deg, var(--temple-wood-light), var(--temple-wood));
+  border: 1px solid var(--temple-wood-pale);
+  border-top: none;
+  transition: transform 0.4s ease;
+  position: relative;
+  margin-top: -10px;
+  cursor: pointer;
+}
+
+.scroll-bottom::before,
+.scroll-bottom::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  width: 14px;
+  height: 14px;
+  background: var(--temple-wood);
+  border-radius: 50%;
+  border: 2px solid var(--temple-wood-light);
+}
+
+.scroll-bottom::before { left: -7px; }
+.scroll-bottom::after { right: -7px; }
+
+.scroll-body:hover ~ .scroll-bottom,
+.scroll-bottom:hover {
+  transform: translateY(6px);
+}
+
+.scroll-body:hover {
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.article-card-body {
+  padding: 0;
+}
 
 .article-card-title {
-  font-family: 'Oswald', sans-serif;
-  font-size: 1.3rem;
-  color: var(--dark);
-  margin-bottom: 10px;
+  font-family: 'Noto Sans JP', 'Oswald', sans-serif;
+  font-size: 1.2rem;
+  color: var(--temple-ink);
+  margin-bottom: 8px;
+  margin-top: 8px;
 }
 
 .article-card-date {
   font-size: 0.8rem;
-  color: var(--text-light);
+  color: var(--temple-stone);
   margin-bottom: 10px;
 }
+
 .article-views {
   margin-left: 12px;
-  color: var(--accent);
+  color: var(--temple-red);
 }
 
 .article-card-excerpt {
-  color: #555;
+  color: var(--temple-ink-light);
   font-size: 0.95rem;
   line-height: 1.6;
   display: -webkit-box;
@@ -43,7 +137,7 @@
   align-items: center;
   gap: 5px;
   margin-top: 12px;
-  color: var(--accent);
+  color: var(--temple-red);
   text-decoration: none;
   font-weight: 500;
   font-size: 0.9rem;
@@ -56,39 +150,41 @@
   margin-bottom: 20px;
   flex-wrap: wrap;
 }
+
 .pag-tab {
   padding: 6px 14px;
-  border: 1px solid var(--accent);
+  border: 1px solid var(--temple-red);
   background: transparent;
-  color: var(--accent);
-  border-radius: 4px;
+  color: var(--temple-red);
+  border-radius: 0;
   cursor: pointer;
   font-size: 0.85rem;
   font-weight: 500;
   transition: var(--transition);
 }
+
 .pag-tab.active {
-  background: var(--accent);
-  color: var(--text);
+  background: var(--temple-red);
+  color: var(--temple-paper);
 }
+
 .pag-tab:hover {
-  background: var(--accent);
-  color: var(--text);
+  background: var(--temple-red);
+  color: var(--temple-paper);
 }
+
 .pag-count {
   margin-left: auto;
   font-size: 0.85rem;
-  color: var(--text-light);
+  color: var(--temple-ink-light);
   background: rgba(0,0,0,0.05);
   padding: 4px 10px;
   border-radius: 12px;
 }
-.section-dark .pag-count { background: rgba(255,255,255,0.08); }
+
 .articles-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 25px;
-}
-.section-dark .articles-grid {
-  margin-top: 0;
+  gap: 40px;
+  padding-top: 10px;
 }

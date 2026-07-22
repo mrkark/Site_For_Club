@@ -33,12 +33,20 @@ function renderArticles() {
     <div class="articles-grid">
       ${pageItems.map(a => `
         <div class="article-card" data-id="${a.id}">
-          <div class="article-card-body">
-            <div class="article-card-title">${a.title}</div>
-            <div class="article-card-date"><i class="far fa-calendar"></i> ${formatDate(a.createdAt)} <span class="article-views"><i class="far fa-eye"></i> ${a.views || 0}</span></div>
-            ${a.content ? `<p class="article-card-excerpt">${a.content.substring(0, 200)}${a.content.length > 200 ? '...' : ''}</p>` : ''}
-            ${a.filePath ? `<a href="${fileUrl(a.filePath)}" class="article-card-download" onclick="event.stopPropagation()"><i class="fas fa-download"></i> Скачать файл</a>` : ''}
+          <div class="scroll-top">
+            <div class="scroll-nail"></div>
+            <div class="scroll-string-left"></div>
+            <div class="scroll-string-right"></div>
           </div>
+          <div class="scroll-body">
+            <div class="article-card-body">
+              <div class="article-card-title">${a.title}</div>
+              <div class="article-card-date"><i class="far fa-calendar"></i> ${formatDate(a.createdAt)} <span class="article-views"><i class="far fa-eye"></i> ${a.views || 0}</span></div>
+              ${a.content ? `<p class="article-card-excerpt">${a.content.substring(0, 200)}${a.content.length > 200 ? '...' : ''}</p>` : ''}
+              ${a.filePath ? `<a href="${fileUrl(a.filePath)}" class="article-card-download" onclick="event.stopPropagation()"><i class="fas fa-download"></i> Скачать файл</a>` : ''}
+            </div>
+          </div>
+          <div class="scroll-bottom"></div>
         </div>
       `).join('')}
     </div>
