@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <radialGradient id="nailHead" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#9a8f7d"/>
+      <stop offset="45%" stop-color="#5c5347"/>
+      <stop offset="100%" stop-color="#2a2620"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="32" cy="40" rx="12" ry="4" fill="#000" opacity="0.35"/>
+  <circle cx="32" cy="28" r="15" fill="url(#nailHead)" stroke="#1a1712" stroke-width="1.5"/>
+  <circle cx="32" cy="28" r="15" fill="none" stroke="#1a1712" stroke-width="1"/>
+  <path d="M20,22 A15,15 0 0,1 30,14" stroke="#c9bfae" stroke-width="2" fill="none" opacity="0.5" stroke-linecap="round"/>
+  <circle cx="27" cy="23" r="2.4" fill="#d8cfbf" opacity="0.6"/>
+  <path d="M18,30 A14,14 0 0,0 24,40" stroke="#3a1f10" stroke-width="1.5" fill="none" opacity="0.4" stroke-linecap="round"/>
+</svg>

@@ -70,7 +70,7 @@ async function loadArticleModal(id) {
     await fetch(`/api/articles/${id}/view`, { method: 'POST' });
     const data = await fetchAPI(`/api/articles/${id}`);
     document.getElementById('modalArticleTitle').textContent = `${data.article.title} (${data.article.views || 0} просм.)`;
-    document.getElementById('modalArticleContent').textContent = data.article.content || '';
+    document.getElementById('modalArticleContent').innerHTML = data.article.content || '';
     const fileLink = document.getElementById('modalArticleFile');
     if (data.article.filePath) {
       fileLink.innerHTML = `<a href="${fileUrl(data.article.filePath)}"><i class="fas fa-download"></i> Скачать файл</a>`;

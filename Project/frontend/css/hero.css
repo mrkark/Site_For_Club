@@ -20,7 +20,7 @@
   width: 80%;
   max-width: 1000px;
   height: calc(100% - 165px);
-  background: url('/img/sumi-e-bg_sample.png') center/cover no-repeat;
+  background: url('/img/sumi-e-bg.svg') center/cover no-repeat;
   background-color: var(--temple-paper);
   border: 4px solid var(--temple-wood);
   box-shadow: 0 8px 40px rgba(0,0,0,0.3);
@@ -38,6 +38,25 @@
 
 .hero-overlay {
   display: none;
+}
+
+.hero-banner {
+  position: absolute;
+  bottom: 40px;
+  width: 100px;
+  height: 172px;
+  background: url('/img/hoounobori.svg') bottom/contain no-repeat;
+  z-index: 2;
+  opacity: 0.92;
+  pointer-events: none;
+  display: none;
+}
+
+.hero-banner-left { left: 3%; }
+.hero-banner-right { right: 3%; transform: scaleX(-1); }
+
+@media (min-width: 1100px) {
+  .hero-banner { display: block; }
 }
 
 .hero-content {

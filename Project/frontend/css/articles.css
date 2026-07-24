@@ -14,14 +14,13 @@
 }
 
 .scroll-nail {
-  width: 10px;
-  height: 10px;
-  background: var(--temple-gold);
-  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  background: url('/img/kosatsuba-nail.svg') center/contain no-repeat;
   position: relative;
   z-index: 2;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-  margin-top: 0;
+  filter: drop-shadow(0 3px 3px rgba(0,0,0,0.4));
+  margin-top: -6px;
 }
 
 .scroll-string-left,
@@ -44,10 +43,11 @@
 }
 
 .scroll-body {
-  background: var(--temple-paper);
-  border: 1px solid var(--temple-wood-pale);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  padding: 20px;
+  background: url('/img/kakemono-bg.svg') center/cover, var(--temple-paper);
+  border-left: 1px solid var(--temple-wood-pale);
+  border-right: 1px solid var(--temple-wood-pale);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15), inset 0 0 30px rgba(92,58,30,0.1);
+  padding: 24px 22px 20px;
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
@@ -60,35 +60,38 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 6px;
-  background: linear-gradient(180deg, var(--temple-wood), var(--temple-wood-light));
+  height: 14px;
+  background: url('/img/kakemono-top.svg') repeat-x center/auto 14px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .scroll-bottom {
-  height: 12px;
-  background: linear-gradient(180deg, var(--temple-wood-light), var(--temple-wood));
-  border: 1px solid var(--temple-wood-pale);
-  border-top: none;
+  height: 16px;
+  background: url('/img/kakemono-bottom.svg') repeat-x center/auto 16px;
+  border-left: 1px solid var(--temple-wood-pale);
+  border-right: 1px solid var(--temple-wood-pale);
   transition: transform 0.4s ease;
   position: relative;
-  margin-top: -10px;
+  margin-top: -2px;
   cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.35);
 }
 
 .scroll-bottom::before,
 .scroll-bottom::after {
   content: '';
   position: absolute;
-  top: -2px;
-  width: 14px;
-  height: 14px;
-  background: var(--temple-wood);
+  top: -3px;
+  width: 18px;
+  height: 22px;
+  background: radial-gradient(circle at 35% 30%, var(--temple-gold), var(--temple-wood) 70%);
   border-radius: 50%;
   border: 2px solid var(--temple-wood-light);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
 }
 
-.scroll-bottom::before { left: -7px; }
-.scroll-bottom::after { right: -7px; }
+.scroll-bottom::before { left: -9px; }
+.scroll-bottom::after { right: -9px; }
 
 .scroll-body:hover ~ .scroll-bottom,
 .scroll-bottom:hover {

@@ -16,7 +16,7 @@
   left: 0;
   right: 0;
   height: 60px;
-  background: url('/img/bamboo-blind_sample.png') repeat-x center;
+  background: url('/img/bamboo-blind.svg') repeat-x center;
   background-size: auto 60px;
   pointer-events: none;
   z-index: 5;
@@ -26,7 +26,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: url('/img/kosatsuba-board_sample.png') center/cover no-repeat;
+  background: url('/img/kosatsuba-board.svg') center/cover no-repeat;
   opacity: 0.05;
   pointer-events: none;
 }

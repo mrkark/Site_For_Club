@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <pattern id="planks" x="0" y="0" width="100" height="600" patternUnits="userSpaceOnUse">
+      <rect width="100" height="600" fill="#3D2B1A"/>
+      <rect x="2" width="96" height="600" fill="#4A3420"/>
+      <path d="M8,0 Q14,60 9,120 Q4,180 12,240 Q18,300 8,360 Q3,420 14,480 Q19,540 9,600" stroke="#2A1D12" stroke-width="1.2" fill="none" opacity="0.5"/>
+      <path d="M40,0 Q46,70 38,140 Q33,210 44,280 Q50,350 36,420 Q30,490 42,560 Q47,585 40,600" stroke="#2A1D12" stroke-width="1" fill="none" opacity="0.4"/>
+      <path d="M70,0 Q76,80 68,160 Q62,240 74,320 Q80,400 66,480 Q60,540 72,600" stroke="#2A1D12" stroke-width="1.3" fill="none" opacity="0.5"/>
+      <path d="M92,0 Q95,150 90,300 Q88,450 94,600" stroke="#241A0F" stroke-width="2" fill="none" opacity="0.6"/>
+    </pattern>
+  </defs>
+  <rect width="600" height="600" fill="url(#planks)"/>
+</svg>

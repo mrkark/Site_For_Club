@@ -30,6 +30,18 @@
   overflow: hidden;
 }
 
+.feature-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 10px;
+  width: 26px;
+  height: 62px;
+  background: url('/img/talisman.svg') top/contain no-repeat;
+  opacity: 0.14;
+  pointer-events: none;
+}
+
 .feature-card::before {
   content: '';
   position: absolute;

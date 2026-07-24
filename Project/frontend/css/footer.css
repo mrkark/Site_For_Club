@@ -1,5 +1,5 @@
 .footer {
-  background: url('/img/kosatsuba-board_sample.png') center/cover no-repeat;
+  background: url('/img/kosatsuba-board.svg') center/cover no-repeat;
   background-color: var(--temple-roof-dark);
   color: var(--temple-paper-dark);
   padding: 60px 0 30px;

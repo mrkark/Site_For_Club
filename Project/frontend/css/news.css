@@ -9,16 +9,27 @@
   box-shadow: var(--shadow);
   transition: var(--transition);
   border-top: 3px solid var(--temple-wood);
+  display: flex;
+  flex-direction: column;
+  min-height: 250px;
 }
 
 .section-dark .news-card {
   background: var(--temple-roof);
   border-top-color: var(--temple-gold);
+  display: flex;
+  flex-direction: column;
+  min-height: 250px;
 }
 
 .news-card:hover { transform: translateY(-3px); }
 
-.news-card-body { padding: 25px; }
+.news-card-body {
+  padding: 25px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
 
 .news-card-title {
   font-family: 'Noto Sans JP', 'Oswald', sans-serif;
@@ -39,9 +50,13 @@
   font-size: 0.95rem;
   line-height: 1.6;
   color: var(--temple-ink-light);
+  flex: 1;
 }
 
-.section-dark .news-card-text { color: var(--temple-paper-dark); }
+.section-dark .news-card-text {
+  color: var(--temple-paper-dark);
+  flex: 1;
+}
 
 .news-card-file {
   display: inline-flex;

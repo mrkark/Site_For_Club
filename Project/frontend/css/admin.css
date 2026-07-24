@@ -255,6 +255,112 @@ a.sidebar-link:hover { color: var(--text); }
   margin-right: 6px;
 }
 
+/* ===== Rich Text Editor ===== */
+.editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 3px;
+  padding: 6px 8px;
+  background: #f0ebe0;
+  border: 1px solid rgba(92,58,30,0.2);
+  border-bottom: none;
+  border-radius: 6px 6px 0 0;
+  user-select: none;
+}
+
+.editor-toolbar button {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--temple-ink);
+  font-size: 0.85rem;
+  transition: all 0.15s ease;
+}
+
+.editor-toolbar button:hover {
+  background: rgba(92,58,30,0.08);
+  border-color: rgba(92,58,30,0.15);
+}
+
+.editor-toolbar button.active {
+  background: rgba(92,58,30,0.12);
+  border-color: var(--temple-wood);
+  color: var(--temple-wood);
+}
+
+.editor-toolbar select {
+  height: 28px;
+  padding: 0 6px;
+  border: 1px solid rgba(92,58,30,0.2);
+  border-radius: 4px;
+  background: #fffaf0;
+  color: var(--temple-ink);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.editor-toolbar select:focus { outline: none; border-color: var(--temple-wood); }
+
+.editor-toolbar input[type="color"] {
+  width: 28px;
+  height: 28px;
+  padding: 2px;
+  border: 1px solid rgba(92,58,30,0.2);
+  border-radius: 4px;
+  cursor: pointer;
+  background: none;
+}
+
+.editor-toolbar input[type="color"]:hover { border-color: var(--temple-wood); }
+
+.editor-sep {
+  display: inline-block;
+  width: 1px;
+  height: 20px;
+  background: rgba(92,58,30,0.15);
+  margin: 0 3px;
+}
+
+.editor-content {
+  min-height: 220px;
+  max-height: 500px;
+  overflow-y: auto;
+  padding: 14px 16px;
+  background: #fffaf0;
+  border: 1px solid rgba(92,58,30,0.2);
+  border-radius: 0 0 6px 6px;
+  color: var(--temple-ink);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  outline: none;
+  cursor: text;
+}
+
+.editor-content:focus {
+  border-color: var(--temple-wood);
+  box-shadow: 0 0 0 3px rgba(92,58,30,0.08);
+}
+
+.editor-content p { margin-bottom: 10px; }
+.editor-content blockquote {
+  border-left: 3px solid var(--temple-wood);
+  padding-left: 14px;
+  margin: 10px 0;
+  color: var(--temple-stone);
+  font-style: italic;
+}
+.editor-content ul, .editor-content ol { padding-left: 24px; margin-bottom: 10px; }
+.editor-content a { color: var(--temple-red); text-decoration: underline; }
+
+.editor-textarea { display: none; }
+
 /* Responsive */
 @media (max-width: 768px) {
   .admin-sidebar {
@@ -284,4 +390,112 @@ a.sidebar-link:hover { color: var(--text); }
     gap: 10px;
     align-items: flex-start;
   }
+}
+
+/* ===== Japanese unified admin redesign ===== */
+.admin-body {
+    background:
+      linear-gradient(rgba(42,29,18,.88), rgba(42,29,18,.92)),
+      url("/img/seigaiha-pattern.svg");
+    background-size: auto, 420px;
+}
+
+.admin-nav .nav-container {
+    background: rgba(42,29,18,.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 3px solid var(--temple-red);
+}
+
+.admin-layout {
+    background: transparent;
+}
+
+.admin-sidebar {
+    background: rgba(92,58,30,.92);
+    border-right: 1px solid rgba(154,123,42,.5);
+    box-shadow: 6px 0 20px rgba(0,0,0,.25);
+}
+
+.sidebar-link {
+    color: var(--temple-paper);
+    border-left: 4px solid transparent;
+}
+
+.sidebar-link:hover {
+    background: rgba(245,238,214,.08);
+    border-left-color: var(--temple-gold);
+}
+
+.sidebar-link.active {
+    background: rgba(139,37,0,.35);
+    border-left-color: var(--temple-gold);
+}
+
+.admin-main {
+    padding: 35px;
+}
+
+.admin-tab {
+    background: rgba(245,238,214,.96);
+    color: var(--temple-ink);
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: 0 12px 35px rgba(0,0,0,.28);
+    border: 1px solid rgba(154,123,42,.35);
+}
+
+.admin-tab-header {
+    border-bottom: 2px solid rgba(139,37,0,.25);
+}
+
+.admin-tab-header h2 {
+    color: var(--temple-wood);
+}
+
+.admin-tab-header h2 i {
+    color: var(--temple-red);
+}
+
+.admin-items {
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.admin-item {
+    background: rgba(255,255,255,.7);
+    border:1px solid rgba(92,58,30,.18);
+    border-radius:8px;
+    color:var(--temple-ink);
+}
+
+.admin-item:hover {
+    transform:translateY(-2px);
+    border-color:var(--temple-gold);
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+}
+
+.admin-item-title { color:var(--temple-wood); }
+.admin-item-date { color:var(--temple-stone); }
+
+.admin-user-badge {
+    color:var(--temple-gold);
+    font-weight:600;
+}
+
+.admin-body .modal-content {
+    background:var(--temple-paper);
+    color:var(--temple-ink);
+    border:2px solid var(--temple-gold);
+}
+
+#adminForm .form-input {
+    background:#fffaf0;
+    color:var(--temple-ink);
+    border-color:rgba(92,58,30,.3);
+}
+
+@media(max-width:768px){
+ .admin-main{padding:15px;}
+ .admin-tab{padding:18px;}
 }

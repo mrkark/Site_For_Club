@@ -6,16 +6,34 @@
   justify-items: center;
 }
 
+/* Инструкторы — деревянные таблички с печатью мастера, в отличие от прибитых свитков расписания */
 .instructor-card {
-  background: var(--temple-paper);
+  background:
+    linear-gradient(rgba(245,238,214,0.94), rgba(245,238,214,0.94)),
+    url('/img/kosatsuba-board.svg') center/cover;
   border-radius: 0;
   overflow: hidden;
   text-align: center;
-  box-shadow: var(--shadow);
-  border: 1px solid var(--temple-wood-pale);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  border: 6px solid var(--temple-wood);
+  outline: 1px solid var(--temple-gold);
+  outline-offset: -10px;
   transition: var(--transition);
   max-width: 340px;
   width: 100%;
+  position: relative;
+}
+
+.instructor-card::after {
+  content: '';
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 56px;
+  height: 56px;
+  background: url('/img/hancho-seal.svg') center/contain no-repeat;
+  opacity: 0.88;
+  pointer-events: none;
 }
 
 .instructor-card:hover {
@@ -31,6 +49,7 @@
   object-fit: cover;
   margin: 30px auto 15px;
   border: 3px solid var(--temple-wood);
+  box-shadow: 0 0 0 4px var(--temple-paper), 0 0 0 5px var(--temple-gold);
   display: block;
 }
 

@@ -2,19 +2,31 @@
   position: sticky;
   width: 100%;
   height: 70px;
-  background: url('/img/kawara-tile_sample.png') repeat-x center;
+  background: url('/img/kawara-tile.svg') repeat-x center;
   background-size: auto 80px;
   z-index: 1001;
 }
 
 .navbar {
   position: sticky;
-  top: 0;
+  top: 70px;
   left: 0;
   width: 100%;
   z-index: 1000;
   background: transparent;
   border-bottom: none;
+  transition: background 0.3s ease, box-shadow 0.3s ease, top 0.3s ease;
+}
+
+/* Admin pages have no kawara-strip above the navbar, so it sticks flush to the top */
+.admin-nav {
+  top: 0;
+}
+
+.navbar.scrolled {
+  background: rgba(245, 238, 214, 0.95);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.12);
+  backdrop-filter: blur(8px);
 }
 
 .nav-container {
