@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Статьи — Клуб каратэ Сэнкё в Минске</title>
+  <meta name="description" content="Статьи клуба каратэ «Сэнкё» в Минске: техника, философия, тренировочные материалы.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://sanker.by/articles.html">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/navbar.css">
+  <link rel="stylesheet" href="/css/hero.css">
+  <link rel="stylesheet" href="/css/buttons.css">
+  <link rel="stylesheet" href="/css/sections.css">
+  <link rel="stylesheet" href="/css/loading.css">
+  <link rel="stylesheet" href="/css/schedule.css">
+  <link rel="stylesheet" href="/css/instructors.css">
+  <link rel="stylesheet" href="/css/articles.css">
+  <link rel="stylesheet" href="/css/news.css">
+  <link rel="stylesheet" href="/css/videos.css">
+  <link rel="stylesheet" href="/css/contacts.css">
+  <link rel="stylesheet" href="/css/modal.css">
+  <link rel="stylesheet" href="/css/forms.css">
+  <link rel="stylesheet" href="/css/comments.css">
+  <link rel="stylesheet" href="/css/footer.css">
+  <link rel="stylesheet" href="/css/features.css">
+  <link rel="stylesheet" href="/css/social.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="icon" href="./img/logo.svg" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="adminHiddenBtn" class="admin-hidden-btn">
+    <i class="fas fa-kiwi-bird"></i>
+  </div>
+
+    <div class="kawara-strip"></div>
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <div class="nav-logo-wrap">
+          <div class="nav-logo-string"></div>
+          <div class="nav-logo-string-2"></div>
+          <a href="/index.html" class="nav-logo">
+            <img src="./img/logo.svg" alt="Сэнкё" class="nav-logo-img">
+            <span class="logo-text-full">Сэнкё — Клуб каратэ</span>
+            <span class="logo-text-short">Сэнкё</span>
+          </a>
+        </div>
+        <div class="nav-toggle" id="navToggle">
+          <span></span><span></span><span></span>
+        </div>
+        <ul class="nav-menu" id="navMenu">
+          <li class="nav-item"><div class="nav-string"></div><a href="/index.html" class="nav-link">Главная</a></li>
+          <li class="nav-item"><div class="nav-string"></div><a href="/schedule.html" class="nav-link">Расписание</a></li>
+          <li class="nav-item"><div class="nav-string"></div><a href="/index.html#instructors" class="nav-link">Инструкторы</a></li>
+          <li class="nav-item"><div class="nav-string"></div><a href="/articles.html" class="nav-link">Статьи</a></li>
+          <li class="nav-item"><div class="nav-string"></div><a href="/news.html" class="nav-link">Новости</a></li>
+          <li class="nav-item"><div class="nav-string"></div><a href="/index.html#videos" class="nav-link">Видео</a></li>
+          <li class="nav-item"><div class="nav-string"></div><a href="/index.html#contacts" class="nav-link">Контакты</a></li>
+        </ul>
+      </div>
+    </nav>
+
+  <header class="page-header">
+    <div class="container">
+      <h1 class="page-header-title"><span class="title-icon"><i class="fas fa-scroll"></i></span> Статьи</h1>
+    </div>
+  </header>
+
+  <section class="section" id="articles">
+    <div class="container">
+      <div class="articles-container" id="articlesContainer">
+        <div class="schedule-loading"><i class="fas fa-spinner fa-spin"></i> Загрузка...</div>
+      </div>
+    </div>
+  </section>
+
+  <div id="articleModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalArticleTitle"></h2>
+        <span class="modal-close">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div id="modalArticleContent" class="article-content"></div>
+        <div id="modalArticleFile" class="article-file-link"></div>
+        <hr>
+        <h3>Комментарии</h3>
+        <div id="modalComments" class="comments-section"></div>
+        <div class="comment-form">
+          <h4>Оставить комментарий</h4>
+          <div id="replyToInfo" class="reply-to-info"></div>
+          <input type="text" id="commentAuthor" placeholder="Ваше имя" class="form-input">
+          <textarea id="commentText" placeholder="Текст комментария" class="form-input" rows="3"></textarea>
+          <div id="commentError" class="form-error"></div>
+          <button id="submitComment" class="btn btn-gold btn-sm">Отправить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="social-links">
+          <a href="https://www.youtube.com/@JKSBelarus" class="social-link" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.instagram.com/senkyo_karate" class="social-link" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+        <div class="footer-brand">
+          <img src="./img/logo.svg" alt="Сэнкё" class="nav-logo-img"> МОО «Спортивный Клуб «СЭНКЁ»
+        </div>
+        <p class="footer-text">&copy; 2026 МОО «Спортивный Клуб «СЭНКЁ». Все права защищены.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div id="loginModal" class="modal">
+    <div class="modal-content modal-sm">
+      <div class="modal-header">
+        <h2>Вход администратора</h2>
+        <span class="modal-close" id="loginModalClose">&times;</span>
+      </div>
+      <div class="modal-body">
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="loginInput">Логин</label>
+            <input type="text" id="loginInput" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label for="passwordInput">Пароль</label>
+            <input type="password" id="passwordInput" class="form-input" required>
+          </div>
+          <div id="loginError" class="form-error"></div>
+          <button type="submit" class="btn btn-gold btn-full">Войти</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/helpers.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/articles.js"></script>
+  <script src="/js/main-init.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      loadArticles();
+    });
+  </script>
+</body>
+</html>

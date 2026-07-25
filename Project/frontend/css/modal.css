@@ -37,7 +37,7 @@
 }
 
 .modal-header h2 {
-  font-family: 'Noto Sans JP', 'Oswald', sans-serif;
+  font-family: var(--font-display);
   font-size: 1.4rem;
 }
 

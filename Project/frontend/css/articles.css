@@ -27,10 +27,11 @@
 .scroll-string-right {
   position: absolute;
   top: 5px;
-  width: 1px;
+  width: 2px;
   height: 40px;
-  background: var(--temple-paper);
-  opacity: 0.8;
+  background: linear-gradient(var(--temple-wood-pale), var(--temple-wood));
+  opacity: 0.95;
+  box-shadow: 0 0 2px rgba(0,0,0,0.35);
   transform-origin: top center;
 }
 
@@ -107,7 +108,7 @@
 }
 
 .article-card-title {
-  font-family: 'Noto Sans JP', 'Oswald', sans-serif;
+  font-family: var(--font-display);
   font-size: 1.2rem;
   color: var(--temple-ink);
   margin-bottom: 8px;

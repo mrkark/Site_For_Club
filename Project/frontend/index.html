@@ -75,7 +75,7 @@
   <link rel="stylesheet" href="/css/responsive.css">
   <link rel="icon" href="./img/logo.svg" type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div id="adminHiddenBtn" class="admin-hidden-btn">
@@ -99,10 +99,10 @@
         </div>
         <ul class="nav-menu" id="navMenu">
           <li class="nav-item"><div class="nav-string"></div><a href="#hero" class="nav-link">Главная</a></li>
-          <li class="nav-item"><div class="nav-string"></div><a href="#schedule" class="nav-link">Расписание</a></li>
+          <li class="nav-item"><div class="nav-string"></div><a href="/schedule.html" class="nav-link">Расписание</a></li>
           <li class="nav-item"><div class="nav-string"></div><a href="#instructors" class="nav-link">Инструкторы</a></li>
-          <li class="nav-item"><div class="nav-string"></div><a href="#articles" class="nav-link">Статьи</a></li>
-          <li class="nav-item"><div class="nav-string"></div><a href="#news" class="nav-link">Новости</a></li>
+          <li class="nav-item"><div class="nav-string"></div><a href="/articles.html" class="nav-link">Статьи</a></li>
+          <li class="nav-item"><div class="nav-string"></div><a href="/news.html" class="nav-link">Новости</a></li>
           <li class="nav-item"><div class="nav-string"></div><a href="#videos" class="nav-link">Видео</a></li>
           <li class="nav-item"><div class="nav-string"></div><a href="#contacts" class="nav-link">Контакты</a></li>
         </ul>
@@ -117,7 +117,7 @@
       <h1 class="hero-title">МОО Спортивный Клуб «СЭНКЁ»</h1>
       <p class="hero-subtitle">錬心 — Путь каратэ.</p>
       <p class="hero-desc">Основан 10 ноября 1994 года. Традиционное каратэ JKS (Japan Karate Shoto Federation). Воспитание духа, тела и мастерства через боевой путь.</p>
-      <a href="#contacts" class="btn btn-gold">Связаться с нами</a>
+      <a href="#contacts" class="btn btn-gold hero-cta">Связаться с нами</a>
     </div>
   </section>
 
@@ -157,17 +157,24 @@
   <section class="section section-dark" id="schedule">
     <div class="container">
       <h2 class="section-title"><span class="title-icon"><i class="fas fa-calendar-alt"></i></span> Расписание занятий</h2>
-      <div class="season-toggle" id="seasonToggle">
-        <button onclick="switchSeason('winter')" class="season-btn winter-btn"><i class="fas fa-snowflake"></i> Зима</button>
-        <button onclick="switchSeason('summer')" class="season-btn summer-btn"><i class="fas fa-sun"></i> Лето</button>
+      <div class="season-indicator" id="seasonToggle"></div>
+      <div class="schedule-board">
+        <img src="/img/kosatsuba-nail.svg" class="board-nail board-nail-tl" alt="" aria-hidden="true">
+        <img src="/img/kosatsuba-nail.svg" class="board-nail board-nail-tr" alt="" aria-hidden="true">
+        <img src="/img/kosatsuba-nail.svg" class="board-nail board-nail-bl" alt="" aria-hidden="true">
+        <img src="/img/kosatsuba-nail.svg" class="board-nail board-nail-br" alt="" aria-hidden="true">
+        <div class="schedule-grid" id="scheduleGrid">
+          <div class="schedule-loading"><i class="fas fa-spinner fa-spin"></i> Загрузка...</div>
+        </div>
       </div>
-      <div class="schedule-grid" id="scheduleGrid">
-        <div class="schedule-loading"><i class="fas fa-spinner fa-spin"></i> Загрузка...</div>
+      <div class="section-more">
+        <a href="/schedule.html" class="section-more-link">Полное расписание <i class="fas fa-arrow-right"></i></a>
       </div>
     </div>
   </section>
 
-  <section class="section section-dark" id="instructors">
+  <section class="section section-instructors" id="instructors">
+    <div class="section-crest"><span class="section-crest-mark"><i class="fas fa-torii-gate"></i></span></div>
     <div class="container">
       <h2 class="section-title"><span class="title-icon"><i class="fas fa-users"></i></span> Наши инструкторы</h2>
       <div class="instructors-grid" id="instructorsGrid">
@@ -182,6 +189,9 @@
       <div class="articles-container" id="articlesContainer">
         <div class="schedule-loading"><i class="fas fa-spinner fa-spin"></i> Загрузка...</div>
       </div>
+      <div class="section-more">
+        <a href="/articles.html" class="section-more-link">Все статьи <i class="fas fa-arrow-right"></i></a>
+      </div>
     </div>
   </section>
 
@@ -190,6 +200,9 @@
       <h2 class="section-title"><span class="title-icon"><i class="fas fa-bullhorn"></i></span> Новости</h2>
       <div class="news-container" id="newsContainer">
         <div class="schedule-loading"><i class="fas fa-spinner fa-spin"></i> Загрузка...</div>
+      </div>
+      <div class="section-more">
+        <a href="/news.html" class="section-more-link">Все новости <i class="fas fa-arrow-right"></i></a>
       </div>
     </div>
   </section>
@@ -332,5 +345,14 @@
   <script src="/js/news.js"></script>
   <script src="/js/videos.js"></script>
   <script src="/js/main-init.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      loadSchedule();
+      loadInstructors();
+      loadArticles();
+      loadNews();
+      loadVideos();
+    });
+  </script>
 </body>
 </html>

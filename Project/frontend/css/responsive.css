@@ -12,7 +12,7 @@
     backdrop-filter: blur(12px);
     flex-direction: column;
     padding: 80px 20px 20px;
-    transition: right 0.35s ease;
+    transition: right 0.4s var(--ease-smooth);
     gap: 10px;
     box-shadow: -5px 0 30px rgba(0,0,0,0.3);
     border-left: 3px solid var(--temple-wood);
@@ -32,6 +32,15 @@
     padding: 14px 16px;
     width: 100%;
     text-align: center;
+    border-left: 3px solid transparent;
+  }
+
+  .nav-link::after { display: none; }
+
+  .nav-link:hover,
+  .nav-link.active {
+    border-left-color: var(--temple-gold);
+    background: rgba(139, 37, 0, 0.06);
   }
 
   .nav-logo .logo-text-full { display: none; }

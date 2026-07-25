@@ -36,8 +36,100 @@
 .section-dark .section-title { color: var(--temple-gold); }
 .section-dark .section-desc { color: var(--temple-paper-dark); }
 
+/* Instructors gets its own, visibly distinct zone: a lighter wood tone (so it
+   never matches ".section-dark + .section-dark" and the bamboo-blind divider
+   above it stays visible) plus a small crest so the two panels read as two
+   independent sections rather than one continuous block. */
+.section-instructors {
+  background: var(--temple-roof);
+  color: var(--temple-paper);
+  position: relative;
+}
+
+.section-instructors::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/img/kosatsuba-board.svg') center/cover no-repeat;
+  opacity: 0.07;
+  pointer-events: none;
+}
+
+.section-instructors .section-title { color: var(--temple-gold); }
+.section-instructors .section-desc { color: var(--temple-paper-dark); }
+
+.section-crest {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: -60px auto 30px;
+  position: relative;
+  z-index: 6;
+}
+
+.section-crest::before,
+.section-crest::after {
+  content: '';
+  width: 70px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--temple-gold));
+}
+
+.section-crest::after { background: linear-gradient(90deg, var(--temple-gold), transparent); }
+
+.section-crest-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid var(--temple-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--temple-gold);
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.page-header {
+  background:
+    linear-gradient(rgba(42,29,18,.85), rgba(42,29,18,.9)),
+    url('/img/seigaiha-pattern-light.svg');
+  background-size: auto, 400px;
+  color: var(--temple-paper);
+  text-align: center;
+  padding: 70px 0 56px;
+  position: relative;
+}
+
+.page-header::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -30px;
+  height: 60px;
+  background: url('/img/bamboo-blind.svg') repeat-x center;
+  background-size: auto 60px;
+  pointer-events: none;
+}
+
+.page-header-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--temple-gold);
+  margin-bottom: 12px;
+}
+
+.page-header-desc {
+  color: var(--temple-paper-dark);
+  font-size: 1.05rem;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
 .section-title {
-  font-family: 'Noto Sans JP', 'Oswald', sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(1.8rem, 4vw, 2.8rem);
   text-align: center;
   margin-bottom: 15px;
@@ -57,4 +149,42 @@
   color: var(--temple-ink-light);
   margin-bottom: 50px;
   font-size: 1.1rem;
+}
+
+.section-more {
+  text-align: center;
+  margin-top: 36px;
+}
+
+.section-more-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--temple-gold);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.95rem;
+  padding-bottom: 3px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease, gap 0.3s var(--ease-smooth), color 0.3s ease;
+}
+
+.section-more-link i { transition: transform 0.3s var(--ease-smooth); }
+
+.section-more-link:hover {
+  border-bottom-color: var(--temple-gold);
+  gap: 12px;
+}
+
+.section-more-link:hover i { transform: translateX(3px); }
+
+.section:not(.section-dark):not(.section-instructors) .section-more-link,
+.section:not(.section-dark):not(.section-instructors) .section-more-link:hover {
+  color: var(--temple-red);
+}
+.section:not(.section-dark):not(.section-instructors) .section-more-link:hover {
+  border-bottom-color: var(--temple-red);
 }

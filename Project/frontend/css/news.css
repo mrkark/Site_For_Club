@@ -22,7 +22,8 @@
   min-height: 250px;
 }
 
-.news-card:hover { transform: translateY(-3px); }
+.news-card { transition: transform 0.35s var(--ease-smooth), box-shadow 0.35s var(--ease-smooth); }
+.news-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); }
 
 .news-card-body {
   padding: 25px;
@@ -32,7 +33,7 @@
 }
 
 .news-card-title {
-  font-family: 'Noto Sans JP', 'Oswald', sans-serif;
+  font-family: var(--font-display);
   font-size: 1.2rem;
   color: var(--temple-ink);
   margin-bottom: 8px;

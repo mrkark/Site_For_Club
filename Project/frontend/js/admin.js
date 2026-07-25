@@ -87,7 +87,6 @@ function openAddModal(type) {
   document.getElementById('adminForm').dataset.id = '';
   document.getElementById('adminFormFields').innerHTML = getFormFields(type);
   document.getElementById('adminModal').classList.add('show');
-  initEditor();
 }
 
 function openEditModal(type, id) {
@@ -96,7 +95,6 @@ function openEditModal(type, id) {
   document.getElementById('adminForm').dataset.id = id;
   document.getElementById('adminFormFields').innerHTML = getFormFields(type, true);
   document.getElementById('adminModal').classList.add('show');
-  initEditor();
 
   // Load data
   fetch(`/api/${type}/${id}`)
@@ -110,12 +108,6 @@ function openEditModal(type, id) {
           else input.value = item[key] || '';
         }
       });
-      // Sync textarea value to editor
-      const editorEl = document.getElementById('editorContent');
-      const textarea = document.querySelector('[name="content"]');
-      if (editorEl && textarea && textarea.value) {
-        editorEl.innerHTML = textarea.value;
-      }
       // Show current file
       const filePath = item.filePath || item.photo;
       if (filePath) {
@@ -144,6 +136,21 @@ function getTypeLabel(type) {
 function getFormFields(type, isEdit) {
   switch (type) {
     case 'articles':
+      return `
+        <div class="form-group">
+          <label>Заголовок</label>
+          <input type="text" name="title" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label>Текст статьи</label>
+          <textarea name="content" class="form-input" rows="8"></textarea>
+        </div>
+        <div class="form-group">
+          <label>${isEdit ? 'Заменить файл' : 'Файл для скачивания'}</label>
+          <input type="file" name="file" class="form-input">
+          ${isEdit ? '<label style="font-size:0.85rem;color:var(--text-light);display:flex;align-items:center;gap:6px;margin-top:4px"><input type="checkbox" name="removeFile" value="1"> Удалить текущий файл</label>' : ''}
+        </div>
+      `;
     case 'news':
       return `
         <div class="form-group">
@@ -151,47 +158,8 @@ function getFormFields(type, isEdit) {
           <input type="text" name="title" class="form-input" required>
         </div>
         <div class="form-group">
-          <label>Текст</label>
-          <div class="editor-toolbar" id="editorToolbar">
-            <button type="button" data-cmd="bold" title="Жирный"><i class="fas fa-bold"></i></button>
-            <button type="button" data-cmd="italic" title="Курсив"><i class="fas fa-italic"></i></button>
-            <button type="button" data-cmd="underline" title="Подчеркнутый"><i class="fas fa-underline"></i></button>
-            <button type="button" data-cmd="strikeThrough" title="Зачеркнутый"><i class="fas fa-strikethrough"></i></button>
-            <span class="editor-sep"></span>
-            <select data-cmd="fontName" title="Шрифт">
-              <option value="Roboto,sans-serif">Roboto</option>
-              <option value="Noto Sans JP,sans-serif">Noto Sans JP</option>
-              <option value="Oswald,sans-serif">Oswald</option>
-              <option value="Georgia,serif">Georgia</option>
-              <option value="'Courier New',monospace">Courier New</option>
-            </select>
-            <select data-cmd="fontSize" title="Размер">
-              <option value="3">Нормальный</option>
-              <option value="1">Очень мелкий</option>
-              <option value="2">Мелкий</option>
-              <option value="4">Крупный</option>
-              <option value="5">Очень крупный</option>
-              <option value="6">Огромный</option>
-              <option value="7">Максимальный</option>
-            </select>
-            <span class="editor-sep"></span>
-            <input type="color" data-cmd="foreColor" title="Цвет текста" value="#1a1a1a">
-            <span class="editor-sep"></span>
-            <button type="button" data-cmd="insertUnorderedList" title="Список"><i class="fas fa-list-ul"></i></button>
-            <button type="button" data-cmd="insertOrderedList" title="Нумерованный список"><i class="fas fa-list-ol"></i></button>
-            <span class="editor-sep"></span>
-            <button type="button" data-cmd="justifyLeft" title="По левому краю"><i class="fas fa-align-left"></i></button>
-            <button type="button" data-cmd="justifyCenter" title="По центру"><i class="fas fa-align-center"></i></button>
-            <button type="button" data-cmd="justifyRight" title="По правому краю"><i class="fas fa-align-right"></i></button>
-            <span class="editor-sep"></span>
-            <button type="button" data-cmd="createLink" title="Ссылка"><i class="fas fa-link"></i></button>
-            <button type="button" data-cmd="formatBlock" title="Цитата" data-value="blockquote"><i class="fas fa-quote-right"></i></button>
-            <span class="editor-sep"></span>
-            <button type="button" data-cmd="undo" title="Отменить"><i class="fas fa-undo"></i></button>
-            <button type="button" data-cmd="redo" title="Повторить"><i class="fas fa-redo"></i></button>
-          </div>
-          <div class="editor-content" contenteditable="true" id="editorContent"></div>
-          <textarea name="content" class="form-input editor-textarea" style="display:none"></textarea>
+          <label>Текст новости</label>
+          <textarea name="content" class="form-input" rows="5"></textarea>
         </div>
         <div class="form-group">
           <label>${isEdit ? 'Заменить файл' : 'Файл для скачивания'}</label>
@@ -276,11 +244,6 @@ function getFormFields(type, isEdit) {
 
 async function handleFormSubmit(e) {
   e.preventDefault();
-  // Sync editor content to hidden textarea
-  const editorEl = document.getElementById('editorContent');
-  const textarea = document.querySelector('[name="content"]');
-  if (editorEl && textarea) textarea.value = editorEl.innerHTML;
-
   const type = document.getElementById('adminForm').dataset.type;
   const id = document.getElementById('adminForm').dataset.id;
   const isEdit = !!id;
@@ -369,65 +332,4 @@ async function loadDebugInfo() {
 function formatDate(dateStr) {
   const d = new Date(dateStr);
   return d.toLocaleDateString('ru-RU', { year: 'numeric', month: 'short', day: 'numeric' });
-}
-
-/* ===== Rich Text Editor ===== */
-function initEditor() {
-  const toolbar = document.getElementById('editorToolbar');
-  const editor = document.getElementById('editorContent');
-  if (!toolbar || !editor) return;
-
-  document.execCommand('defaultParagraphSeparator', false, 'p');
-  document.execCommand('styleWithCSS', false, true);
-
-  editor.removeEventListener('mouseup', updateEditorUI);
-  editor.removeEventListener('keyup', updateEditorUI);
-  editor.addEventListener('mouseup', updateEditorUI);
-  editor.addEventListener('keyup', updateEditorUI);
-
-  toolbar.querySelectorAll('button[data-cmd]').forEach(btn => {
-    const newBtn = btn.cloneNode(true);
-    btn.parentNode.replaceChild(newBtn, btn);
-    newBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const cmd = newBtn.dataset.cmd;
-      const value = newBtn.dataset.value || null;
-      if (cmd === 'createLink') {
-        const url = prompt('Введите URL:', 'https://');
-        if (url) document.execCommand(cmd, false, url);
-      } else {
-        document.execCommand(cmd, false, value);
-      }
-      editor.focus();
-    });
-  });
-
-  toolbar.querySelectorAll('select[data-cmd]').forEach(sel => {
-    const newSel = sel.cloneNode(true);
-    sel.parentNode.replaceChild(newSel, sel);
-    newSel.addEventListener('change', () => {
-      document.execCommand(newSel.dataset.cmd, false, newSel.value);
-      editor.focus();
-    });
-  });
-
-  toolbar.querySelectorAll('input[type="color"]').forEach(input => {
-    const newInput = input.cloneNode(true);
-    input.parentNode.replaceChild(newInput, input);
-    newInput.addEventListener('change', () => {
-      document.execCommand(newInput.dataset.cmd, false, newInput.value);
-      editor.focus();
-    });
-  });
-}
-
-function updateEditorUI() {
-  const toolbar = document.getElementById('editorToolbar');
-  if (!toolbar) return;
-  toolbar.querySelectorAll('button[data-cmd]').forEach(btn => {
-    const cmd = btn.dataset.cmd;
-    if (['bold', 'italic', 'underline', 'strikeThrough'].includes(cmd)) {
-      try { btn.classList.toggle('active', document.queryCommandState(cmd)); } catch (_) {}
-    }
-  });
 }

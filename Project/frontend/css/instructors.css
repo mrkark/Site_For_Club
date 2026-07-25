@@ -14,11 +14,11 @@
   border-radius: 0;
   overflow: hidden;
   text-align: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  box-shadow: var(--shadow);
   border: 6px solid var(--temple-wood);
   outline: 1px solid var(--temple-gold);
   outline-offset: -10px;
-  transition: var(--transition);
+  transition: transform 0.35s var(--ease-smooth), box-shadow 0.35s var(--ease-smooth), border-color 0.3s ease;
   max-width: 340px;
   width: 100%;
   position: relative;
@@ -39,7 +39,7 @@
 .instructor-card:hover {
   transform: translateY(-5px);
   border-color: var(--temple-gold);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+  box-shadow: var(--shadow-lift);
 }
 
 .instructor-img {
@@ -54,7 +54,7 @@
 }
 
 .instructor-name {
-  font-family: 'Noto Sans JP', 'Oswald', sans-serif;
+  font-family: var(--font-display);
   color: var(--temple-ink);
   margin-bottom: 5px;
   line-height: 1.3;

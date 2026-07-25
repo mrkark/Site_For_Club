@@ -17,7 +17,7 @@
 
 .video-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  box-shadow: var(--shadow-lift);
   border-color: var(--temple-gold);
 }
 
@@ -71,7 +71,7 @@
 .video-card-body { padding: 15px 20px 20px; }
 
 .video-card-title {
-  font-family: 'Noto Sans JP', 'Oswald', sans-serif;
+  font-family: var(--font-display);
   font-size: 1rem;
   color: var(--temple-gold);
   transition: color 0.3s ease;

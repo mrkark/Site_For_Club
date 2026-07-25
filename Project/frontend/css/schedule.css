@@ -1,3 +1,26 @@
+/* The whole schedule panel is mounted like a wooden notice board on the wall;
+   individual schedule-cards are the paper notices pinned to it. */
+.schedule-board {
+  position: relative;
+  background: url('/img/kosatsuba-board.svg') center/cover, var(--temple-roof);
+  border: 6px solid var(--temple-wood);
+  box-shadow: var(--shadow-lift), inset 0 0 60px rgba(0,0,0,0.4);
+  padding: 50px clamp(20px, 4vw, 50px) 40px;
+}
+
+.board-nail {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  filter: drop-shadow(0 3px 4px rgba(0,0,0,0.55));
+  z-index: 4;
+}
+
+.board-nail-tl { top: 14px; left: 14px; }
+.board-nail-tr { top: 14px; right: 14px; }
+.board-nail-bl { bottom: 14px; left: 14px; }
+.board-nail-br { bottom: 14px; right: 14px; }
+
 .schedule-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -40,83 +63,49 @@
 }
 
 .schedule-card:hover {
-  transform: rotate(0deg) translateY(-4px);
-  box-shadow: 0 16px 28px rgba(0,0,0,0.35), inset 0 0 40px rgba(92,58,30,0.12);
+  box-shadow: 0 14px 24px rgba(0,0,0,0.32), inset 0 0 40px rgba(92,58,30,0.12);
+  border-color: var(--temple-gold);
 }
 
-.season-toggle {
-  display: flex;
+.season-indicator {
+  display: none;
   justify-content: center;
-  gap: 12px;
-  margin-bottom: 24px;
-}
-
-.season-btn {
-  padding: 12px 28px;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  margin: 0 auto 24px;
+  padding: 10px 26px;
   border: 2px solid var(--temple-gold);
-  border-radius: 0;
-  background: transparent;
   color: var(--temple-gold);
   font-size: 1.05rem;
   font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  background: rgba(201, 162, 74, 0.08);
 }
 
-.section-dark .season-btn {
-  border-color: var(--temple-gold);
-  color: var(--temple-gold);
-}
-
-.season-btn:hover {
-  background: var(--temple-gold);
-  color: var(--temple-roof-dark);
-}
-
-#seasonToggle.summer .summer-btn,
-#winter .winter-btn {
-  background: var(--temple-gold);
-  color: var(--temple-roof-dark);
-  border-color: var(--temple-gold);
-}
-
-#seasonToggle .badge {
-  display: none;
-  background: var(--temple-red);
-  color: var(--temple-paper);
-  font-size: 0.75rem;
-  padding: 3px 10px;
-  border-radius: 12px;
-  margin-left: 6px;
-}
-
-#seasonToggle.summer .summer-btn .badge,
-#winter .winter-btn .badge {
-  display: inline-block;
+.season-indicator:not(:empty) {
+  display: flex;
 }
 
 .schedule-day {
-  font-family: 'Noto Sans JP', 'Oswald', sans-serif;
+  font-family: var(--font-display);
   font-size: 1.4rem;
-  color: var(--temple-red);
+  font-weight: 700;
+  color: var(--temple-wood);
   margin-bottom: 10px;
   padding-bottom: 8px;
   border-bottom: 2px solid var(--temple-wood-pale);
 }
 
-.section-dark .schedule-day { color: var(--temple-red); }
+.section-dark .schedule-day { color: var(--temple-wood); }
 
 .schedule-time {
   font-size: 1.05rem;
-  color: var(--temple-wood);
+  color: var(--temple-red);
   margin-bottom: 6px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
-.section-dark .schedule-time { color: var(--temple-wood); }
+.section-dark .schedule-time { color: var(--temple-red); }
 
 .schedule-group {
   font-weight: 500;

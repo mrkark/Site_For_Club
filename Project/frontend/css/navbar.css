@@ -13,9 +13,11 @@
   left: 0;
   width: 100%;
   z-index: 1000;
-  background: transparent;
-  border-bottom: none;
-  transition: background 0.3s ease, box-shadow 0.3s ease, top 0.3s ease;
+  background: linear-gradient(rgba(245, 238, 214, 0.55), rgba(245, 238, 214, 0.4));
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(92, 58, 30, 0.15);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+  transition: background 0.4s var(--ease-smooth), box-shadow 0.4s var(--ease-smooth), backdrop-filter 0.4s var(--ease-smooth), top 0.3s ease;
 }
 
 /* Admin pages have no kawara-strip above the navbar, so it sticks flush to the top */
@@ -25,8 +27,9 @@
 
 .navbar.scrolled {
   background: rgba(245, 238, 214, 0.95);
-  box-shadow: 0 2px 20px rgba(0,0,0,0.12);
-  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 24px rgba(0,0,0,0.14);
+  backdrop-filter: blur(10px);
+  border-bottom-color: rgba(92, 58, 30, 0.25);
 }
 
 .nav-container {
@@ -67,7 +70,7 @@
 }
 
 .nav-logo {
-  font-family: 'Noto Sans JP', 'Oswald', sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(0.9rem, 2vw, 1.2rem);
   font-weight: 700;
   color: var(--temple-ink);
@@ -83,6 +86,13 @@
   border: 1px solid var(--temple-wood-pale);
   background: transparent;
   position: relative;
+  transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s var(--ease-smooth);
+}
+
+.nav-logo:hover {
+  border-color: var(--temple-gold);
+  background: rgba(201, 162, 74, 0.08);
+  transform: translateY(-1px);
 }
 
 .nav-logo-img {
@@ -120,26 +130,54 @@
 .nav-link {
   color: var(--temple-ink);
   text-decoration: none;
-  padding: 6px 14px;
+  padding: 8px 16px;
   border-radius: 0;
-  border: 1px solid var(--temple-wood-pale);
+  border: 1px solid transparent;
   background: transparent;
   font-size: clamp(0.7rem, 1.1vw, 0.85rem);
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  transition: var(--transition);
+  transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease, transform 0.3s var(--ease-smooth);
   position: relative;
   white-space: nowrap;
+  display: inline-block;
 }
 
+/* Growing underline sweep from the center, instead of a flat border pill */
 .nav-link::after {
-  display: none;
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 3px;
+  width: 0;
+  height: 2px;
+  background: var(--temple-gold);
+  transition: width 0.35s var(--ease-smooth), left 0.35s var(--ease-smooth);
 }
 
-.nav-link:hover {
-  border-color: var(--temple-gold);
-  color: var(--temple-gold);
+.nav-link:hover,
+.nav-link:focus-visible {
+  color: var(--temple-red);
+  background: rgba(139, 37, 0, 0.06);
+  border-color: rgba(92, 58, 30, 0.15);
+  transform: translateY(-1px);
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after,
+.nav-link.active::after {
+  left: 8%;
+  width: 84%;
+}
+
+.nav-link.active {
+  color: var(--temple-red);
+  font-weight: 700;
+}
+
+.nav-link:active {
+  transform: translateY(0) scale(0.98);
 }
 
 .nav-toggle {
@@ -159,8 +197,12 @@
   height: 3px;
   background: var(--temple-ink);
   border-radius: 3px;
-  transition: all 0.3s ease;
+  transition: transform 0.35s var(--ease-smooth), opacity 0.25s ease, background 0.25s ease;
   transform-origin: center;
+}
+
+.nav-toggle:hover span {
+  background: var(--temple-red);
 }
 
 .nav-toggle.active span:nth-child(1) {
