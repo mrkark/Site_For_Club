@@ -1,4 +1,7 @@
-/* ---- Rich text editor (Quill), themed for the dark admin panel ---- */
+/* ---- Rich text editor (Quill), themed for the light admin modal ---- */
+/* The admin form modal (#adminForm) uses a light "paper" theme (see
+   admin.css), so every color here is tuned for dark text/icons on a
+   light background rather than the reverse. */
 
 .rich-editor {
   margin-bottom: 4px;
@@ -15,8 +18,8 @@
   align-items: center;
   gap: 6px;
   background: transparent;
-  border: 1px solid rgba(154,123,42,.4);
-  color: var(--gold);
+  border: 1px solid rgba(92,58,30,.35);
+  color: var(--temple-wood);
   font-size: 0.78rem;
   padding: 5px 12px;
   cursor: pointer;
@@ -24,21 +27,21 @@
 }
 
 .rich-editor-toggle:hover {
-  background: rgba(201,162,74,.12);
+  background: rgba(92,58,30,.08);
 }
 
 .rich-editor-toggle.active {
   background: var(--temple-gold);
-  color: var(--temple-roof-dark);
+  color: #fff;
   border-color: var(--temple-gold);
 }
 
 .rich-editor-source {
   width: 100%;
   min-height: 200px;
-  background: rgba(0,0,0,.25);
-  color: var(--text, #eee);
-  border: 1px solid rgba(154,123,42,.4);
+  background: #fffaf0;
+  color: var(--temple-ink);
+  border: 1px solid rgba(92,58,30,.3);
   font-family: 'Courier New', monospace;
   font-size: 0.85rem;
   padding: 12px;
@@ -46,32 +49,33 @@
 }
 
 .rich-editor-quill {
-  background: rgba(255,255,255,.03);
+  background: #fffaf0;
 }
 
 /* Quill toolbar */
 .rich-editor .ql-toolbar.ql-snow {
-  border-color: rgba(154,123,42,.35);
-  background: rgba(0,0,0,.2);
+  border-color: rgba(92,58,30,.3);
+  background: var(--temple-paper);
   border-radius: 4px 4px 0 0;
 }
 
 .rich-editor .ql-snow .ql-stroke {
-  stroke: var(--text-light, #cbb98a);
+  stroke: var(--temple-ink-light);
 }
 
 .rich-editor .ql-snow .ql-fill,
 .rich-editor .ql-snow .ql-stroke.ql-fill {
-  fill: var(--text-light, #cbb98a);
+  fill: var(--temple-ink-light);
 }
 
 .rich-editor .ql-snow .ql-picker {
-  color: var(--text-light, #cbb98a);
+  color: var(--temple-ink-light);
 }
 
 .rich-editor .ql-snow .ql-picker-options {
-  background: #2A1D12;
-  border-color: rgba(154,123,42,.4);
+  background: #fffaf0;
+  border-color: rgba(92,58,30,.3);
+  color: var(--temple-ink);
 }
 
 .rich-editor .ql-toolbar.ql-snow .ql-picker-label {
@@ -82,16 +86,16 @@
 .rich-editor .ql-snow.ql-toolbar button.ql-active,
 .rich-editor .ql-snow .ql-picker-label.ql-active,
 .rich-editor .ql-snow .ql-picker-item.ql-selected {
-  color: var(--temple-gold);
+  color: var(--temple-red);
 }
 
 .rich-editor .ql-snow.ql-toolbar button:hover .ql-stroke,
 .rich-editor .ql-snow.ql-toolbar button.ql-active .ql-stroke {
-  stroke: var(--temple-gold);
+  stroke: var(--temple-red);
 }
 
 .rich-editor .ql-container.ql-snow {
-  border-color: rgba(154,123,42,.35);
+  border-color: rgba(92,58,30,.3);
   border-radius: 0 0 4px 4px;
   font-family: var(--font-body, inherit);
   font-size: 0.95rem;
@@ -99,12 +103,12 @@
 }
 
 .rich-editor .ql-editor {
-  color: var(--text, #eee);
+  color: var(--temple-ink);
   min-height: 180px;
 }
 
 .rich-editor .ql-editor.ql-blank::before {
-  color: rgba(203,185,138,.5);
+  color: rgba(26,26,26,.45);
   font-style: normal;
 }
 
@@ -116,8 +120,8 @@
   justify-content: space-between;
   gap: 14px;
   padding: 14px 18px;
-  background: linear-gradient(135deg, rgba(201,162,74,.08), rgba(139,37,0,.06));
-  border: 1px solid rgba(154,123,42,.3);
+  background: linear-gradient(135deg, rgba(201,162,74,.14), rgba(139,37,0,.05));
+  border: 1px solid rgba(92,58,30,.25);
   border-left: 3px solid var(--temple-gold);
   border-radius: 6px;
   margin-bottom: 16px;
@@ -135,11 +139,11 @@
   height: 38px;
   flex-shrink: 0;
   border-radius: 6px;
-  background: rgba(201,162,74,.15);
+  background: rgba(201,162,74,.22);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--temple-gold);
+  color: var(--temple-red);
   font-size: 1.1rem;
 }
 
@@ -151,14 +155,15 @@
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: var(--text-light, #cbb98a);
-  opacity: 0.8;
+  color: var(--temple-stone);
+  opacity: 0.9;
   margin-bottom: 2px;
 }
 
 .current-file-name {
   font-size: 0.92rem;
-  color: var(--text, #eee);
+  color: var(--temple-ink);
+  font-weight: 500;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -170,8 +175,8 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: var(--temple-gold);
-  border: 1px solid var(--temple-gold);
+  color: var(--temple-red);
+  border: 1px solid var(--temple-red);
   padding: 7px 14px;
   border-radius: 4px;
   text-decoration: none;
@@ -180,6 +185,6 @@
 }
 
 .current-file-download:hover {
-  background: var(--temple-gold);
-  color: var(--temple-roof-dark);
+  background: var(--temple-red);
+  color: #fff;
 }
