@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   loadTabData('news');
   loadTabData('schedule');
   loadTabData('instructors');
+  loadTabData('reviews');
   if (currentUser.superAdmin) loadTabData('admins');
   loadDebugInfo();
 });
@@ -63,7 +64,7 @@ async function loadTabData(type) {
     }
 
     list.innerHTML = data.map(item => {
-      let title = item.name || item.title || item.login || item.dayOfWeek || '';
+      let title = item.name || item.author || item.title || item.login || item.dayOfWeek || '';
       let date = item.createdAt || '';
       return `
         <div class="admin-item">
@@ -86,6 +87,7 @@ function openAddModal(type) {
   document.getElementById('adminForm').dataset.type = type;
   document.getElementById('adminForm').dataset.id = '';
   document.getElementById('adminFormFields').innerHTML = getFormFields(type);
+  initRichEditors(document.getElementById('adminFormFields'));
   document.getElementById('adminModal').classList.add('show');
 }
 
@@ -108,19 +110,24 @@ function openEditModal(type, id) {
           else input.value = item[key] || '';
         }
       });
+      initRichEditors(document.getElementById('adminFormFields'));
       // Show current file
       const filePath = item.filePath || item.photo;
       if (filePath) {
         const container = document.getElementById('adminFormFields');
         const displayName = filePath.replace(/^\d+-\d+-/, '');
+        const isImage = /\.(png|jpe?g|gif|svg|webp)$/i.test(filePath);
         const el = document.createElement('div');
         el.innerHTML = `
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:rgba(139,0,0,0.06);border:1px solid rgba(139,0,0,0.12);border-radius:6px;margin-bottom:12px">
-            <div style="display:flex;align-items:center;gap:10px">
-              <i class="fas fa-file" style="color:var(--accent);font-size:1.2rem"></i>
-              <span style="color:var(--text);font-size:0.9rem">${displayName}</span>
+          <div class="current-file-card">
+            <div class="current-file-info">
+              <div class="current-file-icon"><i class="fas ${isImage ? 'fa-image' : 'fa-file-lines'}"></i></div>
+              <div class="current-file-text">
+                <div class="current-file-label">Текущий файл</div>
+                <div class="current-file-name" title="${displayName}">${displayName}</div>
+              </div>
             </div>
-            <a href="/api/download/${encodeURIComponent(filePath.replace(/^\/uploads\//, ''))}" style="color:var(--gold);padding:6px 12px;border:1px solid var(--gold);border-radius:4px;text-decoration:none;font-size:0.8rem" download><i class="fas fa-download"></i> Скачать</a>
+            <a href="/api/download/${encodeURIComponent(filePath.replace(/^\/uploads\//, ''))}" class="current-file-download" download><i class="fas fa-download"></i> Скачать</a>
           </div>`;
         container.insertBefore(el, container.firstChild);
       }
@@ -129,7 +136,7 @@ function openEditModal(type, id) {
 }
 
 function getTypeLabel(type) {
-  const labels = { articles: 'статью', news: 'новость', schedule: 'расписание', instructors: 'инструктора', admins: 'администратора' };
+  const labels = { articles: 'статью', news: 'новость', schedule: 'расписание', instructors: 'инструктора', reviews: 'отзыв', admins: 'администратора' };
   return labels[type] || type;
 }
 
@@ -143,7 +150,7 @@ function getFormFields(type, isEdit) {
         </div>
         <div class="form-group">
           <label>Текст статьи</label>
-          <textarea name="content" class="form-input" rows="8"></textarea>
+          <textarea name="content" class="form-input" rows="8" data-rich placeholder="Текст статьи..."></textarea>
         </div>
         <div class="form-group">
           <label>${isEdit ? 'Заменить файл' : 'Файл для скачивания'}</label>
@@ -159,7 +166,7 @@ function getFormFields(type, isEdit) {
         </div>
         <div class="form-group">
           <label>Текст новости</label>
-          <textarea name="content" class="form-input" rows="5"></textarea>
+          <textarea name="content" class="form-input" rows="5" data-rich placeholder="Текст новости..."></textarea>
         </div>
         <div class="form-group">
           <label>${isEdit ? 'Заменить файл' : 'Файл для скачивания'}</label>
@@ -217,7 +224,22 @@ function getFormFields(type, isEdit) {
         </div>
         <div class="form-group">
           <label>Описание</label>
-          <textarea name="description" class="form-input" rows="4"></textarea>
+          <textarea name="description" class="form-input" rows="4" data-rich placeholder="Описание..."></textarea>
+        </div>
+      `;
+    case 'reviews':
+      return `
+        <div class="form-group">
+          <label>Автор</label>
+          <input type="text" name="author" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label>Текст отзыва</label>
+          <textarea name="text" class="form-input" rows="6" required></textarea>
+        </div>
+        <div class="form-group">
+          <label>Фото</label>
+          <input type="file" name="photo" class="form-input" accept="image/*">
         </div>
       `;
     case 'admins':
@@ -294,11 +316,12 @@ async function deleteItem(type, id) {
 async function loadDebugInfo() {
   const div = document.getElementById('debugInfo');
   try {
-    const [articles, news, schedule, instructors] = await Promise.all([
+    const [articles, news, schedule, instructors, reviews] = await Promise.all([
       fetch('/api/articles').then(r => r.json()),
       fetch('/api/news').then(r => r.json()),
       fetch('/api/schedule').then(r => r.json()),
-      fetch('/api/instructors').then(r => r.json())
+      fetch('/api/instructors').then(r => r.json()),
+      fetch('/api/reviews').then(r => r.json())
     ]);
     div.innerHTML = `
       <div class="debug-grid">
@@ -321,6 +344,10 @@ async function loadDebugInfo() {
         <div class="debug-card">
           <div class="debug-label">Инструкторы</div>
           <div class="debug-value">${instructors.length}</div>
+        </div>
+        <div class="debug-card">
+          <div class="debug-label">Отзывы</div>
+          <div class="debug-value">${reviews.length}</div>
         </div>
       </div>
     `;

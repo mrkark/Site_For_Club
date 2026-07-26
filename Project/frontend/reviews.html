@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Новости клуба каратэ Сэнкё в Минске: соревнования, аттестации</title>
-  <meta name="description" content="Новости спортивного клуба каратэ «Сэнкё» в Минске: соревнования, аттестационные экзамены на пояса, семинары и события клуба для детей и взрослых.">
-  <meta name="keywords" content="новости каратэ минск, сэнкё новости, каратэ соревнования минск, аттестация каратэ">
+  <title>Отзывы о клубе каратэ Сэнкё в Минске — впечатления учеников</title>
+  <meta name="description" content="Честные отзывы учеников клуба каратэ «Сэнкё» в Минске: впечатления родителей и взрослых после аттестационных экзаменов и семинаров.">
+  <meta name="keywords" content="сэнкё отзывы, sanker отзывы, каратэ минск отзывы, клуб каратэ отзывы">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://sanker.by/news.html">
+  <link rel="canonical" href="https://sanker.by/reviews.html">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://sanker.by/" },
-      { "@type": "ListItem", "position": 2, "name": "Новости", "item": "https://sanker.by/news.html" }
+      { "@type": "ListItem", "position": 2, "name": "Отзывы", "item": "https://sanker.by/reviews.html" }
     ]
   }
   </script>
@@ -29,6 +29,7 @@
   <link rel="stylesheet" href="/css/articles.css">
   <link rel="stylesheet" href="/css/news.css">
   <link rel="stylesheet" href="/css/videos.css">
+  <link rel="stylesheet" href="/css/reviews.css">
   <link rel="stylesheet" href="/css/contacts.css">
   <link rel="stylesheet" href="/css/modal.css">
   <link rel="stylesheet" href="/css/forms.css">
@@ -67,7 +68,6 @@
           <li class="nav-item"><div class="nav-string"></div><a href="/index.html#instructors" class="nav-link">Инструкторы</a></li>
           <li class="nav-item"><div class="nav-string"></div><a href="/articles.html" class="nav-link">Статьи</a></li>
           <li class="nav-item"><div class="nav-string"></div><a href="/news.html" class="nav-link">Новости</a></li>
-          <li class="nav-item"><div class="nav-string"></div><a href="/index.html#videos" class="nav-link">Видео</a></li>
           <li class="nav-item"><div class="nav-string"></div><a href="/reviews.html" class="nav-link">Отзывы</a></li>
           <li class="nav-item"><div class="nav-string"></div><a href="/index.html#contacts" class="nav-link">Контакты</a></li>
         </ul>
@@ -76,13 +76,14 @@
 
   <header class="page-header">
     <div class="container">
-      <h1 class="page-header-title"><span class="title-icon"><i class="fas fa-newspaper"></i></span> Новости клуба</h1>
+      <h1 class="page-header-title"><span class="title-icon"><i class="fas fa-comment-dots"></i></span> Отзывы</h1>
+      <p class="page-header-desc">Впечатления учеников клуба «Сэнкё» после экзаменов и семинаров</p>
     </div>
   </header>
 
-  <section class="section" id="news">
+  <section class="section" id="reviews">
     <div class="container">
-      <div class="news-container" id="newsContainer">
+      <div class="reviews-grid" id="reviewsGrid">
         <div class="schedule-loading"><i class="fas fa-spinner fa-spin"></i> Загрузка...</div>
       </div>
     </div>
@@ -128,11 +129,11 @@
 
   <script src="/js/helpers.js"></script>
   <script src="/js/api.js"></script>
-  <script src="/js/news.js"></script>
+  <script src="/js/reviews.js"></script>
   <script src="/js/main-init.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      loadNews();
+      loadReviews();
     });
   </script>
 </body>

@@ -1,0 +1,185 @@
+/* ---- Rich text editor (Quill), themed for the dark admin panel ---- */
+
+.rich-editor {
+  margin-bottom: 4px;
+}
+
+.rich-editor-toprow {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 6px;
+}
+
+.rich-editor-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid rgba(154,123,42,.4);
+  color: var(--gold);
+  font-size: 0.78rem;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.rich-editor-toggle:hover {
+  background: rgba(201,162,74,.12);
+}
+
+.rich-editor-toggle.active {
+  background: var(--temple-gold);
+  color: var(--temple-roof-dark);
+  border-color: var(--temple-gold);
+}
+
+.rich-editor-source {
+  width: 100%;
+  min-height: 200px;
+  background: rgba(0,0,0,.25);
+  color: var(--text, #eee);
+  border: 1px solid rgba(154,123,42,.4);
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  padding: 12px;
+  resize: vertical;
+}
+
+.rich-editor-quill {
+  background: rgba(255,255,255,.03);
+}
+
+/* Quill toolbar */
+.rich-editor .ql-toolbar.ql-snow {
+  border-color: rgba(154,123,42,.35);
+  background: rgba(0,0,0,.2);
+  border-radius: 4px 4px 0 0;
+}
+
+.rich-editor .ql-snow .ql-stroke {
+  stroke: var(--text-light, #cbb98a);
+}
+
+.rich-editor .ql-snow .ql-fill,
+.rich-editor .ql-snow .ql-stroke.ql-fill {
+  fill: var(--text-light, #cbb98a);
+}
+
+.rich-editor .ql-snow .ql-picker {
+  color: var(--text-light, #cbb98a);
+}
+
+.rich-editor .ql-snow .ql-picker-options {
+  background: #2A1D12;
+  border-color: rgba(154,123,42,.4);
+}
+
+.rich-editor .ql-toolbar.ql-snow .ql-picker-label {
+  border-color: transparent;
+}
+
+.rich-editor .ql-snow.ql-toolbar button:hover,
+.rich-editor .ql-snow.ql-toolbar button.ql-active,
+.rich-editor .ql-snow .ql-picker-label.ql-active,
+.rich-editor .ql-snow .ql-picker-item.ql-selected {
+  color: var(--temple-gold);
+}
+
+.rich-editor .ql-snow.ql-toolbar button:hover .ql-stroke,
+.rich-editor .ql-snow.ql-toolbar button.ql-active .ql-stroke {
+  stroke: var(--temple-gold);
+}
+
+.rich-editor .ql-container.ql-snow {
+  border-color: rgba(154,123,42,.35);
+  border-radius: 0 0 4px 4px;
+  font-family: var(--font-body, inherit);
+  font-size: 0.95rem;
+  min-height: 180px;
+}
+
+.rich-editor .ql-editor {
+  color: var(--text, #eee);
+  min-height: 180px;
+}
+
+.rich-editor .ql-editor.ql-blank::before {
+  color: rgba(203,185,138,.5);
+  font-style: normal;
+}
+
+/* ---- Current-file-for-download preview card (article/news edit) ---- */
+
+.current-file-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 18px;
+  background: linear-gradient(135deg, rgba(201,162,74,.08), rgba(139,37,0,.06));
+  border: 1px solid rgba(154,123,42,.3);
+  border-left: 3px solid var(--temple-gold);
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.current-file-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.current-file-icon {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  background: rgba(201,162,74,.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--temple-gold);
+  font-size: 1.1rem;
+}
+
+.current-file-text {
+  min-width: 0;
+}
+
+.current-file-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-light, #cbb98a);
+  opacity: 0.8;
+  margin-bottom: 2px;
+}
+
+.current-file-name {
+  font-size: 0.92rem;
+  color: var(--text, #eee);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 260px;
+}
+
+.current-file-download {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--temple-gold);
+  border: 1px solid var(--temple-gold);
+  padding: 7px 14px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.current-file-download:hover {
+  background: var(--temple-gold);
+  color: var(--temple-roof-dark);
+}

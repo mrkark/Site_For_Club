@@ -40,7 +40,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', requireAuth, upload.single('photo'), async (req, res) => {
   const { name, title, description } = req.body;
   if (!name) return res.status(400).json({ error: 'Name required' });
-  const photo = req.file ? req.file.filename : null;
+  const photo = req.file ? '/uploads/' + req.file.filename : null;
   const result = await runSql('INSERT INTO instructors (name, title, photo, description) VALUES (?, ?, ?, ?)',
     [name, title || null, photo, description || null]);
   res.json({ success: true, id: result.lastInsertRowid });
@@ -59,7 +59,7 @@ router.put('/:id', requireAuth, upload.single('photo'), async (req, res) => {
     }
   }
 
-  const photo = req.file ? req.file.filename : null;
+  const photo = req.file ? '/uploads/' + req.file.filename : null;
 
   await runSql('UPDATE instructors SET name = COALESCE(?, name), title = COALESCE(?, title), photo = COALESCE(?, photo), description = COALESCE(?, description), sortOrder = COALESCE(?, sortOrder) WHERE id = ?',
     [name || null, title || null, photo || null, description || null, sortOrder || null, req.params.id]);

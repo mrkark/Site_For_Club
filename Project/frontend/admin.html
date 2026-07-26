@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="./img/logo.svg" type="image/x-icon">
   <title>Панель администратора | Клуб каратэ</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://sanker.by/admin.html">
   <link rel="stylesheet" href="/css/base.css">
   <link rel="stylesheet" href="/css/navbar.css">
   <link rel="stylesheet" href="/css/buttons.css">
@@ -24,6 +26,8 @@
   <link rel="stylesheet" href="/css/responsive.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css">
+  <link rel="stylesheet" href="/css/rich-editor.css">
 </head>
 <body class="admin-body">
   <nav class="navbar admin-nav" id="adminNav">
@@ -46,6 +50,7 @@
       <button class="sidebar-link" data-tab="news"><i class="fas fa-bullhorn"></i> Новости</button>
       <button class="sidebar-link" data-tab="schedule"><i class="fas fa-calendar-alt"></i> Расписание</button>
       <button class="sidebar-link" data-tab="instructors"><i class="fas fa-users"></i> Инструкторы</button>
+      <button class="sidebar-link" data-tab="reviews"><i class="fas fa-comment-dots"></i> Отзывы</button>
       <button class="sidebar-link" data-tab="admins" id="adminsTab"><i class="fas fa-user-shield"></i> Админы</button>
       <button class="sidebar-link" data-tab="debug"><i class="fas fa-bug"></i> Отладка</button>
       <a href="/" class="sidebar-link site-link"><i class="fas fa-arrow-left"></i> На сайт</a>
@@ -84,6 +89,14 @@
         <div class="admin-items" id="instructorsList"></div>
       </div>
 
+      <div class="admin-tab" id="tab-reviews">
+        <div class="admin-tab-header">
+          <h2><i class="fas fa-comment-dots"></i> Отзывы</h2>
+          <button class="btn btn-primary btn-sm add-btn" data-type="reviews"><i class="fas fa-plus"></i> Добавить</button>
+        </div>
+        <div class="admin-items" id="reviewsList"></div>
+      </div>
+
       <div class="admin-tab" id="tab-admins">
         <div class="admin-tab-header">
           <h2><i class="fas fa-user-shield"></i> Администраторы</h2>
@@ -116,6 +129,8 @@
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.min.js"></script>
+  <script src="/js/rich-editor.js"></script>
   <script src="/js/admin.js"></script>
 </body>
 </html>

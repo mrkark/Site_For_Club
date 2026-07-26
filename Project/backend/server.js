@@ -10,6 +10,7 @@ const articlesRoutes = require('./routes/articles');
 const newsRoutes = require('./routes/news');
 const instructorsRoutes = require('./routes/instructors');
 const scheduleRoutes = require('./routes/schedule');
+const reviewsRoutes = require('./routes/reviews');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -52,6 +53,7 @@ app.use('/api/articles', articlesRoutes);
 app.use('/api/news', newsRoutes);
 app.use('/api/instructors', instructorsRoutes);
 app.use('/api/schedule', scheduleRoutes);
+app.use('/api/reviews', reviewsRoutes);
 
 app.use(express.static(path.join(__dirname, '..', 'frontend')));
 
