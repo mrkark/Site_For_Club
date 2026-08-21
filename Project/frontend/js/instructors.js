@@ -4,6 +4,7 @@ async function loadInstructors() {
     const grid = document.getElementById('instructorsGrid');
     if (data.length === 0) {
       grid.innerHTML = '<div class="schedule-loading">Информация об инструкторах скоро появится</div>';
+      scrollToAnchor();
       return;
     }
     grid.innerHTML = data.map(i => {
@@ -19,7 +20,10 @@ async function loadInstructors() {
       </div>
     `;
     }).join('');
+
+    scrollToAnchor();
   } catch (err) {
     document.getElementById('instructorsGrid').innerHTML = '<div class="schedule-loading">Ошибка загрузки</div>';
+    scrollToAnchor();
   }
 }

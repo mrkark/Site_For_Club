@@ -4,6 +4,7 @@ async function loadReviews() {
     const grid = document.getElementById('reviewsGrid');
     if (data.length === 0) {
       grid.innerHTML = '<div class="schedule-loading">Отзывы скоро появятся</div>';
+      scrollToAnchor();
       return;
     }
     grid.innerHTML = data.map(r => `
@@ -15,7 +16,10 @@ async function loadReviews() {
         </div>
       </div>
     `).join('');
+
+    scrollToAnchor();
   } catch (err) {
     document.getElementById('reviewsGrid').innerHTML = '<div class="schedule-loading">Ошибка загрузки</div>';
+    scrollToAnchor();
   }
 }

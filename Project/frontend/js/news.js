@@ -50,4 +50,6 @@ function renderNews() {
       renderNews();
     });
   });
+
+  scrollToAnchor();
 }

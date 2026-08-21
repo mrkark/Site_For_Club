@@ -14,6 +14,7 @@ async function loadVideos() {
 
   if (!videos || videos.length === 0) {
     grid.innerHTML = '<div class="schedule-loading">Видео пока не загружены</div>';
+    scrollToAnchor();
     return;
   }
 
@@ -28,6 +29,8 @@ async function loadVideos() {
       </div>
     </a>
   `).join('');
+
+  scrollToAnchor();
 }
 
 function getCachedVideos() {

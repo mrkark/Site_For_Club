@@ -61,6 +61,8 @@ function renderArticles() {
       renderArticles();
     });
   });
+
+  scrollToAnchor();
 }
 
 async function loadArticleModal(id) {

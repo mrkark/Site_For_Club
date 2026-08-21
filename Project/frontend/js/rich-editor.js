@@ -1,7 +1,3 @@
-// Wraps every textarea[data-rich] inside `root` with a Quill WYSIWYG editor.
-// By default the admin sees a formatted editor (no visible HTML tags). A
-// "HTML" toggle button lets them switch to the raw markup when they need to
-// do something the toolbar can't, e.g. paste a custom <img> tag.
 let __richEditorSeq = 0;
 
 function initRichEditors(root) {

@@ -372,3 +372,88 @@ BEGIN
      '2024-02-15 10:00:00');
 END
 GO
+
+IF NOT EXISTS (SELECT 1 FROM schedule)
+BEGIN
+    -- Зимнее расписание (isSummer = 0)
+    -- Основано на расписании с 01.09.2026 по 31.05.2027
+
+    -- Группа 1: Пятько П.С. (Возраст 9-13 лет) - Пн, Ср, Пт
+    INSERT INTO schedule (dayOfWeek, time, group_name, description, sortOrder, isSummer) VALUES
+    (N'Понедельник', N'16:00 - 17:30', N'Возраст 9-13 лет', N'Каратэ JKS - Пятько П.С. (Абстрактное мышление и координация, ОФП, Развиваемся играя, Здоровый малыш)', 1, 0);
+    INSERT INTO schedule (dayOfWeek, time, group_name, description, sortOrder, isSummer) VALUES
+    (N'Среда', N'16:00 - 17:30', N'Возраст 9-13 лет', N'Каратэ JKS - Пятько П.С. (Абстрактное мышление и координация, ОФП, Развиваемся играя, Здоровый малыш)', 2, 0);
+    INSERT INTO schedule (dayOfWeek, time, group_name, description, sortOrder, isSummer) VALUES
+    (N'Пятница', N'16:00 - 17:30', N'Возраст 9-13 лет', N'Каратэ JKS - Пятько П.С. (Абстрактное мышление и координация, ОФП, Развиваемся играя, Здоровый малыш)', 3, 0);
+
+    -- Группа 2: Пятько П.С. (Возраст 8-11 лет) - Пн, Ср, Пт
+    INSERT INTO schedule (dayOfWeek, time, group_name, description, sortOrder, isSummer) VALUES
+    (N'Понедельник', N'17:30 - 18:45', N'Возраст 8-11 лет', N'Каратэ JKS - Пятько П.С. (Здоровый малыш, Абстрактное мышление и координация)', 4, 0);
+    INSERT INTO schedule (dayOfWeek, time, group_name, description, sortOrder, isSummer) VALUES
+    (N'Среда', N'17:30 - 18:45', N'Возраст 8-11 лет', N'Каратэ JKS - Пятько П.С. (Здоровый малыш, Абстрактное мышление и координация)', 5, 0);
+    INSERT INTO schedule (dayOfWeek, time, group_name, description, sortOrder, isSummer) VALUES
+    (N'Пятница', N'17:30 - 18:45', N'Возраст 8-11 лет', N'Каратэ JKS - Пятько П.С. (Здоровый малыш, Абстрактное мышление и координация)', 6, 0);
+
+    -- Группа 3: Пятько П.С. (Возраст 9-13 лет) - Вт, Чт
+    INSERT INTO schedule (dayOfWeek, time, group_name, description, sortOrder, isSummer) VALUES
+    (N'Вторник', N'16:30 - 17:30', N'Возраст 9-13 лет', N'Каратэ JKS - Пятько П.С. (Абстрактное мышление и координация, ОФП, Развиваемся играя, Здоровый малыш)', 7, 0);
+    INSERT INTO schedule (dayOfWeek, time, group_name, description, sortOrder, isSummer) VALUES
+    (N'Четверг', N'16:30 - 17:30', N'Возраст 9-13 лет', N'Каратэ JKS - Пятько П.С. (Абстрактное мышление и координация, ОФП, Развиваемся играя, Здоровый малыш)', 8, 0);
+
+    -- Группа 4: Пятько П.С. (Возраст Старше 13 лет) - Пн, Ср, Пт
+    INSERT INTO schedule (dayOfWeek, time, group_name, description, sortOrder, isSummer) VALUES
+    (N'Понедельник', N'20:00 - 22:00', N'Возраст Старше 13 лет', N'Каратэ JKS - Пятько П.С. (ОФП, Личностный рост и видоизменение представлений тренинга (ката/кумитэ))', 9, 0);
+    INSERT INTO schedule (dayOfWeek, time, group_name, description, sortOrder, isSummer) VALUES
+    (N'Среда', N'20:00 - 22:00', N'Возраст Старше 13 лет', N'Каратэ JKS - Пятько П.С. (ОФП, Личностный рост и видоизменение представлений тренинга (ката/кумитэ))', 10, 0);
+    INSERT INTO schedule (dayOfWeek, time, group_name, description, sortOrder, isSummer) VALUES
+    (N'Пятница', N'20:00 - 22:00', N'Возраст Старше 13 лет', N'Каратэ JKS - Пятько П.С. (ОФП, Личностный рост и видоизменение представлений тренинга (ката/кумитэ))', 11, 0);
+
+    -- Группа 5: Пятько П.С. (Возраст Старше 13 лет) - Вт, Чт
+    INSERT INTO schedule (dayOfWeek, time, group_name, description, sortOrder, isSummer) VALUES
+    (N'Вторник', N'20:00 - 21:30', N'Возраст Старше 13 лет', N'Каратэ JKS - Пятько П.С. (ОФП, Знакомство с Каратэ JKS)', 12, 0);
+    INSERT INTO schedule (dayOfWeek, time, group_name, description, sortOrder, isSummer) VALUES
+    (N'Четверг', N'20:00 - 21:30', N'Возраст Старше 13 лет', N'Каратэ JKS - Пятько П.С. (ОФП, Знакомство с Каратэ JKS)', 13, 0);
+
+    -- Группа 6: Кость М.Б. (Возраст 9-12 лет) - Пн, Ср, Пт
+    INSERT INTO schedule (dayOfWeek, time, group_name, description, sortOrder, isSummer) VALUES
+    (N'Понедельник', N'09:00 - 10:30', N'Возраст 9-12 лет', N'Каратэ JKS - Кость М.Б. (Здоровый малыш, Абстрактное мышление и координация)', 14, 0);
+    INSERT INTO schedule (dayOfWeek, time, group_name, description, sortOrder, isSummer) VALUES
+    (N'Среда', N'09:00 - 10:30', N'Возраст 9-12 лет', N'Каратэ JKS - Кость М.Б. (Здоровый малыш, Абстрактное мышление и координация)', 15, 0);
+    INSERT INTO schedule (dayOfWeek, time, group_name, description, sortOrder, isSummer) VALUES
+    (N'Пятница', N'09:00 - 10:30', N'Возраст 9-12 лет', N'Каратэ JKS - Кость М.Б. (Здоровый малыш, Абстрактное мышление и координация)', 16, 0);
+
+    -- Группа 7: Кость М.Б. (Возраст 10-13 лет) - Пн, Ср, Пт
+    INSERT INTO schedule (dayOfWeek, time, group_name, description, sortOrder, isSummer) VALUES
+    (N'Понедельник', N'17:30 - 18:45', N'Возраст 10-13 лет', N'Каратэ JKS - Кость М.Б. (Здоровый малыш, Абстрактное мышление и координация)', 17, 0);
+    INSERT INTO schedule (dayOfWeek, time, group_name, description, sortOrder, isSummer) VALUES
+    (N'Среда', N'17:30 - 18:45', N'Возраст 10-13 лет', N'Каратэ JKS - Кость М.Б. (Здоровый малыш, Абстрактное мышление и координация)', 18, 0);
+    INSERT INTO schedule (dayOfWeek, time, group_name, description, sortOrder, isSummer) VALUES
+    (N'Пятница', N'17:30 - 18:45', N'Возраст 10-13 лет', N'Каратэ JKS - Кость М.Б. (Здоровый малыш, Абстрактное мышление и координация)', 19, 0);
+
+    -- Группа 8: Кость М.Б. (Возраст 7-9 лет) - Пн, Пт
+    INSERT INTO schedule (dayOfWeek, time, group_name, description, sortOrder, isSummer) VALUES
+    (N'Понедельник', N'18:45 - 19:45', N'Возраст 7-9 лет', N'Каратэ JKS - Кость М.Б. (Здоровый малыш, Абстрактное мышление и координация)', 20, 0);
+    INSERT INTO schedule (dayOfWeek, time, group_name, description, sortOrder, isSummer) VALUES
+    (N'Пятница', N'18:45 - 19:45', N'Возраст 7-9 лет', N'Каратэ JKS - Кость М.Б. (Здоровый малыш, Абстрактное мышление и координация)', 21, 0);
+
+    -- Группа 9: Кость М.Б. (Возраст 6-7 лет) - Вт, Чт
+    INSERT INTO schedule (dayOfWeek, time, group_name, description, sortOrder, isSummer) VALUES
+    (N'Вторник', N'18:30 - 19:30', N'Возраст 6-7 лет', N'Каратэ JKS - Кость М.Б. (Здоровый малыш, Абстрактное мышление и координация)', 22, 0);
+    INSERT INTO schedule (dayOfWeek, time, group_name, description, sortOrder, isSummer) VALUES
+    (N'Четверг', N'18:30 - 19:30', N'Возраст 6-7 лет', N'Каратэ JKS - Кость М.Б. (Здоровый малыш, Абстрактное мышление и координация)', 23, 0);
+
+    -- Группа 10: Винцукевич Д.П. (Возраст 5-6 лет) - Пн, Пт
+    INSERT INTO schedule (dayOfWeek, time, group_name, description, sortOrder, isSummer) VALUES
+    (N'Понедельник', N'18:50 - 19:35', N'Возраст 5-6 лет', N'Каратэ JKS - Винцукевич Д.П. (Здоровый малыш, Абстрактное мышление и координация)', 24, 0);
+    INSERT INTO schedule (dayOfWeek, time, group_name, description, sortOrder, isSummer) VALUES
+    (N'Пятница', N'18:50 - 19:35', N'Возраст 5-6 лет', N'Каратэ JKS - Винцукевич Д.П. (Здоровый малыш, Абстрактное мышление и координация)', 25, 0);
+
+    -- Группа 11: Винцукевич Д.П. (Возраст 7-9 лет) - Вт, Чт
+    INSERT INTO schedule (dayOfWeek, time, group_name, description, sortOrder, isSummer) VALUES
+    (N'Вторник', N'18:00 - 19:00', N'Возраст 7-9 лет', N'Каратэ JKS - Винцукевич Д.П. (Здоровый малыш, Абстрактное мышление и координация)', 26, 0);
+    INSERT INTO schedule (dayOfWeek, time, group_name, description, sortOrder, isSummer) VALUES
+    (N'Четверг', N'18:00 - 19:00', N'Возраст 7-9 лет', N'Каратэ JKS - Винцукевич Д.П. (Здоровый малыш, Абстрактное мышление и координация)', 27, 0);
+
+END
+GO
+

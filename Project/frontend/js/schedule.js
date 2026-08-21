@@ -16,6 +16,7 @@ async function loadSchedule() {
     }
     if (data.length === 0) {
       grid.innerHTML = '<div class="schedule-loading">Расписание на этот сезон скоро появится</div>';
+      scrollToAnchor();
       return;
     }
     const days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
@@ -38,7 +39,10 @@ async function loadSchedule() {
           </div>`).join('')}
       </div>
     `).join('');
+
+    scrollToAnchor();
   } catch (err) {
     document.getElementById('scheduleGrid').innerHTML = '<div class="schedule-loading">Ошибка загрузки</div>';
+    scrollToAnchor();
   }
 }
