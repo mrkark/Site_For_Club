@@ -109,7 +109,7 @@
   border-left-color: var(--accent);
 }
 
-.sidebar-link.active i { color: var(--accent); }
+.sidebar-link.active i { color: var(--transition); }
 
 a.sidebar-link {
   text-decoration: none;
@@ -230,7 +230,7 @@ a.sidebar-link:hover { color: var(--text); }
 
 .debug-label {
   font-size: 0.8rem;
-  color: var(--text-light);
+  color: var(--temple-ink);
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 8px;
