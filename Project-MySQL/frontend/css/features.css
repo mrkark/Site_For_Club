@@ -1,0 +1,79 @@
+.features {
+  padding: 80px 0;
+  background: var(--temple-wall);
+  position: relative;
+}
+
+.features::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--temple-red), var(--temple-gold), var(--temple-red), transparent);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.feature-card {
+  text-align: center;
+  padding: 35px 20px;
+  background: var(--temple-paper);
+  border-radius: 0;
+  border: 1px solid var(--temple-wood-pale);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 10px;
+  width: 26px;
+  height: 62px;
+  background: url('/img/talisman.svg') top/contain no-repeat;
+  opacity: 0.14;
+  pointer-events: none;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--temple-gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.feature-card:hover::before { transform: scaleX(1); }
+.feature-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lift); }
+
+.feature-icon {
+  font-size: 2.5rem;
+  color: var(--temple-red);
+  margin-bottom: 15px;
+  display: block;
+}
+
+.feature-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--temple-ink);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.feature-card p {
+  font-size: 0.95rem;
+  color: var(--temple-ink-light);
+  line-height: 1.6;
+}

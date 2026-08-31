@@ -1,18 +1,21 @@
 const sql = require('mssql');
+const fs = require('fs');
+const config = require('./config.json');
+const dbConfig = config.database;
 
-const config = {
-  server: process.env.MSSQL_SERVER || 'localhost',
-  database: process.env.MSSQL_DATABASE || 'KarateClub',
+const sqlConfig = {
+  server: dbConfig.server || process.env.MSSQL_SERVER || 'localhost',
+  database: dbConfig.database || process.env.MSSQL_DATABASE || 'KarateClub',
   authentication: {
     type: 'default',
     options: {
-      userName: process.env.MSSQL_USER || 'karate_app',
-      password: process.env.MSSQL_PASSWORD || 'KarateClub2024!'
+      userName: dbConfig.user || process.env.MSSQL_USER || 'karate_app',
+      password: dbConfig.password || process.env.MSSQL_PASSWORD || 'KarateClub2024!'
     }
   },
   options: {
-    encrypt: false,
-    trustServerCertificate: true
+    encrypt: dbConfig.options?.encrypt ?? false,
+    trustServerCertificate: dbConfig.options?.trustServerCertificate ?? true
   }
 };
 
@@ -20,7 +23,7 @@ let pool = null;
 
 async function getDb() {
   if (pool) return pool;
-  pool = await sql.connect(config);
+  pool = await sql.connect(sqlConfig);
   return pool;
 }
 

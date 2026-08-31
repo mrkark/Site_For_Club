@@ -2,6 +2,8 @@ const initSqlJs = require('sql.js');
 const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcryptjs');
+const config = require('./config.json');
+const defaultAdmin = config.defaultAdmin;
 
 let db = null;
 
@@ -93,9 +95,9 @@ async function getDb() {
   let row = stmt.getAsObject();
   stmt.free();
   if (row.count === 0) {
-    const hashedPassword = bcrypt.hashSync('admin123', 10);
-    db.run('INSERT INTO admins (login, password, superAdmin) VALUES (?, ?, ?)', ['admin', hashedPassword, 1]);
-    console.log('Default admin created: login=admin, password=admin123');
+    const hashedPassword = bcrypt.hashSync(defaultAdmin.password, 10);
+    db.run('INSERT INTO admins (login, password, superAdmin) VALUES (?, ?, ?)', [defaultAdmin.login, hashedPassword, 1]);
+    console.log('Default admin created: login=' + defaultAdmin.login + ', password=' + defaultAdmin.password);
   }
 
   stmt = db.prepare('SELECT COUNT(*) as count FROM instructors');

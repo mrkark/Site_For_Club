@@ -91,7 +91,7 @@ router.delete('/:id', requireAuth, async (req, res) => {
 });
 
 router.post('/:id/view', async (req, res) => {
-  await runSql('UPDATE articles SET views = ISNULL(views, 0) + 1 WHERE id = ?', [req.params.id]);
+  await runSql('UPDATE articles SET views = COALESCE(views, 0) + 1 WHERE id = ?', [req.params.id]);
   res.json({ success: true });
 });
 

@@ -1,0 +1,108 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 32px;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 2px solid var(--temple-wood);
+  border-radius: 0;
+  cursor: pointer;
+  transition: transform 0.45s var(--ease-smooth), box-shadow 0.45s var(--ease-smooth), background 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+  text-decoration: none;
+  will-change: transform;
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.97);
+  transition-duration: 0.15s;
+}
+
+.btn-primary {
+  background: var(--temple-wood);
+  color: var(--temple-paper);
+  box-shadow: 0 4px 15px rgba(92, 58, 30, 0.4);
+}
+
+.btn-primary:hover {
+  background: var(--temple-wood-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(92, 58, 30, 0.6);
+}
+
+.btn-sm { padding: 8px 20px; font-size: 0.85rem; }
+.btn-full { width: 100%; }
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--temple-wood);
+  color: var(--temple-wood);
+}
+
+.btn-outline:hover {
+  background: var(--temple-wood);
+  color: var(--temple-paper);
+}
+
+.btn-accent {
+  background: var(--temple-red);
+  color: var(--temple-paper);
+  border-color: var(--temple-red);
+  box-shadow: 0 4px 15px rgba(139, 37, 0, 0.3);
+}
+
+.btn-accent:hover {
+  background: var(--temple-red-bright);
+  border-color: var(--temple-red-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(139, 37, 0, 0.5);
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, var(--temple-gold), var(--temple-gold-dim));
+  color: var(--temple-roof-dark);
+  border-color: var(--temple-wood);
+  box-shadow: 0 4px 15px rgba(201, 168, 76, 0.3);
+}
+
+.btn-gold:hover {
+  background: var(--temple-red);
+  color: var(--temple-paper);
+  border-color: var(--temple-red);
+  transform: translateY(-3px) scale(1.015);
+  box-shadow: 0 10px 28px rgba(201, 168, 76, 0.45);
+}
+
+/* Hero CTA: a slow, gentle breathing glow — draws the eye without being jarring */
+.hero-cta {
+  animation: hero-cta-glow 3.2s var(--ease-smooth) infinite;
+}
+
+.hero-cta:hover {
+  animation-play-state: paused;
+}
+
+@keyframes hero-cta-glow {
+  0%, 100% { box-shadow: 0 4px 15px rgba(201, 168, 76, 0.3); }
+  50% { box-shadow: 0 4px 26px rgba(201, 168, 76, 0.65); }
+}
+
+.btn-danger {
+  background: var(--temple-red);
+  color: var(--temple-paper);
+  border-color: var(--temple-red);
+}
+
+.btn-danger:hover {
+  background: var(--temple-red-bright);
+}
+
+.btn-success {
+  background: var(--temple-bamboo);
+  color: var(--temple-paper);
+  border-color: var(--temple-bamboo);
+}

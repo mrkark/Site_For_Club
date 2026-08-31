@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80">
+  <defs>
+    <pattern id="seigaiha" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+      <rect width="80" height="80" fill="none"/>
+      <g fill="none" stroke="#C9A24A" stroke-width="1.3" opacity="0.4">
+        <!-- row baseline y=80 (tile bottom edge); fan centers duplicated at both edges (0 and 80) so the row tiles seamlessly left-right -->
+        <path d="M -30 80 A 30 30 0 0 1 30 80"/>
+        <path d="M -20 80 A 20 20 0 0 1 20 80"/>
+        <path d="M -10 80 A 10 10 0 0 1 10 80"/>
+        <path d="M 10 80 A 30 30 0 0 1 70 80"/>
+        <path d="M 20 80 A 20 20 0 0 1 60 80"/>
+        <path d="M 30 80 A 10 10 0 0 1 50 80"/>
+        <path d="M 50 80 A 30 30 0 0 1 110 80"/>
+        <path d="M 60 80 A 20 20 0 0 1 100 80"/>
+        <path d="M 70 80 A 10 10 0 0 1 90 80"/>
+        <!-- row baseline y=40 (staggered half-tile); fan centers -20, 20, 60, 100 cover the same left/right seam -->
+        <path d="M -50 40 A 30 30 0 0 1 10 40"/>
+        <path d="M -40 40 A 20 20 0 0 1 0 40"/>
+        <path d="M -30 40 A 10 10 0 0 1 -10 40"/>
+        <path d="M -10 40 A 30 30 0 0 1 50 40"/>
+        <path d="M 0 40 A 20 20 0 0 1 40 40"/>
+        <path d="M 10 40 A 10 10 0 0 1 30 40"/>
+        <path d="M 30 40 A 30 30 0 0 1 90 40"/>
+        <path d="M 40 40 A 20 20 0 0 1 80 40"/>
+        <path d="M 50 40 A 10 10 0 0 1 70 40"/>
+        <path d="M 70 40 A 30 30 0 0 1 130 40"/>
+        <path d="M 80 40 A 20 20 0 0 1 120 40"/>
+        <path d="M 90 40 A 10 10 0 0 1 110 40"/>
+      </g>
+    </pattern>
+  </defs>
+  <rect width="80" height="80" fill="url(#seigaiha)"/>
+</svg>

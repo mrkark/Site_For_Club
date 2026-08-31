@@ -5,6 +5,8 @@ const cors = require('cors');
 require('express-async-errors');
 
 const fs = require('fs');
+const config = require('./config.json');
+const { getSessionSecret } = require('./session-secret');
 const adminRoutes = require('./routes/admin');
 const articlesRoutes = require('./routes/articles');
 const newsRoutes = require('./routes/news');
@@ -25,10 +27,15 @@ app.use((req, res, next) => {
   next();
 });
 app.use(session({
-  secret: 'karate-club-secret-key-2024',
+  secret: getSessionSecret(),
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: false, httpOnly: true, maxAge: 24 * 60 * 60 * 1000 }
+  cookie: {
+    secure: false,
+    httpOnly: true,
+    sameSite: 'lax',
+    maxAge: 24 * 60 * 60 * 1000
+  }
 }));
 app.use('/uploads', express.static(path.join(__dirname, '..', 'frontend', 'uploads')));
 
@@ -54,6 +61,16 @@ app.use('/api/news', newsRoutes);
 app.use('/api/instructors', instructorsRoutes);
 app.use('/api/schedule', scheduleRoutes);
 app.use('/api/reviews', reviewsRoutes);
+
+// Public config endpoint for frontend (YouTube API key, etc.)
+app.get('/api/config/public', (req, res) => {
+  res.json({
+    youtube: {
+      apiKey: config.youtube?.apiKey || '',
+      channelId: config.youtube?.channelId || ''
+    }
+  });
+});
 
 app.use(express.static(path.join(__dirname, '..', 'frontend')));
 

@@ -1,0 +1,21 @@
+{
+  "database": {
+    "type": "mssql",
+    "server": "localhost",
+    "database": "KarateClub",
+    "user": "karate_app",
+    "password": "KarateClub2024!",
+    "options": {
+      "encrypt": false,
+      "trustServerCertificate": true
+    }
+  },
+  "youtube": {
+    "apiKey": "AIzaSyC6nwjbqtQ-iGADr9ydsr0fyRlwHPfxltA",
+    "channelId": "UCj8H1ZZe0HZYtsXn8PsUn9w"
+  },
+  "defaultAdmin": {
+    "login": "admin",
+    "password": "admin123"
+  }
+}

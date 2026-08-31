@@ -1,0 +1,94 @@
+/* Nav switches to the off-canvas menu earlier (tablets) so the 7 menu items
+   never get squeezed — .nav-menu/.nav-logo-wrap refuse to shrink by design. */
+@media (max-width: 1024px) {
+  .nav-toggle { display: flex; }
+
+  .nav-menu {
+    position: fixed;
+    top: 0; right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: var(--temple-wall);
+    backdrop-filter: blur(12px);
+    flex-direction: column;
+    padding: 80px 20px 20px;
+    transition: right 0.4s var(--ease-smooth);
+    gap: 10px;
+    box-shadow: -5px 0 30px rgba(0,0,0,0.3);
+    border-left: 3px solid var(--temple-wood);
+    align-items: stretch;
+  }
+
+  .nav-menu.active { right: 0; }
+
+  .nav-item {
+    flex-direction: row;
+    gap: 0;
+  }
+
+  .nav-string { display: none; }
+
+  .nav-link {
+    padding: 14px 16px;
+    width: 100%;
+    text-align: center;
+    border-left: 3px solid transparent;
+  }
+
+  .nav-link::after { display: none; }
+
+  .nav-link:hover,
+  .nav-link.active {
+    border-left-color: var(--temple-gold);
+    background: rgba(139, 37, 0, 0.06);
+  }
+
+  .nav-logo .logo-text-full { display: none; }
+  .nav-logo .logo-text-short { display: inline; }
+}
+
+@media (max-width: 768px) {
+  .kawara-strip { height: 10px; background-size: auto 10px; }
+  .navbar { top: 10px; }
+  .nav-logo-string,
+  .nav-logo-string-2 { height: 10px; top: -10px; }
+
+  .hero { padding-top: 50px; }
+  .hero::before { top: 10px; height: calc(100% - 20px); width: 95%; }
+
+  .section { padding: 60px 0; }
+  .section-dark::before { height: 40px; top: -20px; background-size: auto 40px; }
+  .hero-title { letter-spacing: 3px; }
+  .hero-desc { font-size: 0.95rem; }
+
+  .instructors-grid { gap: 20px; }
+  .schedule-grid { grid-template-columns: 1fr; gap: 50px 0; }
+  .schedule-card { transform: rotate(0deg) !important; }
+  .schedule-card::before { width: 26px; height: 26px; top: -13px; }
+  .instructor-card::after { width: 42px; height: 42px; top: 10px; right: 10px; }
+  .articles-grid { grid-template-columns: 1fr; }
+  .news-grid { grid-template-columns: 1fr; }
+  .videos-grid { grid-template-columns: 1fr; }
+  .contacts-wrapper { grid-template-columns: 1fr; gap: 25px; }
+
+  .admin-sidebar { width: 60px; overflow: hidden; }
+  .admin-sidebar .nav-logo span { display: none; }
+  .admin-nav-item span { display: none; }
+  .admin-nav-item { justify-content: center; padding: 14px; }
+  .admin-logout span { display: none; }
+  .admin-logout { justify-content: center; font-size: 0; }
+  .admin-logout i { font-size: 1.2rem; }
+  .admin-main { padding: 20px; }
+  .admin-form-grid { grid-template-columns: 1fr; }
+  .admin-header { flex-direction: column; gap: 10px; align-items: flex-start; }
+  .admin-table { font-size: 0.8rem; }
+  .admin-table th, .admin-table td { padding: 6px 8px; }
+  .admin-table-actions { flex-direction: column; gap: 3px; }
+
+  .modal.show { align-items: center; padding: 20px 10px; }
+}
+
+@media (max-width: 480px) {
+  .nav-logo .logo-text-full { display: none; }
+  .nav-logo .logo-text-short { display: inline; }
+}

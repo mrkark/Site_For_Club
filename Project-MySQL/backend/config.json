@@ -1,0 +1,19 @@
+{
+  "database": {
+    "type": "mysql",
+    "host": "localhost",
+    "port": 3306,
+    "database": "karate_club",
+    "user": "mrkark",
+    "password": "mrkark9000",
+    "ssl": false
+  },
+  "youtube": {
+    "apiKey": "AIzaSyC6nwjbqtQ-iGADr9ydsr0fyRlwHPfxltA",
+    "channelId": "UCj8H1ZZe0HZYtsXn8PsUn9w"
+  },
+  "defaultAdmin": {
+    "login": "admin",
+    "password": "admin123"
+  }
+}

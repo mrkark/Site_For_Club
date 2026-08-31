@@ -1,0 +1,217 @@
+.kawara-strip {
+  position: sticky;
+  width: 100%;
+  height: 70px;
+  background: url('/img/kawara-tile.svg') repeat-x center;
+  background-size: auto 80px;
+  z-index: 1001;
+}
+
+.navbar {
+  position: sticky;
+  top: 70px;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: linear-gradient(rgba(245, 238, 214, 0.55), rgba(245, 238, 214, 0.4));
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(92, 58, 30, 0.15);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+  transition: background 0.4s var(--ease-smooth), box-shadow 0.4s var(--ease-smooth), backdrop-filter 0.4s var(--ease-smooth), top 0.3s ease;
+}
+
+/* Admin pages have no kawara-strip above the navbar, so it sticks flush to the top */
+.admin-nav {
+  top: 0;
+}
+
+.navbar.scrolled {
+  background: rgba(245, 238, 214, 0.95);
+  box-shadow: 0 2px 24px rgba(0,0,0,0.14);
+  backdrop-filter: blur(10px);
+  border-bottom-color: rgba(92, 58, 30, 0.25);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 50px;
+  gap: 10px;
+}
+
+.nav-logo-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.nav-logo-string,
+.nav-logo-string-2 {
+  width: 1px;
+  height: 70px;
+  background: var(--temple-paper);
+  opacity: 0.7;
+  position: absolute;
+  top: -70px;
+}
+
+.nav-logo-string {
+    left: 14px;
+}
+
+.nav-logo-string-2 {
+    right: 14px;
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  font-weight: 700;
+  color: var(--temple-ink);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  padding: 6px 14px;
+  border: 1px solid var(--temple-wood-pale);
+  background: transparent;
+  position: relative;
+  transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s var(--ease-smooth);
+}
+
+.nav-logo:hover {
+  border-color: var(--temple-gold);
+  background: rgba(201, 162, 74, 0.08);
+  transform: translateY(-1px);
+}
+
+.nav-logo-img {
+  height: clamp(24px, 3.5vw, 36px);
+  width: auto;
+  flex-shrink: 0;
+}
+
+.nav-logo .logo-text-short {
+  display: none;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 4px;
+  flex-shrink: 0;
+  align-items: flex-end;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav-string {
+  width: 1px;
+  height: 70px;
+  background: var(--temple-paper);
+  opacity: 0.7;
+  position: relative;
+}
+
+.nav-link {
+  color: var(--temple-ink);
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 0;
+  border: 1px solid transparent;
+  background: transparent;
+  font-size: clamp(0.7rem, 1.1vw, 0.85rem);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease, transform 0.3s var(--ease-smooth);
+  position: relative;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+/* Growing underline sweep from the center, instead of a flat border pill */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 3px;
+  width: 0;
+  height: 2px;
+  background: var(--temple-gold);
+  transition: width 0.35s var(--ease-smooth), left 0.35s var(--ease-smooth);
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+  color: var(--temple-red);
+  background: rgba(139, 37, 0, 0.06);
+  border-color: rgba(92, 58, 30, 0.15);
+  transform: translateY(-1px);
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after,
+.nav-link.active::after {
+  left: 8%;
+  width: 84%;
+}
+
+.nav-link.active {
+  color: var(--temple-red);
+  font-weight: 700;
+}
+
+.nav-link:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  flex-shrink: 0;
+  padding: 4px;
+  z-index: 1001;
+  position: relative;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: var(--temple-ink);
+  border-radius: 3px;
+  transition: transform 0.35s var(--ease-smooth), opacity 0.25s ease, background 0.25s ease;
+  transform-origin: center;
+}
+
+.nav-toggle:hover span {
+  background: var(--temple-red);
+}
+
+.nav-toggle.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.nav-toggle.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}

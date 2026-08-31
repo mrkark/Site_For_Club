@@ -1,0 +1,291 @@
+.section {
+  padding: 100px 0;
+  position: relative;
+}
+
+.section-dark {
+  background: var(--temple-roof-dark);
+  color: var(--temple-paper);
+  position: relative;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: url('/img/bamboo-blind.svg') repeat-x center;
+  background-size: auto 60px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.section-dark::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/img/kosatsuba-board.svg') center/cover no-repeat;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.section-dark + .section-dark::before { display: none; }
+
+.section-dark .section-title { color: var(--temple-gold); }
+.section-dark .section-desc { color: var(--temple-paper-dark); }
+
+/* Instructors gets its own, visibly distinct zone: a lighter wood tone (so it
+   never matches ".section-dark + .section-dark" and the bamboo-blind divider
+   above it stays visible) plus a small crest so the two panels read as two
+   independent sections rather than one continuous block. */
+.section-instructors {
+  background: var(--temple-roof);
+  color: var(--temple-paper);
+  position: relative;
+}
+
+.section-instructors::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/img/kosatsuba-board.svg') center/cover no-repeat;
+  opacity: 0.07;
+  pointer-events: none;
+}
+
+.section-instructors .section-title { color: var(--temple-gold); }
+.section-instructors .section-desc { color: var(--temple-paper-dark); }
+
+.section-crest {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: -60px auto 30px;
+  position: relative;
+  z-index: 6;
+}
+
+.section-crest::before,
+.section-crest::after {
+  content: '';
+  width: 70px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--temple-gold));
+}
+
+.section-crest::after { background: linear-gradient(90deg, var(--temple-gold), transparent); }
+
+.section-crest-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid var(--temple-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--temple-gold);
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.page-header {
+  background:
+    linear-gradient(rgba(42,29,18,.85), rgba(42,29,18,.9)),
+    url('/img/seigaiha-pattern-light.svg');
+  background-size: auto, 400px;
+  color: var(--temple-paper);
+  text-align: center;
+  padding: 70px 0 56px;
+  position: relative;
+}
+
+.page-header::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -30px;
+  height: 60px;
+  background: url('/img/bamboo-blind.svg') repeat-x center;
+  background-size: auto 60px;
+  pointer-events: none;
+}
+
+.page-header-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--temple-gold);
+  margin-bottom: 12px;
+}
+
+.page-header-desc {
+  color: var(--temple-paper-dark);
+  font-size: 1.05rem;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.faq-item {
+  background: var(--card-bg);
+  border: 1px solid rgba(154,123,42,.25);
+  border-left: 3px solid transparent;
+  border-radius: 8px;
+  box-shadow: 0 3px 12px rgba(42,29,18,.06);
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s var(--ease-smooth);
+}
+
+.faq-item:hover {
+  box-shadow: 0 8px 22px rgba(42,29,18,.12);
+  transform: translateY(-1px);
+}
+
+.faq-item:has(.faq-question[aria-expanded="true"]) {
+  border-left-color: var(--temple-gold);
+  box-shadow: 0 10px 26px rgba(42,29,18,.14);
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: none;
+  border: none;
+  text-align: left;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--temple-ink);
+  padding: 20px 24px;
+  cursor: pointer;
+  transition: color 0.3s ease, background 0.3s ease;
+}
+
+.section-dark .faq-question,
+.faq-question {
+  color: inherit;
+}
+
+.faq-question:hover {
+  color: var(--temple-red);
+  background: rgba(201,162,74,.06);
+}
+
+.faq-question i {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1.5px solid rgba(154,123,42,.4);
+  color: var(--temple-gold);
+  font-size: 0.8rem;
+  transition: transform 0.35s var(--ease-smooth), background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.faq-question[aria-expanded="true"] {
+  color: var(--temple-red);
+}
+
+.faq-question[aria-expanded="true"] i {
+  transform: rotate(180deg);
+  background: var(--temple-gold);
+  border-color: var(--temple-gold);
+  color: #fff;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s var(--ease-smooth);
+}
+
+.faq-answer p {
+  padding: 0 24px 22px;
+  margin-top: -4px;
+  color: var(--temple-ink-light);
+  line-height: 1.7;
+  border-top: 1px solid rgba(154,123,42,.15);
+  padding-top: 14px;
+}
+
+.section-dark .faq-answer p {
+  color: var(--temple-paper-dark);
+  border-top-color: rgba(245,238,214,.12);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  text-align: center;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: var(--temple-ink-light);
+}
+
+.title-icon {
+  display: inline-block;
+  color: var(--temple-red);
+  margin-right: 10px;
+}
+
+.section-desc {
+  text-align: center;
+  color: var(--temple-ink-light);
+  margin-bottom: 50px;
+  font-size: 1.1rem;
+}
+
+.section-more {
+  text-align: center;
+  margin-top: 36px;
+}
+
+.section-more-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--temple-gold);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.95rem;
+  padding-bottom: 3px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease, gap 0.3s var(--ease-smooth), color 0.3s ease;
+}
+
+.section-more-link i { transition: transform 0.3s var(--ease-smooth); }
+
+.section-more-link:hover {
+  border-bottom-color: var(--temple-gold);
+  gap: 12px;
+}
+
+.section-more-link:hover i { transform: translateX(3px); }
+
+.section:not(.section-dark):not(.section-instructors) .section-more-link,
+.section:not(.section-dark):not(.section-instructors) .section-more-link:hover {
+  color: var(--temple-red);
+}
+.section:not(.section-dark):not(.section-instructors) .section-more-link:hover {
+  border-bottom-color: var(--temple-red);
+}
