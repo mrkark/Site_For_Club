@@ -1,17 +1,21 @@
 const mysql = require('mysql2/promise');
 const bcrypt = require('bcryptjs');
 const fs = require('fs');
-const config = require('./config.json');
-const dbConfig = config.database;
-const defaultAdmin = config.defaultAdmin;
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '.env') });
+
+const defaultAdmin = {
+  login: process.env.DEFAULT_ADMIN_LOGIN || 'admin',
+  password: process.env.DEFAULT_ADMIN_PASSWORD || 'admin123',
+};
 
 const mysqlConfig = {
-  host: dbConfig.host || 'localhost',
-  port: dbConfig.port || 3306,
-  database: dbConfig.database || 'karate_club',
-  user: dbConfig.user || 'karate_app',
-  password: dbConfig.password || 'KarateClub2024!',
-  ssl: dbConfig.ssl || false,
+  host: process.env.DB_HOST || 'localhost',
+  port: parseInt(process.env.DB_PORT, 10) || 3306,
+  database: process.env.DB_NAME || 'karate_club',
+  user: process.env.DB_USER || 'mrkark',
+  password: process.env.DB_PASSWORD || 'mrkark9000',
+  ssl: process.env.DB_SSL === 'true' ? true : false,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0

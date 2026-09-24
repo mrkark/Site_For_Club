@@ -1,0 +1,12 @@
+# Session secret - generated locally, not committed
+.session-secret
+
+# Node modules
+node_modules/
+
+# Environment files
+.env
+
+# Database files
+*.db
+*.sqlite

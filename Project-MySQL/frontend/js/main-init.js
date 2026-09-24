@@ -34,11 +34,16 @@ document.addEventListener('DOMContentLoaded', () => {
   if (adminHiddenBtn) {
     adminHiddenBtn.addEventListener('click', async () => {
       try {
-        const res = await fetch('/api/admin/session');
-        const data = await res.json();
-        if (data.authenticated) {
-          window.location.href = '/admin.html';
-          return;
+        const token = localStorage.getItem('adminToken');
+        if (token) {
+          const res = await fetch('/api/admin/session', {
+            headers: { 'Authorization': `Bearer ${token}` }
+          });
+          const data = await res.json();
+          if (data.authenticated) {
+            window.location.href = '/admin.html';
+            return;
+          }
         }
       } catch (_) {}
       document.getElementById('loginModal').classList.add('show');
@@ -74,7 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
           body: JSON.stringify({ login, password })
         });
         const data = await res.json();
-        if (data.success) {
+        if (data.success && data.token) {
+          localStorage.setItem('adminToken', data.token);
           loginModal.classList.remove('show');
           window.location.href = '/admin.html';
         } else {

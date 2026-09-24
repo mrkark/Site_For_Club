@@ -1,12 +1,9 @@
 const express = require("express");
-const session = require("express-session");
 const path = require("path");
 const cors = require("cors");
 require("express-async-errors");
-
 const fs = require("fs");
-const config = require("./config.json");
-const { getSessionSecret } = require("./session-secret");
+require("dotenv").config({ path: path.join(__dirname, ".env") });
 const adminRoutes = require("./routes/admin");
 const articlesRoutes = require("./routes/articles");
 const newsRoutes = require("./routes/news");
@@ -36,19 +33,6 @@ app.use((req, res, next) => {
 
   next();
 });
-app.use(
-  session({
-    secret: getSessionSecret(),
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      secure: false,
-      httpOnly: true,
-      sameSite: "lax",
-      maxAge: 24 * 60 * 60 * 1000,
-    },
-  }),
-);
 app.use(
   "/uploads",
   express.static(path.join(__dirname, "..", "frontend", "uploads")),
@@ -85,8 +69,8 @@ app.use("/api/reviews", reviewsRoutes);
 app.get("/api/config/public", (req, res) => {
   res.json({
     youtube: {
-      apiKey: config.youtube?.apiKey || "",
-      channelId: config.youtube?.channelId || "",
+      apiKey: process.env.YOUTUBE_API_KEY || "",
+      channelId: process.env.YOUTUBE_CHANNEL_ID || "",
     },
   });
 });

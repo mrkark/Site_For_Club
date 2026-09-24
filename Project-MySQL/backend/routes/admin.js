@@ -1,19 +1,8 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const { queryAll, queryOne, runSql } = require('../mysql-adapter');
+const { generateToken, extractToken, verifyToken, requireSuperAdmin } = require('../middleware/auth');
 const router = express.Router();
-
-function requireAuth(req, res, next) {
-  if (!req.session.adminId) return res.status(401).json({ error: 'Unauthorized' });
-  next();
-}
-
-async function requireSuperAdmin(req, res, next) {
-  if (!req.session.adminId) return res.status(401).json({ error: 'Unauthorized' });
-  const admin = await queryOne('SELECT * FROM admins WHERE id = ?', [req.session.adminId]);
-  if (!admin || !admin.superAdmin) return res.status(403).json({ error: 'SuperAdmin required' });
-  next();
-}
 
 router.post('/login', async (req, res) => {
   const { login, password } = req.body;
@@ -22,20 +11,29 @@ router.post('/login', async (req, res) => {
   if (!admin || !bcrypt.compareSync(password, admin.password)) {
     return res.status(401).json({ error: 'Invalid credentials' });
   }
-  req.session.adminId = admin.id;
-  req.session.adminLogin = admin.login;
-  req.session.superAdmin = !!admin.superAdmin;
-  res.json({ success: true, admin: { id: admin.id, login: admin.login, superAdmin: !!admin.superAdmin } });
+  const token = generateToken({
+    id: admin.id,
+    login: admin.login,
+    superAdmin: !!admin.superAdmin
+  });
+  res.json({
+    success: true,
+    token,
+    admin: { id: admin.id, login: admin.login, superAdmin: !!admin.superAdmin }
+  });
 });
 
 router.post('/logout', (req, res) => {
-  req.session.destroy();
   res.json({ success: true });
 });
 
 router.get('/session', async (req, res) => {
-  if (!req.session.adminId) return res.json({ authenticated: false });
-  const admin = await queryOne('SELECT id, login, superAdmin FROM admins WHERE id = ?', [req.session.adminId]);
+  const token = extractToken(req);
+  if (!token) return res.json({ authenticated: false });
+  const decoded = verifyToken(token);
+  if (!decoded || !decoded.id) return res.json({ authenticated: false });
+
+  const admin = await queryOne('SELECT id, login, superAdmin FROM admins WHERE id = ?', [decoded.id]);
   if (!admin) return res.json({ authenticated: false });
   res.json({ authenticated: true, admin: { ...admin, superAdmin: !!admin.superAdmin } });
 });
@@ -92,7 +90,7 @@ router.put('/:id', requireSuperAdmin, async (req, res) => {
 
 router.delete('/:id', requireSuperAdmin, async (req, res) => {
   const { id } = req.params;
-  if (parseInt(id) === req.session.adminId) return res.status(400).json({ error: 'Cannot delete yourself' });
+  if (parseInt(id) === req.user.id) return res.status(400).json({ error: 'Cannot delete yourself' });
   const result = await runSql('DELETE FROM admins WHERE id = ?', [id]);
   if (result.changes === 0) return res.status(404).json({ error: 'Admin not found' });
   res.json({ success: true });

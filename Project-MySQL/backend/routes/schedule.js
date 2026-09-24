@@ -1,11 +1,7 @@
 const express = require('express');
 const { queryAll, queryOne, runSql } = require('../mysql-adapter');
+const { requireAuth } = require('../middleware/auth');
 const router = express.Router();
-
-function requireAuth(req, res, next) {
-  if (!req.session.adminId) return res.status(401).json({ error: 'Unauthorized' });
-  next();
-}
 
 router.get('/', async (req, res) => {
   const month = new Date().getMonth() + 1;

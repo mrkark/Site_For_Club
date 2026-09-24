@@ -1,21 +1,51 @@
 let currentUser = null;
 
+function getAuthHeaders(extraHeaders = {}) {
+  const token = localStorage.getItem('adminToken');
+  const headers = { ...extraHeaders };
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+  return headers;
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
-  const res = await fetch('/api/admin/session');
-  const data = await res.json();
-  if (!data.authenticated) {
+  const token = localStorage.getItem('adminToken');
+  if (!token) {
     window.location.href = '/';
     return;
   }
-  currentUser = data.admin;
-  document.getElementById('adminUserBadge').textContent = `👤 ${data.admin.login}`;
 
-  if (!data.admin.superAdmin) {
-    document.getElementById('adminsTab').style.display = 'none';
+  try {
+    const res = await fetch('/api/admin/session', {
+      headers: getAuthHeaders()
+    });
+    const data = await res.json();
+    if (!data.authenticated) {
+      localStorage.removeItem('adminToken');
+      window.location.href = '/';
+      return;
+    }
+    currentUser = data.admin;
+    document.getElementById('adminUserBadge').textContent = `👤 ${data.admin.login}`;
+
+    if (!data.admin.superAdmin) {
+      document.getElementById('adminsTab').style.display = 'none';
+    }
+  } catch (err) {
+    localStorage.removeItem('adminToken');
+    window.location.href = '/';
+    return;
   }
 
   document.getElementById('logoutBtn').addEventListener('click', async () => {
-    await fetch('/api/admin/logout', { method: 'POST' });
+    try {
+      await fetch('/api/admin/logout', {
+        method: 'POST',
+        headers: getAuthHeaders()
+      });
+    } catch (_) {}
+    localStorage.removeItem('adminToken');
     window.location.href = '/';
   });
 
@@ -54,7 +84,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 async function loadTabData(type) {
   try {
-    const res = await fetch(`/api/${type}`);
+    const res = await fetch(`/api/${type}`, {
+      headers: getAuthHeaders()
+    });
     const data = await res.json();
     const list = document.getElementById(`${type}List`);
 
@@ -99,7 +131,9 @@ function openEditModal(type, id) {
   document.getElementById('adminModal').classList.add('show');
 
   // Load data
-  fetch(`/api/${type}/${id}`)
+  fetch(`/api/${type}/${id}`, {
+    headers: getAuthHeaders()
+  })
     .then(r => r.json())
     .then(data => {
       const item = data.article || data;
@@ -282,7 +316,7 @@ async function handleFormSubmit(e) {
       new FormData(e.target).forEach((v, k) => { data[k] = v; });
       const res = await fetch(url, {
         method: isEdit ? 'PUT' : 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: getAuthHeaders({ 'Content-Type': 'application/json' }),
         body: JSON.stringify(data)
       });
       if (!res.ok) throw new Error('Save failed');
@@ -291,7 +325,11 @@ async function handleFormSubmit(e) {
       if (isEdit) {
         method = 'PUT';
       }
-      const res = await fetch(url, { method, body: formData });
+      const res = await fetch(url, {
+        method,
+        headers: getAuthHeaders(),
+        body: formData
+      });
       if (!res.ok) throw new Error('Save failed');
     }
 
@@ -305,7 +343,10 @@ async function handleFormSubmit(e) {
 async function deleteItem(type, id) {
   if (!confirm('Удалить этот элемент?')) return;
   try {
-    const res = await fetch(`/api/${type}/${id}`, { method: 'DELETE' });
+    const res = await fetch(`/api/${type}/${id}`, {
+      method: 'DELETE',
+      headers: getAuthHeaders()
+    });
     if (!res.ok) throw new Error('Delete failed');
     loadTabData(type);
   } catch (err) {

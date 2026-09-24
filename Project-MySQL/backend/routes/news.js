@@ -3,6 +3,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const { queryAll, queryOne, runSql } = require('../mysql-adapter');
+const { requireAuth } = require('../middleware/auth');
 const router = express.Router();
 
 const storage = multer.diskStorage({
@@ -21,10 +22,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-function requireAuth(req, res, next) {
-  if (!req.session.adminId) return res.status(401).json({ error: 'Unauthorized' });
-  next();
-}
+
 
 router.get('/', async (req, res) => {
   const news = await queryAll('SELECT * FROM news ORDER BY createdAt DESC');

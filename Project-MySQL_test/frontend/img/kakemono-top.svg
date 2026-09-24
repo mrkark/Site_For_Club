@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="400" height="80" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="rollerTop" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8B6B4A"/>
+      <stop offset="45%" stop-color="#5C3A1E"/>
+      <stop offset="100%" stop-color="#3D2B1A"/>
+    </linearGradient>
+    <pattern id="woodGrainTop" x="0" y="0" width="50" height="40" patternUnits="userSpaceOnUse">
+      <rect width="50" height="40" fill="url(#rollerTop)"/>
+      <path d="M0,10 Q25,6 50,10" stroke="#2A1D12" stroke-width="1" fill="none" opacity="0.4"/>
+      <path d="M0,22 Q25,26 50,22" stroke="#2A1D12" stroke-width="1" fill="none" opacity="0.4"/>
+      <path d="M0,32 Q25,29 50,32" stroke="#2A1D12" stroke-width="0.8" fill="none" opacity="0.3"/>
+    </pattern>
+  </defs>
+  <rect width="200" height="40" fill="url(#woodGrainTop)"/>
+  <rect x="0" y="0" width="200" height="5" fill="#9A7B2A" opacity="0.8"/>
+  <rect x="0" y="35" width="200" height="5" fill="#1a110a"/>
+</svg>
