@@ -60,7 +60,7 @@ Site_For_Club/
 │       ├── reviews.html      # Отзывы
 │       └── admin.html        # Панель управления
 │
-├── Project/                  # Предыдущая версия на SQLite (архив)
+├── Project/                  # Предыдущая версия на MsSQL и старым дизайном (архив)
 ├── .gitignore
 └── README.md
 ```
