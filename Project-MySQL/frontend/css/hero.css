@@ -168,7 +168,6 @@
   border-top: 2px solid var(--gold-primary);
   border-radius: 8px;
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(16px);
 }
 
 .stat-item {

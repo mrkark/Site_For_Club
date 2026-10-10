@@ -20,7 +20,6 @@
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
   border: 1px solid var(--border-glass);
   border-top: 4px solid var(--gold-primary);
-  backdrop-filter: blur(16px);
   transition: all 0.4s var(--ease-smooth);
   max-width: 370px;
   width: 100%;

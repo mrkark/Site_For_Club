@@ -171,11 +171,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Navbar background on scroll
+  // Navbar background on scroll (throttled with rAF for 60fps)
   const navbar = document.getElementById('navbar');
   if (navbar) {
+    let ticking = false;
     window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 100);
-    });
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          navbar.classList.toggle('scrolled', window.scrollY > 80);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
   }
 });

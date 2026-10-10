@@ -20,7 +20,6 @@
   border-left: 5px solid var(--crimson-primary);
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(16px);
   overflow: hidden;
   transition: all 0.35s var(--ease-smooth);
   cursor: pointer;

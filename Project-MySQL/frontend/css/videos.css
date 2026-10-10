@@ -17,7 +17,6 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   border: 1px solid var(--border-glass);
   border-top: 3px solid var(--crimson-primary);
-  backdrop-filter: blur(16px);
   text-decoration: none;
   color: var(--text-pure);
   transition: all 0.35s var(--ease-smooth);

@@ -78,7 +78,8 @@
 
 /* Hero CTA Breathing Pulse */
 .hero-cta {
-  animation: hero-cta-pulse 3.2s var(--ease-smooth) infinite;
+  animation: hero-cta-pulse 3.5s ease-in-out infinite;
+  box-shadow: 0 6px 26px rgba(255, 208, 67, 0.45);
 }
 
 .hero-cta:hover {
@@ -87,10 +88,10 @@
 
 @keyframes hero-cta-pulse {
   0%, 100% {
-    box-shadow: 0 4px 22px rgba(255, 208, 67, 0.35);
+    transform: translateY(0);
   }
   50% {
-    box-shadow: 0 8px 36px rgba(255, 208, 67, 0.7), 0 0 25px rgba(255, 224, 125, 0.5);
+    transform: translateY(-2px);
   }
 }
 

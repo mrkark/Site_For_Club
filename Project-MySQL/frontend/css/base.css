@@ -9,8 +9,8 @@
   /* Midnight Budo Palette (Deep Japanese Obsidian & Tatami Dark) */
   --bg-primary: #080A0F;
   --bg-secondary: #0F121A;
-  --bg-card: rgba(18, 22, 32, 0.75);
-  --bg-card-hover: rgba(26, 32, 46, 0.9);
+  --bg-card: #121620;
+  --bg-card-hover: #1A202E;
   --bg-card-light: #FFFFFF;
   
   /* Searing Torii Crimson (Action & Spirit) */
@@ -130,11 +130,7 @@ body {
   background-color: var(--bg-primary);
   background-image: 
     radial-gradient(circle at 50% 0%, rgba(255, 45, 59, 0.08) 0%, transparent 60%),
-    radial-gradient(circle at 10% 30%, rgba(255, 208, 67, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 90% 70%, rgba(255, 45, 59, 0.06) 0%, transparent 55%),
-    url('/img/seigaiha-pattern.svg');
-  background-repeat: repeat;
-  background-size: auto, auto, auto, 400px 400px;
+    radial-gradient(circle at 90% 70%, rgba(255, 45, 59, 0.05) 0%, transparent 55%);
   line-height: 1.7;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;

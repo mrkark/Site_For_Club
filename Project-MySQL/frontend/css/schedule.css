@@ -8,7 +8,6 @@
   border: 1px solid var(--border-glass);
   border-top: 2px solid var(--gold-primary);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(20px);
   padding: 50px clamp(20px, 4vw, 50px) 45px;
   border-radius: 8px;
 }
