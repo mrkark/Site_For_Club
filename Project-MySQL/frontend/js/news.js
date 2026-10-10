@@ -41,7 +41,7 @@ function renderNews() {
             </div>
             <div class="news-card-body">
               <h3 class="news-card-title">${n.title}</h3>
-              ${n.content ? `<p class="news-card-text">${n.content}</p>` : ''}
+              ${n.content ? `<p class="news-card-text">${formatContentWithLinks(n.content)}</p>` : ''}
               ${n.filePath ? `
                 <div class="news-card-actions">
                   <a href="${fileUrl(n.filePath)}" class="news-card-file" target="_blank"><i class="fas fa-download"></i> Скачать файл</a>

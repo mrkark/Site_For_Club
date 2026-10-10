@@ -304,14 +304,14 @@
             <i class="fas fa-phone-volume"></i>
             <div>
               <h3>Телефон</h3>
-              <p id="contactPhone">+375 29 611 79 07</p>
+              <p id="contactPhone"><a href="tel:+375296117907" class="contact-link">+375 29 611 79 07</a></p>
             </div>
           </div>
           <div class="contact-card">
             <i class="fas fa-envelope-open-text"></i>
             <div>
               <h3>Электронная почта</h3>
-              <p id="contactEmail">senko@bk.ru</p>
+              <p id="contactEmail"><a href="mailto:senko@bk.ru" class="contact-link">senko@bk.ru</a></p>
             </div>
           </div>
           <div class="contact-card">
@@ -479,6 +479,11 @@
     <div class="footer-bottom">
       <div class="container footer-bottom-inner">
         <p class="footer-copy">&copy; 2026 МОО «Спортивный Клуб «СЭНКЁ». Все права защищены.</p>
+        <div class="footer-legal-links">
+          <button type="button" class="footer-legal-link" id="cookieSettingsBtn">Настройки cookie</button>
+          <span class="footer-separator">|</span>
+          <button type="button" class="footer-legal-link" id="cookiePolicyBtn">Политика cookie</button>
+        </div>
         <div class="footer-legal-badge">
           <i class="fas fa-torii-gate"></i> Традиционное каратэ Шотокан | Минск, Беларусь
         </div>
@@ -496,6 +501,7 @@
   <script src="/js/videos.js"></script>
   <script src="/js/main-init.js"></script>
   <script src="/js/navigation.js"></script>
+  <script src="/js/cookie-consent.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       loadSchedule();

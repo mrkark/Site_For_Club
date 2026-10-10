@@ -2,6 +2,8 @@
    PRO MODAL WINDOWS (OBSIDIAN & BUDO GLASS)
    ========================================================================== */
 
+@import url('./cookie-banner.css');
+
 .modal {
   display: none;
   position: fixed;

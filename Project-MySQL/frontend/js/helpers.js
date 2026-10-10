@@ -28,3 +28,16 @@ function scrollToAnchor() {
     }, 100);
   }
 }
+
+function formatContentWithLinks(text) {
+  if (!text) return '';
+  // Convert email addresses to mailto: links
+  let res = text.replace(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/gi, '<a href="mailto:$1" class="contact-link">$1</a>');
+  // Convert Belarusian and international phone numbers to tel: links
+  res = res.replace(/(\+375[\s\-]?(?:\(?\d{2}\)?|\d{2})[\s\-]?\d{3}[\s\-]?\d{2,4}[\s\-]?\d{0,2})/g, (match) => {
+    const cleanDigits = match.replace(/[^\d+]/g, '');
+    if (cleanDigits.length < 10) return match;
+    return `<a href="tel:${cleanDigits}" class="contact-link">${match}</a>`;
+  });
+  return res;
+}

@@ -1,0 +1,402 @@
+/* ==========================================================================
+   COOKIE CONSENT & PRIVACY - BELARUS LAW (№ 99-З)
+   Japanese Budo Aesthetic styling matching Sanker Club
+   ========================================================================== */
+
+/* --- Floating Bottom Cookie Banner --- */
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9998;
+  background: rgba(10, 13, 20, 0.97);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-top: 2px solid var(--gold-primary);
+  box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 208, 67, 0.15);
+  padding: 22px 0;
+  transform: translateY(110%);
+  transition: transform 0.45s var(--ease-smooth, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.cookie-banner.show {
+  transform: translateY(0);
+}
+
+.cookie-banner-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+.cookie-banner-text-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 1;
+}
+
+.cookie-banner-icon {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: 8px;
+  background: rgba(255, 208, 67, 0.12);
+  border: 1px solid var(--border-gold);
+  color: var(--gold-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  margin-top: 2px;
+}
+
+.cookie-banner-title {
+  font-family: var(--font-display, 'Cinzel', serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-pure, #FFFFFF);
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+.cookie-banner-desc {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--text-secondary, #94A3B8);
+  margin: 0;
+}
+
+.cookie-banner-desc a {
+  color: var(--gold-bright, #FFE07D);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.cookie-banner-desc a:hover {
+  color: #FFFFFF;
+}
+
+.cookie-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.cookie-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 22px;
+  font-family: var(--font-display, 'Cinzel', serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.cookie-btn-accept {
+  background: linear-gradient(135deg, #FFE07D 0%, var(--gold-primary, #FFD043) 50%, var(--gold-dark, #C89A1B) 100%);
+  color: #080A0F;
+  border-color: var(--gold-bright);
+  box-shadow: 0 4px 15px rgba(255, 208, 67, 0.35);
+}
+
+.cookie-btn-accept:hover {
+  background: linear-gradient(135deg, var(--crimson-bright, #FF4D59) 0%, var(--crimson-primary, #FF2D3B) 100%);
+  color: #FFFFFF;
+  border-color: var(--crimson-bright);
+  box-shadow: 0 6px 20px rgba(255, 45, 59, 0.45);
+  transform: translateY(-2px);
+}
+
+.cookie-btn-reject {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary, #F1F5F9);
+  border-color: var(--border-glass, rgba(255, 255, 255, 0.15));
+}
+
+.cookie-btn-reject:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+.cookie-btn-settings {
+  background: transparent;
+  color: var(--gold-bright, #FFE07D);
+  border-color: rgba(255, 208, 67, 0.4);
+}
+
+.cookie-btn-settings:hover {
+  background: rgba(255, 208, 67, 0.12);
+  border-color: var(--gold-primary);
+  transform: translateY(-2px);
+}
+
+/* --- Cookie Settings Modal Details --- */
+.cookie-categories-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin: 20px 0 26px 0;
+}
+
+.cookie-category-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-glass);
+  border-radius: 8px;
+  padding: 18px 20px;
+  transition: border-color 0.25s ease;
+}
+
+.cookie-category-card:hover {
+  border-color: var(--border-gold);
+}
+
+.cookie-category-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.cookie-category-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cookie-category-title {
+  font-family: var(--font-display, 'Cinzel', serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-pure);
+  margin: 0;
+}
+
+.cookie-badge-required {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(255, 208, 67, 0.15);
+  border: 1px solid rgba(255, 208, 67, 0.4);
+  color: var(--gold-bright);
+  font-weight: 700;
+}
+
+.cookie-category-desc {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Custom Japanese-styled Toggle Switch */
+.cookie-switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.cookie-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.cookie-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--border-glass);
+  transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 26px;
+}
+
+.cookie-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: var(--text-secondary);
+  transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 50%;
+}
+
+.cookie-switch input:checked + .cookie-slider {
+  background-color: var(--gold-primary);
+  border-color: var(--gold-bright);
+  box-shadow: 0 0 12px rgba(255, 208, 67, 0.45);
+}
+
+.cookie-switch input:checked + .cookie-slider:before {
+  transform: translateX(22px);
+  background-color: #080A0F;
+}
+
+.cookie-switch input:disabled + .cookie-slider {
+  cursor: not-allowed;
+  opacity: 0.85;
+  background-color: rgba(255, 208, 67, 0.35);
+  border-color: rgba(255, 208, 67, 0.6);
+}
+
+.cookie-switch input:disabled + .cookie-slider:before {
+  background-color: var(--gold-bright);
+}
+
+/* Modal text styling for Cookie Policy */
+.cookie-policy-content {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.cookie-policy-content h3 {
+  font-family: var(--font-display, 'Cinzel', serif);
+  color: var(--gold-bright);
+  font-size: 1.15rem;
+  margin: 22px 0 10px 0;
+  border-bottom: 1px solid var(--border-glass);
+  padding-bottom: 6px;
+}
+
+.cookie-policy-content h3:first-child {
+  margin-top: 0;
+}
+
+.cookie-policy-content p {
+  margin-bottom: 12px;
+}
+
+.cookie-policy-content ul {
+  padding-left: 20px;
+  margin-bottom: 14px;
+}
+
+.cookie-policy-content li {
+  margin-bottom: 6px;
+}
+
+.cookie-table-wrap {
+  overflow-x: auto;
+  margin: 16px 0;
+  border: 1px solid var(--border-glass);
+  border-radius: 6px;
+}
+
+.cookie-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  text-align: left;
+}
+
+.cookie-table th {
+  background: rgba(255, 208, 67, 0.08);
+  color: var(--gold-bright);
+  padding: 10px 14px;
+  font-weight: 700;
+  border-bottom: 1px solid var(--border-gold);
+}
+
+.cookie-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-glass);
+  color: var(--text-primary);
+}
+
+.cookie-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Footer Links for Cookie Settings */
+.footer-legal-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.footer-legal-link {
+  color: var(--text-muted, #64748B);
+  font-size: 0.82rem;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+  transition: color 0.25s ease;
+}
+
+.footer-legal-link:hover {
+  color: var(--gold-bright, #FFE07D);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer-separator {
+  color: rgba(255, 255, 255, 0.15);
+  font-size: 0.75rem;
+}
+
+/* Contact Links (clickable tel & mailto) */
+.contact-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.contact-link:hover {
+  color: var(--gold-bright);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .cookie-banner-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+  }
+  
+  .cookie-banner-actions {
+    justify-content: stretch;
+  }
+  
+  .cookie-banner-actions .cookie-btn {
+    flex: 1 1 auto;
+    text-align: center;
+    padding: 12px 14px;
+    font-size: 0.8rem;
+  }
+}
