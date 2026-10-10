@@ -399,6 +399,7 @@
     injectCookieDOM();
     initEvents();
 
+    const consent = getConsent();
     if (window.location.hash === '#open-cookies') {
       openSettings();
     } else if (window.location.hash === '#cookie-policy') {
